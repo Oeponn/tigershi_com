@@ -1,9 +1,56 @@
+h1 {
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  outline: 0;
+  font-size: 4vmin;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+html *
+{
+   font-family: 'Times New Roman', Times, serif !important;
+   letter-spacing: 3px;
+   cursor: none;
+}
+
+
+body {
+  background-color: white;
+}
+
+
+
+.cursor {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid black;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: rgba(255, 255, 255, 1);
+  
+  /* background-color: white; */
+  mix-blend-mode: difference;
+  z-index: 999;
+}
+
+/* .invert {
+  -webkit-filter: invert(100%);
+} */
+
+
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -15,20 +62,19 @@
 
 .App-header {
   /* background-color: #282c34; */
-  background-color: white;
-  min-height: 100vh;
+  /* background-color: white; */
+  /* min-height: 100vh; */
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(1px + 2vmin);
   /* color: white; */
   color:black;
+  background-color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -41,17 +87,20 @@
 
 .header {
   text-align: center;
+  background-color: rgba(255, 255, 255, 1.0);
 }
+
 
 .header .line {
   width: 95%;
   border-color: black white white;
   border-width: 1px;
-  margin-top: 20px
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 
 .selected-link {
-  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
 }
 
 .header-links {
@@ -64,7 +113,30 @@
 }
 
 .container-main {
-  /* padding: 20px 10px 20px; */
   text-align: center;
-  padding-top: 20px;
+  padding-top: calc(20px + 0.5em);
+  background-color: white;
 }
+
+.container-main .inner {
+  background-color: black;
+  margin: 0px 25vmax 40px;
+  padding: 2vmin 20px 5vmin;
+  color: white;
+  box-shadow: 5px 10px 20px black;
+}
+
+.container-main .inner .right {
+  margin-right:5px;
+  position: relative;
+  float: right;
+  font-weight: bold;
+}
+
+.container-main .inner .left {
+  margin-left:5px;
+  position: relative;
+  float: left;
+  font-weight: bold;
+}
+
