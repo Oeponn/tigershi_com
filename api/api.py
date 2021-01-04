@@ -7,6 +7,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = b'\xa3P\x13\xaeg\x86%\x93\xde]R\xc38K\xc4\xef' \
                           b'\x88c\xe4\xb5h\xb4\xc5\xea'
 
+@app.route('/')
+def home():
+	return "Hello!"
+
 @app.route('/test/')
 def test():
     return "test"
@@ -22,7 +26,6 @@ def login():
 def logout():
     flask.session.clear()
     return {}, 200
-
 
 @app.route('/mercari/', methods=['GET'])
 def search_mercari():
