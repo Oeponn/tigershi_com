@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Instagram from "./lib/Instagram";
+import Instagram from "./Instagram";
 import Media from "./Media";
 
 class Feed extends Component {
