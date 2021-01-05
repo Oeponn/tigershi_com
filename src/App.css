@@ -8,6 +8,10 @@ h1 {
   background: transparent;
 }
 
+a:hover {
+  -webkit-text-stroke-width: 1px;
+}
+
 html *
 {
    font-family: 'Times New Roman', Times, serif !important;
@@ -37,6 +41,7 @@ body {
   /* background-color: white; */
   mix-blend-mode: difference;
   z-index: 999;
+  /* backdrop-filter: grayscale; */
 }
 
 /* .invert {
@@ -115,6 +120,7 @@ body {
 .container-main {
   text-align: center;
   padding-top: calc(20px + 0.5em);
+  padding-bottom: 1px;
   background-color: white;
 }
 
@@ -125,6 +131,10 @@ body {
   color: white;
   box-shadow: 5px 10px 20px black;
 }
+
+/* .container-main .inner:hover {
+  box-shadow: 0px 5px 10px black;
+} */
 
 .container-main .inner .right {
   margin-right:5px;
@@ -140,3 +150,50 @@ body {
   font-weight: bold;
 }
 
+.container-main .inner .full-width {
+  width: 80%;
+}
+
+.whitelink {
+  color: white;
+}
+
+.Feed {
+  width: 100%;
+  /* text-align: center; */
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.feedImageWrapper {
+  width: 50%;
+  border: 1px solid white;
+  padding: 20px 20px 100px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  /* background-color: white;
+  color: black; */
+}
+
+.feedImage {
+  /* position:absolute; */
+  width: 100%;
+  /* padding: 40px; */
+  /* position: absolute; */
+  /* filter: grayscale(50%); */
+}
+
+.feedImage-description {
+  margin-top: 40px;
+  font-size: 1vmax;
+  filter: grayscale(50%);
+}
+
+.feedImage:hover {
+  /* transform: scale(1.05); */
+  filter: grayscale(100%);
+}

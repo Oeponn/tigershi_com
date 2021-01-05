@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
-import {addInvertListeners} from './cursorhelpers'
+// import {addInvertListeners} from './cursorhelpers'
+import lain_x6 from '../images/lain_x6.png';
 
 export default function Home() {
   useEffect(() => {
     console.log("Home Mounted")
-    addInvertListeners()
 
     return(() => {
       console.log("Home Unmounted")
@@ -17,7 +17,7 @@ export default function Home() {
       <div className="upper left corners">⌈</div>
       <div className="upper right corners">⌉</div>
 
-
+      <p>____</p>
       <p>You might know me as oponn_</p>
       <p>My name is Tiger</p>
       <p>This is my website</p>
@@ -33,6 +33,10 @@ export default function Home() {
 
 
       <p>NOISE</p>
+      <div>
+        <img src={lain_x6} className="full-width" />
+      </div>
+      
 
 
       <div className="bottom left corners">⌊</div>

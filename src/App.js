@@ -1,11 +1,11 @@
 import React, { Component, useState } from 'react';
 import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
-import logo from './images/logo.svg';
+import logo from './images/react_atom.svg';
 // import logo from './Rei_Bike_Shorts.png'
 import './App.css';
 
 import Home from './components/Home';
-import InstagramFeed from './components/InstagramFeed';
+import Feed from './components/InstagramFeed';
 import Curation from './components/Curation';
 import Store from './components/Store';
 import PageNotFound from './components/404';
@@ -33,7 +33,7 @@ const Header = () => {
       <h1>Oponn</h1>
       <div>
       <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
-      <NavLink to="/instagramfeed" activeClassName='selected-link' className='header-links'>Feed</NavLink>
+      <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink>
       <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
       <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
       {/* <Cursor /> */}
@@ -52,7 +52,7 @@ const Content = () => {
         <div>
           <Switch>
             <Route path="/" component={Home} exact={true} />
-            <Route path="/instagramfeed" component={InstagramFeed} />
+            <Route path="/feed" component={Feed} />
             <Route path="/curation" component={Curation} />
             <Route path="/store" component={Store} />
             <Route component={PageNotFound} />
