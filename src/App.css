@@ -1,3 +1,10 @@
+html *
+{
+   font-family: 'Times New Roman', Times, serif !important;
+   letter-spacing: 3px;
+   cursor: none;
+}
+
 h1 {
   margin: 0;
   padding: 10px;
@@ -12,12 +19,6 @@ a:hover {
   -webkit-text-stroke-width: 1px;
 }
 
-html *
-{
-   font-family: 'Times New Roman', Times, serif !important;
-   letter-spacing: 3px;
-   cursor: none;
-}
 
 
 body {
@@ -42,6 +43,12 @@ body {
   mix-blend-mode: difference;
   z-index: 999;
   /* backdrop-filter: grayscale; */
+}
+
+.clicking {
+  width: 1.5rem;
+  height: 1.5rem;
+  /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
 /* .invert {
@@ -126,15 +133,15 @@ body {
 
 .container-main .inner {
   background-color: black;
+  max-width: 40vw;
+  min-width: 40vw;
+  display: inline-block;
   margin: 0px 25vmax 40px;
   padding: 2vmin 20px 5vmin;
   color: white;
   box-shadow: 5px 10px 20px black;
 }
 
-/* .container-main .inner:hover {
-  box-shadow: 0px 5px 10px black;
-} */
 
 .container-main .inner .right {
   margin-right:5px;
@@ -152,6 +159,10 @@ body {
 
 .container-main .inner .full-width {
   width: 80%;
+}
+
+.container-main .inner .half-width {
+  width: 40%;
 }
 
 .whitelink {
@@ -193,7 +204,51 @@ body {
   filter: grayscale(50%);
 }
 
-.feedImage:hover {
-  /* transform: scale(1.05); */
-  filter: grayscale(100%);
+
+#manifest_hand {
+  animation: hand-hover 2s ease-in-out forwards infinite alternate;
+  position: relative;
+  z-index: 1;
 }
+
+/* .manifest:hover #manifest_hand {
+  animation-play-state: paused;
+} */
+
+@keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+  }
+}
+
+.hand-shadow {
+  display: inline-block;
+  position:relative;
+  top: -10vw;
+  height: 16px;
+  width: 60%;
+  background: black;
+  opacity: 0.4;
+  border-radius: 100%;
+  z-index: 0;
+  animation: shrink 2s ease-in-out forwards infinite alternate;
+}
+
+/* .hand-shadow:hover {
+  transform: translateY(80%);
+} */
+@keyframes shrink {
+  100% {
+    width: 30%;
+    opacity: 1.0;
+  }
+}
+
+
+
+/* .unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+} */
+

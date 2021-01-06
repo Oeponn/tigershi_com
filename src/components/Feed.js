@@ -12,7 +12,6 @@ class Feed extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = { loading: true, media: [] };
   }
 
@@ -36,10 +35,18 @@ class Feed extends Component {
       : this.props.className;
 
     return (
-      <div className={className}>
-        {this.state.media.map((media, index) => (
-          <Media key={index} src={media.src} url={media.url} alt={media.alt} />
-        ))}
+      <div>
+        { this.state.loading ?
+        <div>
+        Loading feed...
+        </div>
+        :
+        <div className={className}>
+          {this.state.media.map((media, index) => (
+            <Media key={index} src={media.src} url={media.url} alt={media.alt} />
+          ))}
+        </div>
+        }
       </div>
     );
   }

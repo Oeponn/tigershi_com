@@ -43,6 +43,7 @@ class Instagram {
           json.entry_data.ProfilePage[0].graphql.user
             .edge_owner_to_timeline_media.edges;
 
+        // console.log(edges)
         return edges.map((edge) => {
           return {
             alt: alt(edge.node),
@@ -68,10 +69,20 @@ class Instagram {
 
     const url = "https://www.instagram.com/" + userName + "/";
 
+    
     return fetch(url)
-      .then((resp) => resp.text())
-      .then((body) => getJSON(body))
-      .then((json) => mapMedia(json));
+      .then((resp) => {
+        console.log("TEXT:", resp.text )
+        return resp.text()
+      })
+      .then((body) => {
+        console.log("BODY:", body)
+        return getJSON(body)
+      })
+      .then((json) => {
+        console.log("JSON:", json)
+        console.log("MAPPED MEDIA:", mapMedia(json))
+        return mapMedia(json)});
   }
 }
 

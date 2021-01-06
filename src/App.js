@@ -12,6 +12,7 @@ import Logout from './components/Logout';
 import PageNotFound from './components/404';
 
 import Cursor from './components/cursor';
+import { addCursorFeatureClick } from './components/cursorhelpers';
 
 const CounterComponent = () => {
   const [count, setCount] = useState(0);
@@ -62,7 +63,8 @@ export default class App extends Component {
 
   componentDidMount() {
     console.log("App Mounted")
-    console.log(this.state.loggedIn)
+    console.log("Logged in: ", this.state.loggedIn)
+    addCursorFeatureClick()
   }
 
 
