@@ -4,8 +4,6 @@ export const addCursorFeatureClick = () => {
 
     document.addEventListener("mousedown", () => {
       cursor.classList.add("clicking")
-      console.log("clicking!")
-      console.log(cursor)
     });
 
     document.addEventListener("mouseup", () => {

@@ -3,7 +3,18 @@ import React, {useEffect} from "react";
 export default function Curation() {
   useEffect(() => {
     console.log("Curation Mounted")
+
+    const results = fetch("/mercari/")
+      .then((resp) => {
+        console.log("Response:", resp)
+
+        return resp.json()
+      })
+    console.log(results)
   });
+
+
+  
 
   return (
     <div className="container-main">

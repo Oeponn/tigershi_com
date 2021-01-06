@@ -99,9 +99,10 @@ def change_role():
 def search_mercari():
     conn, cursor = get_connection()
     cur = cursor.execute('SELECT term FROM search_terms WHERE site="mercari" OR site="all"')
-    conn.close()
 
     search_terms = list(cur.fetchall()[0])
+
+    conn.close()
     print(search_terms)
     results = {}
     try:
