@@ -79,16 +79,27 @@ def create_account():
 
     password = create_password(flask.request.form['password'])
 
-    cursor.execute('INSERT INTO users(username, password) VALUES(?, ?)', (flask.request.form['username'], password,))
+    cursor.execute('INSERT INTO users(username, password, role) VALUES(?, ?, ?)', (flask.request.form['username'], password, 'user',))
     conn.close()
     flask.session['username'] = flask.request.form['username']
     return 'Account successfully created.', 200
 
+@app.route('/change_role/', methods=['POST'])
+def change_role():
+    if 'username' not in flask.session or 'role' not in flask.session or role != 'owner' or role != 'admin':
+        flask.abort(403)
+    if flask.request.form['username'] is None:
+        flask.abort(404)
+    if flask.request.form['role'] is None:
+        flask.request.form['role'] = 'user'
+    conn, cursor = get_connection()
+    cursor.execute('UPDATE users SET role = ? WHERE username = ?', (flask.request.form['role'], flask.request.form['username'],))
 
 @app.route('/mercari/', methods=['GET'])
 def search_mercari():
     conn, cursor = get_connection()
     cur = cursor.execute('SELECT term FROM search_terms WHERE site="mercari" OR site="all"')
+    conn.close()
 
     search_terms = list(cur.fetchall()[0])
     print(search_terms)
@@ -107,4 +118,40 @@ def search_mercari():
         return 'Internal Server Error', 500
 
     return results, 200
+
+
+@app.route('/get_search_terms/', methods=['GET'])
+def get_search_terms():
+    if 'username' not in flask.session:
+        flask.abort(403)
+
+    conn, cursor = get_connection()
+    cur = cursor.execute('SELECT * FROM search_terms')
+    cur = cur.fetchall()
+
+    return {'results': cur}
+
+
+@app.route('/add_search_term/', methods=['POST'])
+def add_search_term():
+    if 'username' not in flask.session:
+        flask.abort(403)
+
+    conn, cursor = get_connection()
+
+    cur = cursor.execute('SELECT * FROM search_terms WHERE term=?', (flask.request.form['term'],))
+    cur = cur.fetchall()
+
+    if cur is not None:
+        # if site is all then delete all copies of the term with different sites to avoid double querying
+        if flask.request.form['site'] == 'all':
+            cursor.execute('DELETE FROM search_terms WHERE term=?', (flask.request.form['term']))
+
+
+    cursor.execute('INSERT INTO search_terms(term, site) VALUES(?, ?)', (flask.request.form['term'], flask.request.form['site']))
+    conn.close()
+    return "Term successfully added", 200
+
+
+
 
