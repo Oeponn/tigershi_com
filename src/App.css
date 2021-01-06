@@ -1,9 +1,68 @@
+html *
+{
+   font-family: 'Times New Roman', Times, serif !important;
+   letter-spacing: 3px;
+   cursor: none;
+}
+
+h1 {
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  outline: 0;
+  font-size: 4vmin;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+a:hover {
+  -webkit-text-stroke-width: 1px;
+}
+
+
+
+body {
+  background-color: white;
+}
+
+
+
+.cursor {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid black;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: rgba(255, 255, 255, 1);
+  
+  /* background-color: white; */
+  mix-blend-mode: difference;
+  z-index: 999;
+  /* backdrop-filter: grayscale; */
+}
+
+.clicking {
+  width: 1.5rem;
+  height: 1.5rem;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+}
+
+/* .invert {
+  -webkit-filter: invert(100%);
+} */
+
+
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -15,20 +74,19 @@
 
 .App-header {
   /* background-color: #282c34; */
-  background-color: white;
-  min-height: 100vh;
+  /* background-color: white; */
+  /* min-height: 100vh; */
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(1px + 2vmin);
   /* color: white; */
   color:black;
+  background-color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -41,17 +99,20 @@
 
 .header {
   text-align: center;
+  background-color: rgba(255, 255, 255, 1.0);
 }
+
 
 .header .line {
   width: 95%;
   border-color: black white white;
   border-width: 1px;
-  margin-top: 20px
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 
 .selected-link {
-  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
 }
 
 .header-links {
@@ -64,7 +125,130 @@
 }
 
 .container-main {
-  /* padding: 20px 10px 20px; */
   text-align: center;
-  padding-top: 20px;
+  padding-top: calc(20px + 0.5em);
+  padding-bottom: 1px;
+  background-color: white;
 }
+
+.container-main .inner {
+  background-color: black;
+  max-width: 40vw;
+  min-width: 40vw;
+  display: inline-block;
+  margin: 0px 25vmax 40px;
+  padding: 2vmin 20px 5vmin;
+  color: white;
+  box-shadow: 5px 10px 20px black;
+}
+
+
+.container-main .inner .right {
+  margin-right:5px;
+  position: relative;
+  float: right;
+  font-weight: bold;
+}
+
+.container-main .inner .left {
+  margin-left:5px;
+  position: relative;
+  float: left;
+  font-weight: bold;
+}
+
+.container-main .inner .full-width {
+  width: 80%;
+}
+
+.container-main .inner .half-width {
+  width: 40%;
+}
+
+.whitelink {
+  color: white;
+}
+
+.Feed {
+  width: 100%;
+  /* text-align: center; */
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.feedImageWrapper {
+  width: 50%;
+  border: 1px solid white;
+  padding: 20px 20px 100px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  /* background-color: white;
+  color: black; */
+}
+
+.feedImage {
+  /* position:absolute; */
+  width: 100%;
+  /* padding: 40px; */
+  /* position: absolute; */
+  /* filter: grayscale(50%); */
+}
+
+.feedImage-description {
+  margin-top: 40px;
+  font-size: 1vmax;
+  filter: grayscale(50%);
+}
+
+
+#manifest_hand {
+  animation: hand-hover 2s ease-in-out forwards infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+/* .manifest:hover #manifest_hand {
+  animation-play-state: paused;
+} */
+
+@keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+  }
+}
+
+.hand-shadow {
+  display: inline-block;
+  position:relative;
+  top: -10vw;
+  height: 16px;
+  width: 60%;
+  background: black;
+  opacity: 0.4;
+  border-radius: 100%;
+  z-index: 0;
+  animation: shrink 2s ease-in-out forwards infinite alternate;
+}
+
+/* .hand-shadow:hover {
+  transform: translateY(80%);
+} */
+@keyframes shrink {
+  100% {
+    width: 30%;
+    opacity: 1.0;
+  }
+}
+
+
+
+/* .unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+} */
+
