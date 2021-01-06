@@ -46,7 +46,7 @@ def home():
 def test():
     return "test", 200
 
-@app.route('/login/', methods=['POST'])
+@app.route('/api/login/', methods=['POST'])
 def login():
     conn, cursor = get_connection()
     cur = cursor.execute('SELECT password FROM users WHERE username=?',
@@ -60,12 +60,12 @@ def login():
     flask.session['username'] = flask.request.form['username']
     return 'Welcome, ' + flask.request.form['username'], 200
 
-@app.route('/logout/', methods=['GET'])
+@app.route('/api/logout/', methods=['GET'])
 def logout():
     flask.session.clear()
     return 'Successfully logged out', 200
 
-@app.route('/create_account/', methods=['POST'])
+@app.route('/api/create_account/', methods=['POST'])
 def create_account():
     if len(flask.request.form['password']) == 0:
         return "Password can't be blank", 400
@@ -84,7 +84,7 @@ def create_account():
     flask.session['username'] = flask.request.form['username']
     return 'Account successfully created.', 200
 
-@app.route('/change_role/', methods=['POST'])
+@app.route('/api/change_role/', methods=['POST'])
 def change_role():
     if 'username' not in flask.session or 'role' not in flask.session or role != 'owner' or role != 'admin':
         flask.abort(403)
@@ -95,7 +95,7 @@ def change_role():
     conn, cursor = get_connection()
     cursor.execute('UPDATE users SET role = ? WHERE username = ?', (flask.request.form['role'], flask.request.form['username'],))
 
-@app.route('/mercari/', methods=['GET'])
+@app.route('/api/mercari/', methods=['GET'])
 def search_mercari():
     conn, cursor = get_connection()
     cur = cursor.execute('SELECT term FROM search_terms WHERE site="mercari" OR site="all"')
@@ -121,7 +121,7 @@ def search_mercari():
     return results, 200
 
 
-@app.route('/get_search_terms/', methods=['GET'])
+@app.route('/api/get_search_terms/', methods=['GET'])
 def get_search_terms():
     if 'username' not in flask.session:
         flask.abort(403)
@@ -133,7 +133,7 @@ def get_search_terms():
     return {'results': cur}
 
 
-@app.route('/add_search_term/', methods=['POST'])
+@app.route('/api/add_search_term/', methods=['POST'])
 def add_search_term():
     if 'username' not in flask.session:
         flask.abort(403)

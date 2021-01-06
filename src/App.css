@@ -224,7 +224,7 @@ body {
 .hand-shadow {
   display: inline-block;
   position:relative;
-  top: -10vw;
+  top: calc(-50px - 6vw);
   height: 16px;
   width: 60%;
   background: black;
@@ -246,9 +246,13 @@ body {
 
 
 
-/* .unselectable {
-  -moz-user-select: none;
-  -webkit-user-select: none;
+.unselectable {
+  
   user-select: none;
-} */
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none; 
+  -ms-user-select: none;
+}
 

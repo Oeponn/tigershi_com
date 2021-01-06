@@ -66,7 +66,7 @@ export default class Home extends Component {
               </div>
 
               <div>
-                <img src={grid_plane} className="full-width" alt="perspective grid unselectable" />
+                <img src={grid_plane} className="full-width unselectable" alt="perspective grid" />
               </div>
               <p>MANIFEST</p>
               <div className="hand-shadow"></div>

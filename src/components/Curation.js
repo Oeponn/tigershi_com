@@ -4,7 +4,7 @@ export default function Curation() {
   useEffect(() => {
     console.log("Curation Mounted")
 
-    const results = fetch("/mercari/")
+    const results = fetch("/api/mercari/")
       .then((resp) => {
         console.log("Response:", resp)
 
