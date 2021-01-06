@@ -9,6 +9,28 @@ export default function Login() {
     })
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e)
+    const data = {
+        "username": "admin",
+        "password": "password"
+    }
+    const response = fetch("/api/login/", {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    .then((resp) => {
+        console.log("Response:", resp.text())
+
+        return resp
+      });
+  }
+
   return (
     <div className="container-main">
       <div className="inner">
@@ -16,16 +38,18 @@ export default function Login() {
         <div className="upper right corners">⌉</div>
 
         <p>____</p>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <label for="username">username:</label><br />
             <input type="text" id="username" name="username" /><br />
             <label for="password">password:</label><br />
             <input type="password" id="password" name="password" />
+            <br />
+            <br />
+            <div>
+                <button>Enter</button>
+            </div>
         </form>
-        <br />
-        <div>
-            <button>Enter</button>
-        </div>
+        
 
         <div>
             come here

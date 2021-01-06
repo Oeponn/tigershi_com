@@ -48,17 +48,20 @@ def test():
 
 @app.route('/api/login/', methods=['POST'])
 def login():
+    req = flask.request.get_json()
+
     conn, cursor = get_connection()
-    cur = cursor.execute('SELECT password FROM users WHERE username=?',
-                                 (flask.request.form['username'],))
+    cur = cursor.execute('SELECT password, role FROM users WHERE username=?',
+                                 (req['username'],))
     password = cur.fetchone()
     conn.close()
     # user doesn't exist
-    if password is None or not login_password_check(flask.request.form['password'], password[0]):
+    if password is None or not login_password_check(req['password'], password[0]):
         flask.abort(403)
 
-    flask.session['username'] = flask.request.form['username']
-    return 'Welcome, ' + flask.request.form['username'], 200
+    flask.session['username'] = req['username']
+    flask.session['role'] = password[1]
+    return 'Welcome, ' + flask.session['role'] + ' ' + req['username'], 200
 
 @app.route('/api/logout/', methods=['GET'])
 def logout():
@@ -67,33 +70,38 @@ def logout():
 
 @app.route('/api/create_account/', methods=['POST'])
 def create_account():
-    if len(flask.request.form['password']) == 0:
+    req = flask.request.get_json()
+
+    if len(req['password']) == 0:
         return "Password can't be blank", 400
     conn, cursor = get_connection()
     cur = cursor.execute('SELECT username FROM users WHERE username=?',
-                             (flask.request.form['username'],))
+                             (req['username'],))
     user = cur.fetchone()
 
     if user is not None:
         return "Username already in existence.", 409
 
-    password = create_password(flask.request.form['password'])
+    password = create_password(req['password'])
 
-    cursor.execute('INSERT INTO users(username, password, role) VALUES(?, ?, ?)', (flask.request.form['username'], password, 'user',))
+    cursor.execute('INSERT INTO users(username, password, role) VALUES(?, ?, ?)', (req['username'], password, 'user',))
     conn.close()
-    flask.session['username'] = flask.request.form['username']
+    flask.session['username'] = req['username']
     return 'Account successfully created.', 200
 
 @app.route('/api/change_role/', methods=['POST'])
 def change_role():
     if 'username' not in flask.session or 'role' not in flask.session or role != 'owner' or role != 'admin':
         flask.abort(403)
-    if flask.request.form['username'] is None:
+
+    req = flask.request.get_json()
+
+    if req['username'] is None:
         flask.abort(404)
-    if flask.request.form['role'] is None:
-        flask.request.form['role'] = 'user'
+    if req['role'] is None:
+        req['role'] = 'user'
     conn, cursor = get_connection()
-    cursor.execute('UPDATE users SET role = ? WHERE username = ?', (flask.request.form['role'], flask.request.form['username'],))
+    cursor.execute('UPDATE users SET role = ? WHERE username = ?', (req['role'], req['username'],))
 
 @app.route('/api/mercari/', methods=['GET'])
 def search_mercari():
@@ -135,21 +143,23 @@ def get_search_terms():
 
 @app.route('/api/add_search_term/', methods=['POST'])
 def add_search_term():
-    if 'username' not in flask.session:
+    if 'username' not in flask.session or 'role' not in flask.session or flask.session['role'] != 'owner' or flask.session['role'] != 'admin':
         flask.abort(403)
+
+    req = flask.request.get_json()
 
     conn, cursor = get_connection()
 
-    cur = cursor.execute('SELECT * FROM search_terms WHERE term=?', (flask.request.form['term'],))
+    cur = cursor.execute('SELECT * FROM search_terms WHERE term=?', (req['term'],))
     cur = cur.fetchall()
 
     if cur is not None:
         # if site is all then delete all copies of the term with different sites to avoid double querying
-        if flask.request.form['site'] == 'all':
-            cursor.execute('DELETE FROM search_terms WHERE term=?', (flask.request.form['term']))
+        if req['site'] == 'all':
+            cursor.execute('DELETE FROM search_terms WHERE term=?', (req['term']))
 
 
-    cursor.execute('INSERT INTO search_terms(term, site) VALUES(?, ?)', (flask.request.form['term'], flask.request.form['site']))
+    cursor.execute('INSERT INTO search_terms(term, site) VALUES(?, ?)', (req['term'], req['site']))
     conn.close()
     return "Term successfully added", 200
 
