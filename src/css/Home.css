@@ -1,0 +1,120 @@
+#manifest_hand {
+    animation: hand-hover 2s ease-in-out forwards infinite alternate;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* .manifest:hover #manifest_hand {
+    animation-play-state: paused;
+  } */
+  
+  @keyframes hand-hover {
+    100% {
+      transform: translateY(80%);
+    }
+  }
+  
+  .hand-shadow {
+    display: inline-block;
+    position:relative;
+    top: calc(-50px - 6vw);
+    height: 16px;
+    width: 60%;
+    background: black;
+    opacity: 0.4;
+    border-radius: 100%;
+    z-index: 0;
+    animation: shrink 2s ease-in-out forwards infinite alternate;
+  }
+  
+  /* .hand-shadow:hover {
+    transform: translateY(80%);
+  } */
+  @keyframes shrink {
+    100% {
+      width: 30%;
+      opacity: 1.0;
+    }
+  }
+
+
+
+  .lain-noise-div:hover {
+    background: url('../images/matrix.gif');
+    background-size: contain;
+    background-size: 50%;
+    filter: grayscale(100%);
+    mix-blend-mode: difference;
+    box-shadow: 5px 10px 20px white;
+  }
+
+  .lain-hidden {
+    visibility: hidden;
+  }
+
+  .lain-home {
+    text-align: center;
+    background: url('../images/lain_x6.png');
+    -webkit-background-size: cover;
+    background-size: contain;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .lain-home:hover > .lain-hidden {
+    visibility: visible;
+    opacity: 50%;
+    transform: translate(0%, -3%);
+  }
+
+  .lain-home:hover {
+    animation: glitch .3s infinite;
+  }
+
+
+  @keyframes glitch {
+    0% {
+      background-size: 100%;
+      background-position: 10px 10px;
+    }
+    10% {
+      background-size: 95%;
+      background-position: 4px 4px;
+    }
+    15% {
+      background-size: 100%;
+      background-position: -8px 0px;
+    }
+    20% {
+      background-size: 100%;
+      background-position: 10px 0px;
+    }
+    30% {
+      background-size: 95%;
+      background-position: 12px -4px;
+    }
+    40% {
+      
+      background-position: -8px 5px;
+    }
+    50% {
+      background-size: 100%;
+      background-position: -12px 5px;
+    }
+    60% {
+      background-position: 8px 0px;
+    }
+    70% {
+      background-size: 95%;
+      background-position: 0px 7px;
+    }
+    80% {
+      background-size: 98%;
+      background-position: -11px -8px;
+    }
+    100% {
+      background-size: 95%;
+      background-position: 2px 0px;
+    }
+  }

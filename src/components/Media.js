@@ -6,7 +6,6 @@ class Media extends Component {
       <div className="feedImageWrapper">
         <a href={this.props.url} rel="noopener" target="_blank" >
           <img className="feedImage" src={this.props.src} alt={this.props.alt} ></img>
-          
         </a>
         <div className="feedImage-description">{this.props.alt}</div>
       </div>

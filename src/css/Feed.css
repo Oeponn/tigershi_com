@@ -1,0 +1,34 @@
+.Feed {
+    width: 100%;
+    /* text-align: center; */
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .feedImageWrapper {
+    width: 50%;
+    border: 1px solid white;
+    padding: 20px 20px 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  
+    /* background-color: white;
+    color: black; */
+  }
+  
+  .feedImage {
+    /* position:absolute; */
+    width: 100%;
+    /* padding: 40px; */
+    /* position: absolute; */
+    /* filter: grayscale(50%); */
+  }
+  
+  .feedImage-description {
+    margin-top: 40px;
+    font-size: 1vmax;
+    filter: grayscale(50%);
+  }

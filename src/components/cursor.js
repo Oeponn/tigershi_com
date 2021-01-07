@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 
 class Cursor extends Component {
     state = {
-        left: 0,
-        top: 0
+        left: -50,
+        top: -50,
     }
     componentDidMount() {
         document.addEventListener('mousemove', (e) => {

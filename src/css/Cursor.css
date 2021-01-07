@@ -1,0 +1,23 @@
+.cursor {
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    background-color: rgba(255, 255, 255, 1);
+    
+    /* background-color: white; */
+    mix-blend-mode: difference;
+    z-index: 999;
+    /* backdrop-filter: grayscale; */
+  }
+  
+  .clicking {
+    width: 1.5rem;
+    height: 1.5rem;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+  }

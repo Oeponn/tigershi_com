@@ -1,7 +1,10 @@
 import React, { Component, useState } from 'react';
 import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
 import logo from './images/react_atom.svg';
-import './App.css';
+import './css/App.css';
+import './css/Cursor.css';
+import './css/Home.css';
+import './css/Feed.css';
 
 import Home from './components/Home';
 import Feed from './components/oponn_feed';
@@ -70,7 +73,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className="god-container">
         <BrowserRouter>
         <Header loggedIn={this.state.loggedIn}/>
         <Cursor />

@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import InnerWrapper from './InnerWrapper';
-// import {addInvertListeners} from './cursorhelpers'
+
 import lain_x6 from '../images/lain_x6.png';
 import grid_plane from '../images/grid_plane.png';
 import manifest_hand from '../images/manifest_hand.png';
@@ -51,6 +51,8 @@ export default class Home extends Component {
               <p>You might know me as oponn_</p>
               <p>My name is Tiger</p>
               <p>This is my website</p>
+              <p>Every component on this page is interactive in some way</p>
+              <p>Please enjoy yourself</p>
             </div>
           } />
 
@@ -74,14 +76,15 @@ export default class Home extends Component {
           } />
 
         <InnerWrapper
-          addClass=""
+          addClass="lain-noise-div"
           innerContent=
           {
             <div>
-              <div>
-                <img src={lain_x6} className="full-width" alt="lain sketches" />
+              <div className='lain-home'>
+                <img src={lain_x6} className="full-width lain-hidden" alt="lain sketches" />
               </div>
               <p>NOISE</p>
+              <p>LAIN</p>
             </div>
           } />
 
