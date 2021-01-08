@@ -1,120 +1,246 @@
+.home-title {
+  font-size: 1.5em;
+  margin-top: 0px;
+  margin-bottom: 0.5em;
+}
+
+.home-inspo {
+  font-size: 0.8em;
+  margin-top: 0px;
+  padding: 0px 3vw 0px;
+}
+
 #manifest_hand {
-    animation: hand-hover 2s ease-in-out forwards infinite alternate;
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* .manifest:hover #manifest_hand {
-    animation-play-state: paused;
-  } */
-  
-  @keyframes hand-hover {
-    100% {
-      transform: translateY(80%);
-    }
-  }
-  
-  .hand-shadow {
-    display: inline-block;
-    position:relative;
-    top: calc(-50px - 6vw);
-    height: 16px;
-    width: 60%;
-    background: black;
-    opacity: 0.4;
-    border-radius: 100%;
-    z-index: 0;
-    animation: shrink 2s ease-in-out forwards infinite alternate;
-  }
-  
-  /* .hand-shadow:hover {
+  animation: hand-hover 2s ease-in-out forwards infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes hand-hover {
+  100% {
     transform: translateY(80%);
-  } */
-  @keyframes shrink {
-    100% {
-      width: 30%;
-      opacity: 1.0;
-    }
   }
+}
+
+.hand-shadow {
+  display: inline-block;
+  position: relative;
+  top: calc(-50px - 6vw);
+  height: 16px;
+  width: 60%;
+  background: black;
+  opacity: 0.4;
+  border-radius: 100%;
+  z-index: 0;
+  animation: shrink 2s ease-in-out forwards infinite alternate;
+}
 
 
-
-  .lain-noise-div:hover {
-    background: url('../images/matrix.gif');
-    background-size: contain;
-    background-size: 50%;
-    filter: grayscale(100%);
-    mix-blend-mode: difference;
-    box-shadow: 5px 10px 20px white;
+@keyframes shrink {
+  100% {
+    width: 30%;
+    opacity: 1.0;
   }
+}
 
-  .lain-hidden {
-    visibility: hidden;
-  }
+.lain-noise-div:hover {
+  background: url('../images/matrix.gif');
+  background-size: contain;
+  background-size: 50%;
+  filter: grayscale(100%);
+  mix-blend-mode: difference;
+  box-shadow: 5px 10px 20px white;
+}
 
-  .lain-home {
-    text-align: center;
-    background: url('../images/lain_x6.png');
-    -webkit-background-size: cover;
-    background-size: contain;
+.lain-container {
+  background: url('../images/lain_x6.png') no-repeat;
+  background-size: contain;
+  position: relative;
+  overflow: hidden;
+}
+
+.lain-hidden {
+  visibility: hidden;
+}
+
+.lain-container:hover>.lain-hidden {
+  visibility: visible;
+  opacity: 60%;
+  animation: glitch-shake .3s infinite;
+}
+
+.lain-container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('../images/lain_x6.png');
+  background-size: cover;
+  filter: sepia(100%);
+  opacity: 0;
+}
+
+.lain-container:hover:before {
+  opacity: 80%;
+  mix-blend-mode: difference;
+  animation: glitch-background-shake 1s infinite;
+}
+
+
+
+
+@keyframes glitch-background-shake {
+  0% {
     background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-position: 10px 10px;
   }
+  10% {
+    background-size: 95%;
+    background-position: 4px 4px;
+  }
+  15% {
+    background-size: 100%;
+    background-position: -8px 0px;
+  }
+  20% {
+    background-size: 100%;
+    background-position: 10px 0px;
+  }
+  30% {
+    background-size: 95%;
+    background-position: 12px -4px;
+  }
+  40% {
+    background-position: -8px 5px;
+  }
+  50% {
+    background-size: 100%;
+    background-position: -12px 5px;
+  }
+  60% {
+    background-position: 8px 0px;
+  }
+  65% {
+    background-size: 105%;
+    background-position: -3px -3px;
+  }
+  70% {
+    background-size: 95%;
+    background-position: 5px 7px;
+  }
+  80% {
+    background-size: 105%;
+    background-position: -11px -8px;
+  }
+  100% {
+    background-size: 95%;
+    background-position: -5px 10px;
+  }
+}
+
+@keyframes glitch-shake {
+  100% {
+    transform: scale(1) translateX(10px) translateY(10px);
+  }
+  90% {
+    transform: scale(0.95) translateX(4px) translateY(4px);
+  }
+  80% {
+    transform: scale(1) translateX(-8px) translateY(0px);
+  }
+  70% {
+    transform: scale(1) translateX(10px) translateY(0px);
+  }
+  65% {
+    transform: scale(0.95) translateX(12px) translateY(-4px);
+  }
+  50% {
+    transform: translateX(-8px) translateY(5px);
+  }
+  40% {
+    transform: scale(1) translateX(-12px) translateY(5px);
+  }
+  30% {
+    transform: translateX(8px) translateY(0px);
+  }
+  20% {
+    transform: scale(1.05) translateX(-3px) translateY(-3px);
+  }
+  15% {
+    transform: scale(0.95) translateX(-5px) translateY(7px);
+    background-size: 95%;
+    background-position: 5px 7px;
+  }
+  10% {
+    transform: scale(1.05) translateX(-11px) translateY(-8px);
+  }
+  0% {
+    transform: scale(0.9) translateX(-5px) translateY(10px);
+  }
+}
   
-  .lain-home:hover > .lain-hidden {
-    visibility: visible;
-    opacity: 50%;
-    transform: translate(0%, -3%);
-  }
-
-  .lain-home:hover {
-    animation: glitch .3s infinite;
-  }
 
 
-  @keyframes glitch {
-    0% {
-      background-size: 100%;
-      background-position: 10px 10px;
-    }
-    10% {
-      background-size: 95%;
-      background-position: 4px 4px;
-    }
-    15% {
-      background-size: 100%;
-      background-position: -8px 0px;
-    }
-    20% {
-      background-size: 100%;
-      background-position: 10px 0px;
-    }
-    30% {
-      background-size: 95%;
-      background-position: 12px -4px;
-    }
-    40% {
-      
-      background-position: -8px 5px;
-    }
-    50% {
-      background-size: 100%;
-      background-position: -12px 5px;
-    }
-    60% {
-      background-position: 8px 0px;
-    }
-    70% {
-      background-size: 95%;
-      background-position: 0px 7px;
-    }
-    80% {
-      background-size: 98%;
-      background-position: -11px -8px;
-    }
-    100% {
-      background-size: 95%;
-      background-position: 2px 0px;
-    }
+
+.akira-container{
+  background: url('../images/Front_White.png') no-repeat;
+  background-size: contain;
+  position: relative;
+  overflow: hidden;
+}
+
+.akira-container::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  background: url('../images/Front_White.png');
+  background-size: cover;
+  filter: sepia(100%);
+  opacity: 0;
+}
+
+.akira-container:hover:before{
+  opacity: .7;
+  animation: glitch-wave 1s infinite linear;
+}
+
+@keyframes glitch-wave {
+  0%{
+    top: 0%;
+    background-position: 12px 0%;
   }
+
+  20%{
+    top: 20%;
+    background-position: -10px 20%;
+  }
+
+  40%{
+    top: 40%;
+    background-position: 6px 40%;
+  }
+
+  60%{
+    top: 60%;
+    background-position: -6px 60%;
+  }
+
+  80%{
+    top: 80%;
+    background-position: 10px 80%;
+  }
+
+  100%{
+    top: 100%;
+    background-position: -12px 100%;
+  }
+}
+
+.akira-red {
+  filter: grayscale(100%);
+}
+
+.akira-red:hover {
+  filter: grayscale(0%);
+}

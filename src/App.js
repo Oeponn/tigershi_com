@@ -68,6 +68,7 @@ export default class App extends Component {
     console.log("App Mounted")
     console.log("Logged in: ", this.state.loggedIn)
     addCursorFeatureClick()
+    document.getElementsByClassName('App-logo')[0].addEventListener('click',()=>{console.log("CLICKED")})
   }
 
 
@@ -91,11 +92,13 @@ export default class App extends Component {
         </BrowserRouter>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              This website was built in react
+            <div className="App-logo-container">
+              <img src={logo} className="App-logo unselectable" alt="logo" />
+            </div>
+            <p class="home-inspo">
+              This website was built in reactjs by Tiger Shi ©2021
             </p>
-            <CounterComponent />
+            {/* <CounterComponent /> */}
           </header>
         </div>
       </div>

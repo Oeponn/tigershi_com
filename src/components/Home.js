@@ -1,10 +1,13 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import InnerWrapper from './InnerWrapper';
 
 import lain_x6 from '../images/lain_x6.png';
 import grid_plane from '../images/grid_plane.png';
 import manifest_hand from '../images/manifest_hand.png';
 import manifest_hand_close from '../images/manifest_hand_close.png';
+import orb from '../images/orb-animation.gif';
+import akira_white from '../images/Front_White.png';
+import akira_red from '../images/Front_Red.png';
 
 export default class Home extends Component {
   constructor(props) {
@@ -17,7 +20,7 @@ export default class Home extends Component {
   componentDidMount() {
     console.log("Home Mounted")
 
-    const manifest_container = document.getElementsByClassName("manifest")[0]
+    const manifest_container = document.getElementsByClassName("manifest-div")[0]
 
     manifest_container.addEventListener("mousedown", () => {
       this.setState({
@@ -40,7 +43,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container-main">
-        
+
 
         <InnerWrapper
           addClass=""
@@ -48,16 +51,16 @@ export default class Home extends Component {
           {
             <div>
               <div>____</div>
-              <p>You might know me as oponn_</p>
-              <p>My name is Tiger</p>
+              <img src={orb} alt="orb" className="half-width unselectable" />
+              <p className="home-title">My name is Tiger</p>
               <p>This is my website</p>
-              <p>Every component on this page is interactive in some way</p>
+              <p >Every component box on this page is interactive in some way</p>
               <p>Please enjoy yourself</p>
             </div>
           } />
 
         <InnerWrapper
-          addClass="manifest"
+          addClass="manifest-div"
           innerContent=
           {
             <div>
@@ -70,8 +73,9 @@ export default class Home extends Component {
               <div>
                 <img src={grid_plane} className="full-width unselectable" alt="perspective grid" />
               </div>
-              <p>MANIFEST</p>
               <div className="hand-shadow"></div>
+              <p className="home-title">MANIFEST</p>
+              <p className="home-inspo">Inspired by Cav Empt's Manifest Horizon Hoodie</p>
             </div>
           } />
 
@@ -80,11 +84,24 @@ export default class Home extends Component {
           innerContent=
           {
             <div>
-              <div className='lain-home'>
+              <div className='lain-container'>
                 <img src={lain_x6} className="full-width lain-hidden" alt="lain sketches" />
               </div>
-              <p>NOISE</p>
-              <p>LAIN</p>
+              <p className="home-title">NOISE</p>
+              <p className="home-inspo">Bitmapped sketch of Lain Iwakura from Serial Experiments Lain, original sketch by Yoshitoshi Abe</p>
+            </div>
+          } />
+
+        <InnerWrapper
+          addClass=""
+          innerContent=
+          {
+            <div>
+              <div className="akira-container">
+                <img src={akira_red} className="full-width akira-red unselectable" alt="akira tetsuo" />
+              </div>
+              <p className="home-title">TETSUO AWAKENS</p>
+              <p className="home-inspo">Front design for an Akira shirt I had manufactured ethically in Japan</p>
             </div>
           } />
 

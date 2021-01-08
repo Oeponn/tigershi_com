@@ -1,13 +1,11 @@
-html *
-{
-   font-family: 'Times New Roman', Times, serif !important;
-   letter-spacing: 3px;
-   cursor: none;
+html * {
+  font-family: 'Times New Roman', Times, serif !important;
+  letter-spacing: 3px;
+  cursor: none;
 }
 
 .god-container {
-  /* background-image: url('../matrix.gif'); */
-  background-size: 30%;
+  width:100%;
 }
 
 h1 {
@@ -24,57 +22,18 @@ a:hover {
   -webkit-text-stroke-width: 1px;
 }
 
-
 body {
   background-color: white;
 }
 
-
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 20vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  /* background-color: #282c34; */
-  /* background-color: white; */
-  /* min-height: 100vh; */
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(1px + 2vmin);
-  /* color: white; */
-  color:black;
-  background-color: white;
-}
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .header {
   text-align: center;
   background-color: rgba(255, 255, 255, 1.0);
 }
-
 
 .header .line {
   width: 95%;
@@ -89,7 +48,7 @@ body {
 }
 
 .header-links {
-  color:black;
+  color: black;
   padding: 20px;
 }
 
@@ -115,16 +74,15 @@ body {
   box-shadow: 5px 10px 20px black;
 }
 
-
 .container-main .inner .right {
-  margin-right:5px;
+  margin-right: 5px;
   position: relative;
   float: right;
   font-weight: bold;
 }
 
 .container-main .inner .left {
-  margin-left:5px;
+  margin-left: 5px;
   position: relative;
   float: left;
   font-weight: bold;
@@ -143,12 +101,98 @@ body {
 }
 
 .unselectable {
-  
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -webkit-user-drag: none; 
+  -webkit-user-drag: none;
   -ms-user-select: none;
+}
+
+.App-logo {
+  height: 20vmin;
+  background: url('../images/orb-animation-invert.gif');
+  background-size: contain;
+  mix-blend-mode: multiply;
+  background-position-x: 0.4vw;
+  background-repeat: no-repeat;
+}
+
+.App-header {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(1px + 2vmin);
+  color: black;
+  background-color: white;
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+
+.App-logo {
+  -webkit-animation: spin 10s linear 0s infinite reverse;
+  -moz-animation: spin 10s linear 0s infinite reverse;  
+  -ms-animation: spin 10s linear 0s infinite reverse;
+  -o-animation: spin 10s linear 0s infinite reverse;
+  animation: spin 10s linear 0s infinite reverse;
+  
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -ms-animation-play-state: paused;
+  -o-animation-play-state: paused;  
+  animation-play-state: paused;
+}
+
+.App-logo-container {
+  mix-blend-mode: multiply;
+  -webkit-animation: spin 20s linear 0s infinite normal;
+  -moz-animation: spin 20s linear 0s infinite normal;
+  -ms-animation: spin 20s linear 0s infinite normal;
+  -o-animation: spin 20s linear 0s infinite normal;
+  animation: spin 20s linear 0s infinite normal;
+}
+
+.App-logo:hover {
+  -webkit-animation-play-state: running;
+  -moz-animation-play-state: running;
+  -ms-animation-play-state: running;
+  -o-animation-play-state: running;
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+@-webkit-keyframes spin {
+  0% {-webkit-transform: rotate(360deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+@-ms-keyframes spin {
+  0% {-ms-transform: rotate(360deg); }
+  100% { -ms-transform: rotate(0deg); }
+}
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(360deg); }
+  100% { -moz-transform: rotate(0deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(360deg); }
+  100% { -o-transform: rotate(0deg); }
 }
 
