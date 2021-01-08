@@ -28,7 +28,6 @@ export default function CuratedProducts(props) {
   }
   else {
     const parsedProducts = JSON.parse(props.products)
-    console.log(parsedProducts.length)
     var productDivs = parsedProducts.map((product, index) => {
       return (
         <InnerWrapper
@@ -49,14 +48,16 @@ export default function CuratedProducts(props) {
       )
     });
 
-    var firstProducts = productDivs.slice(0,10)
+    const start = props.pageNum * props.resultsPerPage
+    const end = Math.min(props.pageNum * props.resultsPerPage + props.resultsPerPage, productDivs.length - 1)
+    var pageToDisplay = productDivs.slice(start, end)
 
     // var arr = [1,2,3,4,5,6,7,8]
     // var renderedOutput = arr.map((item, index) => <div> {item},{index} </div>)
 
     return (
       <div>
-        {firstProducts}
+        {pageToDisplay}
       </div>
     );
 
