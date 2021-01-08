@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import InnerWrapper from './InnerWrapper';
 import CuratedProducts from './CuratedProducts';
+import Pagination from './Pagination'
+
+const RESULTS_PER_PAGE = 10
 
 export default class Curation extends Component {
   constructor(props) {
@@ -8,6 +11,7 @@ export default class Curation extends Component {
     this.state = {
       products: "[]",
       loading: true,
+      pageNum: 0,
     };
   }
 
@@ -39,7 +43,29 @@ export default class Curation extends Component {
       })
   }
 
+  // using settimeout because of https://stackoverflow.com/questions/1174863/javascript-scrollto-method-does-nothing
+  scrollToTop = () => {
+    setTimeout(function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    },1);
+  }
 
+  changePageNum = (num) => {
+    console.log('In change page num, num=' + num)
+    if (num < 0) {
+      num = 0
+    }
+    else if (this.state.products.length > 0 && num * RESULTS_PER_PAGE > this.state.products.length) {
+      num -= 1
+    }
+    this.scrollToTop()
+    this.setState({
+      pageNum: num,
+    })
+  }
 
 
   render() {
@@ -61,6 +87,13 @@ export default class Curation extends Component {
         <CuratedProducts 
           loading={this.state.loading}
           products={this.state.products}
+          resultsPerPage={RESULTS_PER_PAGE}
+          pageNum={this.state.pageNum}
+        />
+
+        <Pagination
+          changePageNum={this.changePageNum}
+          pageNum={this.state.pageNum}
         />
 
         {/* <InnerWrapper
