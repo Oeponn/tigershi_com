@@ -11,6 +11,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = b'\xa3P\x13\xaeg\x86%\x93\xde]R\xc38K\xc4\xef' \
 						  b'\x88c\xe4\xb5h\xb4\xc5\xea'
 
+USE_MERCARI_DATABASE = False
+
 def get_connection():
 	conn = sqlite3.connect('../db/tiger_shi.sqlite3', isolation_level=None)
 	cursor = conn.cursor()
@@ -108,12 +110,10 @@ def search_mercari():
 	conn, cursor = get_connection()
 	results = {}
 
-	# (TODO: remove 'FALSE and' from the next line) If there are results already in the database, use those 
-	if False and cursor.execute('SELECT url FROM mercari_results LIMIT 1').fetchone() is not None:
-		print('Detected results in database')
+	# If there are results already in the database, use those 
+	if USE_MERCARI_DATABASE && cursor.execute('SELECT url FROM mercari_results LIMIT 1').fetchone() is not None:
 		cur = cursor.execute('SELECT * FROM mercari_results ORDER BY term')
 		mercari_results = cur.fetchall()
-		print(mercari_results)
 		term = mercari_results[0][0]
 		results[term] = []
 		for result in mercari_results:

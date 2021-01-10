@@ -2,7 +2,7 @@ import sqlite3
 import mercari
 
 def get_connection():
-	conn = sqlite3.connect('../db/tiger_shi.sqlite3', isolation_level=None)
+	conn = sqlite3.connect('db/tiger_shi.sqlite3', isolation_level=None)
 	cursor = conn.cursor()
 	return conn, cursor
 

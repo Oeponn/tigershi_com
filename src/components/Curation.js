@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import InnerWrapper from './InnerWrapper';
 import CuratedProducts from './CuratedProducts';
+import { withRouter } from "react-router-dom";
 import Pagination from './Pagination'
 
 const RESULTS_PER_PAGE = 12
@@ -41,27 +42,39 @@ export default class Curation extends Component {
           // console.log("STATE PRODUCTS:", this.state.products)
         }
       })
+
+      // Load the page number from the url
+      const path = window.location.pathname.toString().split('/')
+      if (path.length === 3 && !isNaN(path[2])) {
+      	this.setState({
+      		pageNum: +path[2]
+      	})
+      }
   }
 
   // using settimeout because of https://stackoverflow.com/questions/1174863/javascript-scrollto-method-does-nothing
-  scrollToTop = () => {
-    setTimeout(function () {
-      window.scrollTo({
-        top: 0,
-        //behavior: "smooth"
-      });
-    }, 1);
-  }
+  // scrollToTop = () => {
+  //   setTimeout(function () {
+  //     window.scrollTo({
+  //       top: 0,
+  //       //behavior: "smooth"
+  //     });
+  //   }, 1);
+  // }
 
   changePageNum = (num) => {
-    console.log('In change page num, num=' + num)
+    var numberOfResults = JSON.parse(this.state.products).length
+
     if (num < 0) {
       num = 0
     }
-    else if (this.state.products.length > 0 && num * RESULTS_PER_PAGE > this.state.products.length) {
+    else if (numberOfResults > 0 && (num * RESULTS_PER_PAGE) > numberOfResults) {
       num -= 1
     }
-    this.scrollToTop()
+    else {
+    	this.props.history.push(`/curation/${num}`)
+    }
+
     this.setState({
       pageNum: num,
     })
