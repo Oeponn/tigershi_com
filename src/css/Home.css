@@ -7,8 +7,21 @@
 .home-inspo {
   font-size: 0.8em;
   margin-top: 0px;
-  padding: 0px 3vw 0px;
+  padding: 0px 3em 0px;
 }
+
+/* .home-orb-container {
+  background-image: url('../images/oponn_headshot_bm.png');
+  background-size: contain;
+  background-size: 21%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 250px;
+}
+
+.home-orb {
+  mix-blend-mode: lighten;
+} */
 
 #manifest_hand {
   animation: hand-hover 2s ease-in-out forwards infinite alternate;
@@ -65,11 +78,11 @@
 
 .lain-container:hover>.lain-hidden {
   visibility: visible;
-  opacity: 60%;
+  opacity: 50%;
   animation: glitch-shake .3s infinite;
 }
 
-.lain-container::before {
+.lain-container:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -81,9 +94,14 @@
 }
 
 .lain-container:hover:before {
-  opacity: 80%;
-  mix-blend-mode: difference;
+  opacity: 50%;
+  /* mix-blend-mode: difference; */
+  /* mix-blend-mode: multiply; */
   animation: glitch-background-shake 1s infinite;
+}
+
+.lain-container:hover {
+  opacity: 100%;
 }
 
 
@@ -189,7 +207,7 @@
   overflow: hidden;
 }
 
-.akira-container::before{
+.akira-container:before{
   content: "";
   position: absolute;
   width: 100%;
@@ -201,8 +219,8 @@
 }
 
 .akira-container:hover:before{
-  opacity: .7;
-  animation: glitch-wave 1s infinite linear;
+  opacity: 0.5;
+  animation: glitch-wave 0.8s infinite linear;
 }
 
 @keyframes glitch-wave {
@@ -239,8 +257,44 @@
 
 .akira-red {
   filter: grayscale(100%);
+  overflow: visible;
 }
 
 .akira-red:hover {
   filter: grayscale(0%);
+  -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1));
+    filter: drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1));
+  animation: red-glow 1s infinite alternate linear;
+}
+
+@keyframes red-glow{
+  100% {
+    -webkit-filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
+    filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
+  }
+  0% {
+    -webkit-filter: drop-shadow(0px 0px 0px rgba(255, 0, 0, 0)) drop-shadow(0px 0px 0px rgba(255, 0, 0, 0)) drop-shadow(0px 0px 0px rgba(255, 0, 0, 0));
+    filter: drop-shadow(0px 0px 0px rgba(255, 0, 0, 0)) drop-shadow(0px 0px 0px rgba(255, 0, 0, 0)) drop-shadow(0px 0px 0px rgba(255, 0, 0, 0));
+  }
+}
+
+
+.fade-0 {
+  animation-duration: 1s;
+  animation-delay: 0s;
+}
+
+.fade-1 {
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+}
+
+.fade-2 {
+  animation-duration: 1s;
+  animation-delay: 0.6s;
+}
+
+.fade-3 {
+  animation-duration: 1s;
+  animation-delay: 0.9s;
 }

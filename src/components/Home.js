@@ -44,18 +44,29 @@ export default class Home extends Component {
     return (
       <div className="container-main">
 
-
         <InnerWrapper
           addClass=""
           innerContent=
           {
             <div>
-              <div>____</div>
-              <img src={orb} alt="orb" className="half-width unselectable" />
+              <div>
+                <span className="fade-3 pulse">_</span>
+                <span className="fade-2 pulse">_</span>
+                <span className="fade-1 pulse">_</span>
+                <span className="fade-0 pulse">_</span>
+                <span className="fade-1 pulse">_</span>
+                <span className="fade-2 pulse">_</span>
+                <span className="fade-3 pulse">_</span>
+              </div>
+
+              <div className="home-orb-container">
+                <img src={orb} alt="orb" className="half-width unselectable home-orb" />
+              </div>
               <p className="home-title">My name is Tiger</p>
               <p>This is my website</p>
               <p >Every component box on this page is interactive in some way</p>
               <p>Please enjoy yourself</p>
+              <hr />
             </div>
           } />
 
@@ -101,7 +112,7 @@ export default class Home extends Component {
                 <img src={akira_red} className="full-width akira-red unselectable" alt="akira tetsuo" />
               </div>
               <p className="home-title">TETSUO AWAKENS</p>
-              <p className="home-inspo">Front design for an Akira shirt I had manufactured ethically in Japan</p>
+              <p className="home-inspo">Front design</p>
             </div>
           } />
 

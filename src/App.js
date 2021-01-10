@@ -5,6 +5,7 @@ import './css/App.css';
 import './css/Cursor.css';
 import './css/Home.css';
 import './css/Feed.css';
+import './css/Curation.css';
 
 import Home from './components/Home';
 import Feed from './components/oponn_feed';
@@ -35,7 +36,7 @@ const CounterComponent = () => {
 
 const Header = (props) => {
   return (
-    <header className='header'>
+    <div className='header'>
       <h1>Oponn</h1>
       <div>
       <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
@@ -50,7 +51,7 @@ const Header = (props) => {
       }
       </div>
       <hr className='line'/>
-    </header>
+    </div>
   )
 }
 
@@ -76,7 +77,9 @@ export default class App extends Component {
     return (
       <div className="god-container">
         <BrowserRouter>
+        <div className="headerc-container">
         <Header loggedIn={this.state.loggedIn}/>
+        </div>
         <Cursor />
           <div>
             <Switch>

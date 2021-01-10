@@ -3,7 +3,7 @@ import InnerWrapper from './InnerWrapper';
 import CuratedProducts from './CuratedProducts';
 import Pagination from './Pagination'
 
-const RESULTS_PER_PAGE = 10
+const RESULTS_PER_PAGE = 12
 
 export default class Curation extends Component {
   constructor(props) {
@@ -48,9 +48,9 @@ export default class Curation extends Component {
     setTimeout(function () {
       window.scrollTo({
         top: 0,
-        behavior: "smooth"
+        //behavior: "smooth"
       });
-    },1);
+    }, 1);
   }
 
   changePageNum = (num) => {
@@ -71,39 +71,33 @@ export default class Curation extends Component {
   render() {
     return (
       <div className="container-main">
-        <InnerWrapper
-          addClass=""
-          innerContent=
-          {
-            <div>
-              <div>____</div>
-              <div>curation page</div>
-              <div>why not create instead</div>
-              <div>what are you curating</div>
-              <div>in what way is your vision unique</div>
-            </div>
-          } />
-        
-        <CuratedProducts 
-          loading={this.state.loading}
-          products={this.state.products}
-          resultsPerPage={RESULTS_PER_PAGE}
-          pageNum={this.state.pageNum}
-        />
+
+        <div>
+          <CuratedProducts
+            loading={this.state.loading}
+            products={this.state.products}
+            resultsPerPage={RESULTS_PER_PAGE}
+            pageNum={this.state.pageNum}
+          />
+        </div>
 
         <Pagination
           changePageNum={this.changePageNum}
           pageNum={this.state.pageNum}
         />
 
-        {/* <InnerWrapper
+        <InnerWrapper
           addClass=""
           innerContent=
           {
             <div>
-              {this.state.products}
+              <div>____</div>
+              <div className="home-title">curation page</div>
+              <div className="home-inspo">this is a page of items i could be interested in</div>
+              <div className="home-inspo">it is mostly japanese fashion and anime franchise related items</div>
+              <div className="home-inspo">evangelion, serial experiments lain, akira, cav empt, 20471120</div>
             </div>
-          } /> */}
+          } />
 
       </div>
     )

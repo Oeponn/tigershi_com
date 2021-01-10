@@ -2,10 +2,12 @@ html * {
   font-family: 'Times New Roman', Times, serif !important;
   letter-spacing: 3px;
   cursor: none;
+  /* width: 100vw; */
 }
 
 .god-container {
   width:100%;
+  margin: 0px auto;
 }
 
 h1 {
@@ -31,16 +33,24 @@ body {
 }
 
 .header {
+  position: relative;
+  margin: 0 auto;
   text-align: center;
-  background-color: rgba(255, 255, 255, 1.0);
+  width: 100vw;
+  /* width: 500px; */
+  /* background-color: rgba(255, 255, 255, 1.0); */
+  font-size: 3vw;
+  background-color: white;
 }
+
 
 .header .line {
   width: 95%;
   border-color: black white white;
   border-width: 1px;
-  margin-top: 20px;
-  margin-bottom: 0px;
+  /* margin-top: 20px;
+  margin-bottom: 0px; */
+  margin: 20px auto 0px;
 }
 
 .selected-link {
@@ -49,15 +59,16 @@ body {
 
 .header-links {
   color: black;
-  padding: 20px;
+  padding: 1em;
 }
 
-.header-links.home {
+/* .header-links.home {
   padding-left: 10px
-}
+} */
 
 .container-main {
   text-align: center;
+  margin: 0 auto 5vh;
   padding-top: calc(20px + 0.5em);
   padding-bottom: 1px;
   background-color: white;
@@ -65,24 +76,37 @@ body {
 
 .container-main .inner {
   background-color: black;
-  max-width: 40vw;
-  min-width: 40vw;
-  display: inline-block;
-  margin: 0px 25vmax 40px;
-  padding: 2vmin 20px 5vmin;
+  margin: 0 auto 40px;
+  width: 500px;
+  /* display: inline-block; */
+  /* margin: 0px 25vmax 40px; */
+  padding: 2em 0em 3em;
   color: white;
   box-shadow: 5px 10px 20px black;
 }
 
+@media screen and (min-width: 500px) {
+  .header {
+     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container-main .inner {
+    width: 100vw;
+    /* background-color: yellow; */
+  }
+}
+
 .container-main .inner .right {
-  margin-right: 5px;
+  margin-right: 1em;
   position: relative;
   float: right;
   font-weight: bold;
 }
 
 .container-main .inner .left {
-  margin-left: 5px;
+  margin-left: 1em;
   position: relative;
   float: left;
   font-weight: bold;
@@ -111,6 +135,7 @@ body {
 
 .App-logo {
   height: 20vmin;
+  min-height: 150px;
   background: url('../images/orb-animation-invert.gif');
   background-size: contain;
   mix-blend-mode: multiply;
@@ -133,8 +158,9 @@ body {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-@keyframes App-logo-spin {
+} */
+
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -196,3 +222,16 @@ body {
   100% { -o-transform: rotate(0deg); }
 }
 
+.corner {
+  animation: fade-in-out 1.2s infinite alternate linear;
+}
+
+.pulse {
+  animation: fade-in-out 1s infinite alternate linear;
+}
+
+@keyframes fade-in-out {
+  100% {
+    opacity: 0%;
+  }
+}
