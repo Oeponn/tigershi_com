@@ -1,5 +1,6 @@
 import React from "react";
 import InnerWrapper from './InnerWrapper';
+// import CurationWrapper from './CurationWrapper';
 
 export default function CuratedProducts(props) {
   if (props.loading) {
@@ -30,21 +31,29 @@ export default function CuratedProducts(props) {
     const parsedProducts = JSON.parse(props.products)
     var productDivs = parsedProducts.map((product, index) => {
       return (
-        <InnerWrapper
-          addClass=""
-          innerContent=
-          {
-            <div>
-              <div>____</div>
-              <div>{product.name}</div>
-              <div>
-                <a href={product.url} rel="noreferrer" target="_blank" >
-                  <img className="productImage" src={product.imageURL} alt={product.name} ></img>
-                </a>
-              </div>
-              <div>{product.price} Yen</div>
-            </div>
-          } />
+        <div className="product-box">
+          <div className="product-name">{product.name}</div>
+          <div className="product-image-container">
+            <a href={product.url} rel="noreferrer" target="_blank" >
+              <img className="product-image" src={product.imageURL} alt={product.name} ></img>
+            </a>
+          </div>
+          <div  className="product-price">{product.price} Yen</div>
+        </div>
+        // <CurationWrapper
+        //   addClass=""
+        //   innerContent=
+        //   {
+        //     <div>
+        //       <div>{product.name}</div>
+        //       <div>
+        //         <a href={product.url} rel="noreferrer" target="_blank" >
+        //           <img className="productImage" src={product.imageURL} alt={product.name} ></img>
+        //         </a>
+        //       </div>
+        //       <div>{product.price} Yen</div>
+        //     </div>
+        //   } />
       )
     });
 
@@ -56,7 +65,7 @@ export default function CuratedProducts(props) {
     // var renderedOutput = arr.map((item, index) => <div> {item},{index} </div>)
 
     return (
-      <div>
+      <div className="curated-container">
         {pageToDisplay}
       </div>
     );

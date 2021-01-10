@@ -2,12 +2,12 @@ import React from "react";
 
 export default function Pagination(props) {
 	return (
-      <div>
-      	<button onClick={() => props.changePageNum(props.pageNum - 1)}>
-      		Previous
+      <div className="pagination-container">
+      	<button onClick={() => props.changePageNum(props.pageNum - 1)} className="back-button">
+      		Prev
       	</button>
         Page {props.pageNum}
-        <button onClick={() => props.changePageNum(props.pageNum + 1)}>
+        <button onClick={() => props.changePageNum(props.pageNum + 1)} className="forward-button">
         	Next
       	</button>
       </div>
