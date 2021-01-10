@@ -7,4 +7,4 @@ INSERT INTO search_terms(term, site)
 VALUES ('serial experiments lain', 'mercari');
 
 INSERT INTO search_terms(term, site)
-VALUES('シリアルエクスペリメンツレイン', 'all');
+VALUES('シリアルエクスペリメンツレイン', 'mercari');
