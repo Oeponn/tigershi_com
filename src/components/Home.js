@@ -6,7 +6,6 @@ import grid_plane from '../images/grid_plane.png';
 import manifest_hand from '../images/manifest_hand.png';
 import manifest_hand_close from '../images/manifest_hand_close.png';
 import orb from '../images/orb-animation.gif';
-import akira_white from '../images/Front_White.png';
 import akira_red from '../images/Front_Red.png';
 
 export default class Home extends Component {
@@ -50,13 +49,13 @@ export default class Home extends Component {
           {
             <div>
               <div className="pulse-container">
-                <span className="fade-3 pulse">I</span>
+                ║<span className="fade-3 pulse">I</span>
                 <span className="fade-2 pulse">H</span>
                 <span className="fade-1 pulse">E</span>
                 <span className="fade-0 pulse">L</span>
                 <span className="fade-1 pulse">L</span>
                 <span className="fade-2 pulse">O</span>
-                <span className="fade-3 pulse">I</span>
+                <span className="fade-3 pulse">I</span>║
               </div>
 
               <div className="home-orb-container">
@@ -67,6 +66,11 @@ export default class Home extends Component {
               <p >Every component box on this page is interactive in some way</p>
               <p>Please enjoy yourself</p>
               <hr />
+              <div className="social-media-links-container">
+                <a className="whitelink" href="https://www.linkedin.com/in/tiger-shi/" rel="noreferrer" target="_blank">LinkedIn</a>
+                <a className="whitelink" href="https://github.com/Oeponn/" rel="noreferrer" target="_blank">Github</a>
+                <a className="whitelink" href="https://www.instagram.com/oponn_/" rel="noreferrer" target="_blank">Instagram</a>
+              </div>
             </div>
           } />
 

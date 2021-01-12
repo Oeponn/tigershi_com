@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import InnerWrapper from './InnerWrapper';
 import CuratedProducts from './CuratedProducts';
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 import Pagination from './Pagination'
 
 const RESULTS_PER_PAGE = 12

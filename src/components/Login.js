@@ -16,7 +16,7 @@ export default function Login() {
         "username": "admin",
         "password": "password"
     }
-    const response = fetch("/api/login/", {
+    fetch("/api/login/", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         credentials: 'same-origin',
         headers: {
@@ -39,9 +39,9 @@ export default function Login() {
 
         <p>____</p>
         <form onSubmit={(e) => handleSubmit(e)}>
-            <label for="username">username:</label><br />
+            <label htmlFor="username">username:</label><br />
             <input type="text" id="username" name="username" /><br />
-            <label for="password">password:</label><br />
+            <label htmlFor="password">password:</label><br />
             <input type="password" id="password" name="password" />
             <br />
             <br />

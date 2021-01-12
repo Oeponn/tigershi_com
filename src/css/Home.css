@@ -23,6 +23,16 @@
   mix-blend-mode: lighten;
 } */
 
+
+.social-media-links-container {
+  font-size: 0.8em;
+  max-width: 500px;
+  /* width: 500px; */
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+}
+
 #manifest_hand {
   animation: hand-hover 2s ease-in-out forwards infinite alternate;
   position: relative;

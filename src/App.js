@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
 import logo from './images/react_atom.svg';
 import './css/App.css';
@@ -17,22 +17,6 @@ import PageNotFound from './components/404';
 
 import Cursor from './components/cursor';
 import { addCursorFeatureClick } from './components/cursorhelpers';
-
-const CounterComponent = () => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      Click the button below to see the number go up: {count}
-      <br />
-      <br />
-      <button onClick={() => setCount(count => {
-        // console.log("Hullo", count)
-        return (count + 1)
-      })}>I have too much time on my hands</button>
-    </div>
-  );
-}
 
 const Header = (props) => {
   return (
@@ -100,7 +84,7 @@ export default class App extends Component {
             <div className="App-logo-container">
               <img src={logo} className="App-logo unselectable" alt="logo" />
             </div>
-            <p class="home-inspo">
+            <p className="home-inspo">
               This website was built in reactjs by Tiger Shi ©2021
             </p>
             {/* <CounterComponent /> */}

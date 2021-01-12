@@ -7,7 +7,6 @@ html * {
 
 .god-container {
   width:100%;
-  margin: 0px auto;
 }
 
 h1 {
@@ -23,6 +22,11 @@ h1 {
 a:hover {
   -webkit-text-stroke-width: 1px;
 }
+
+/* a:visited {
+  text-decoration: none;
+} */
+
 
 body {
   background-color: white;
@@ -70,7 +74,8 @@ body {
 }
 
 .header-links-container {
-  font-size: 16px;
+  /* font-size: 16px; */
+  font-size: 2vmin;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -80,10 +85,20 @@ body {
 
 .header-links {
   color: black;
-  /* text-align: justify; */
-  /* padding: 0px 10px 0px; */
+  /* text-decoration: none; */
+}
 
-  /* padding: 1em; */
+/* .header-links:hover {
+  text-decoration: underline;
+} */
+
+.whitelink {
+  color: white;
+  text-decoration: none;
+}
+
+.whitelink:hover {
+  text-decoration: underline;
 }
 
 .container-main {
@@ -116,10 +131,10 @@ body {
     width: 100vw;
     /* background-color: yellow; */
   }
-  .header-links-container {
+  /* .header-links-container {
     flex-direction: column;
     align-items: center;
-  }
+  } */
 }
 
 .container-main .inner .right {
@@ -142,10 +157,6 @@ body {
 
 .container-main .inner .half-width {
   width: 40%;
-}
-
-.whitelink {
-  color: white;
 }
 
 .unselectable {
