@@ -43,9 +43,21 @@ body {
   background-color: white;
 }
 
+.header-container {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-.header .line {
+
+.line-container {
   width: 95%;
+}
+
+.line-black {
   border-color: black white white;
   border-width: 1px;
   /* margin-top: 20px;
@@ -57,14 +69,22 @@ body {
   -webkit-text-stroke-width: 1px;
 }
 
-.header-links {
-  color: black;
-  padding: 1em;
+.header-links-container {
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
+  justify-content: space-evenly;
 }
 
-/* .header-links.home {
-  padding-left: 10px
-} */
+.header-links {
+  color: black;
+  /* text-align: justify; */
+  /* padding: 0px 10px 0px; */
+
+  /* padding: 1em; */
+}
 
 .container-main {
   text-align: center;
@@ -95,6 +115,10 @@ body {
   .container-main .inner {
     width: 100vw;
     /* background-color: yellow; */
+  }
+  .header-links-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -136,6 +160,7 @@ body {
 .App-logo {
   height: 20vmin;
   min-height: 150px;
+  max-height: 300px;
   background: url('../images/orb-animation-invert.gif');
   background-size: contain;
   mix-blend-mode: multiply;
@@ -144,7 +169,8 @@ body {
 }
 
 .App-header {
-  min-height: 60vh;
+  min-height: 20vh;
+  max-height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,6 +178,7 @@ body {
   font-size: calc(1px + 2vmin);
   color: black;
   background-color: white;
+  padding-bottom: 100px;
 }
 
 /* @media (prefers-reduced-motion: no-preference) {

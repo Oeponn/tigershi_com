@@ -36,21 +36,23 @@ const CounterComponent = () => {
 
 const Header = (props) => {
   return (
-    <div className='header'>
+    <div className='header-container'>
       <h1>Oponn</h1>
-      <div>
-      <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
-      <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink>
-      <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
-      <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
-      {
-      props.loggedIn ?
-      <NavLink to="/logout" activeClassName='selected-link' className='header-links'>Exit</NavLink> 
-      :
-      <NavLink to="/login" activeClassName='selected-link' className='header-links'>Enter</NavLink>
-      }
+      <div className="header-links-container">
+        <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
+        <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink>
+        <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
+        <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
+        {
+          props.loggedIn ?
+            <NavLink to="/logout" activeClassName='selected-link' className='header-links'>Exit</NavLink>
+            :
+            <NavLink to="/login" activeClassName='selected-link' className='header-links'>Enter</NavLink>
+        }
       </div>
-      <hr className='line'/>
+      <div className="line-container">
+      <hr className='line-black' />
+      </div>
     </div>
   )
 }
@@ -69,18 +71,18 @@ export default class App extends Component {
     console.log("App Mounted")
     console.log("Logged in: ", this.state.loggedIn)
     addCursorFeatureClick()
-    document.getElementsByClassName('App-logo')[0].addEventListener('click',()=>{console.log("CLICKED")})
+    document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log("CLICKED") })
   }
 
 
-  render () {
+  render() {
     return (
       <div className="god-container">
         <BrowserRouter>
-        <div className="headerc-container">
-        <Header loggedIn={this.state.loggedIn}/>
-        </div>
-        <Cursor />
+          <div className="headerc-container">
+            <Header loggedIn={this.state.loggedIn} />
+          </div>
+          <Cursor />
           <div>
             <Switch>
               <Route path="/" component={Home} exact={true} />
