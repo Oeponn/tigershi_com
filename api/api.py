@@ -111,7 +111,7 @@ def search_mercari():
 	results = {}
 
 	# If there are results already in the database, use those 
-	if USE_MERCARI_DATABASE && cursor.execute('SELECT url FROM mercari_results LIMIT 1').fetchone() is not None:
+	if USE_MERCARI_DATABASE and cursor.execute('SELECT url FROM mercari_results LIMIT 1').fetchone() is not None:
 		cur = cursor.execute('SELECT * FROM mercari_results ORDER BY term')
 		mercari_results = cur.fetchall()
 		term = mercari_results[0][0]
