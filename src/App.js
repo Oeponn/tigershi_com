@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
 import logo from './images/react_atom.svg';
 import './css/App.css';
@@ -18,39 +18,25 @@ import PageNotFound from './components/404';
 import Cursor from './components/cursor';
 import { addCursorFeatureClick } from './components/cursorhelpers';
 
-const CounterComponent = () => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      Click the button below to see the number go up: {count}
-      <br />
-      <br />
-      <button onClick={() => setCount(count => {
-        // console.log("Hullo", count)
-        return (count + 1)
-      })}>I have too much time on my hands</button>
-    </div>
-  );
-}
-
 const Header = (props) => {
   return (
-    <div className='header'>
+    <div className='header-container'>
       <h1>Oponn</h1>
-      <div>
-      <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
-      <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink>
-      <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
-      <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
-      {
-      props.loggedIn ?
-      <NavLink to="/logout" activeClassName='selected-link' className='header-links'>Exit</NavLink> 
-      :
-      <NavLink to="/login" activeClassName='selected-link' className='header-links'>Enter</NavLink>
-      }
+      <div className="header-links-container">
+        <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
+        <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink>
+        <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
+        <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
+        {
+          props.loggedIn ?
+            <NavLink to="/logout" activeClassName='selected-link' className='header-links'>Exit</NavLink>
+            :
+            <NavLink to="/login" activeClassName='selected-link' className='header-links'>Enter</NavLink>
+        }
       </div>
-      <hr className='line'/>
+      <div className="line-container">
+      <hr className='line-black' />
+      </div>
     </div>
   )
 }
@@ -69,18 +55,18 @@ export default class App extends Component {
     console.log("App Mounted")
     console.log("Logged in: ", this.state.loggedIn)
     addCursorFeatureClick()
-    document.getElementsByClassName('App-logo')[0].addEventListener('click',()=>{console.log("CLICKED")})
+    document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log("CLICKED") })
   }
 
 
-  render () {
+  render() {
     return (
       <div className="god-container">
         <BrowserRouter>
-        <div className="headerc-container">
-        <Header loggedIn={this.state.loggedIn}/>
-        </div>
-        <Cursor />
+          <div className="headerc-container">
+            <Header loggedIn={this.state.loggedIn} />
+          </div>
+          <Cursor />
           <div>
             <Switch>
               <Route path="/" component={Home} exact={true} />
@@ -98,7 +84,7 @@ export default class App extends Component {
             <div className="App-logo-container">
               <img src={logo} className="App-logo unselectable" alt="logo" />
             </div>
-            <p class="home-inspo">
+            <p className="home-inspo">
               This website was built in reactjs by Tiger Shi ©2021
             </p>
             {/* <CounterComponent /> */}

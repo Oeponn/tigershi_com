@@ -23,6 +23,16 @@
   mix-blend-mode: lighten;
 } */
 
+
+.social-media-links-container {
+  font-size: 0.8em;
+  max-width: 500px;
+  /* width: 500px; */
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+}
+
 #manifest_hand {
   animation: hand-hover 2s ease-in-out forwards infinite alternate;
   position: relative;
@@ -278,23 +288,31 @@
   }
 }
 
+.pulse-container {
+  font-family: monospace, monospace;
+}
+
 
 .fade-0 {
   animation-duration: 1s;
   animation-delay: 0s;
+  background-color: white;
 }
 
 .fade-1 {
   animation-duration: 1s;
   animation-delay: 0.3s;
+  background-color: white;
 }
 
 .fade-2 {
   animation-duration: 1s;
   animation-delay: 0.6s;
+  background-color: white;
 }
 
 .fade-3 {
   animation-duration: 1s;
   animation-delay: 0.9s;
+  background-color: white;
 }
