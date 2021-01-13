@@ -35,7 +35,22 @@ const Header = (props) => {
         }
       </div>
       <div className="line-container">
-      <hr className='line-black' />
+        <hr className='line-black' />
+      </div>
+    </div>
+  )
+}
+
+const Footer = (props) => {
+  return (
+    <div className='footer-container'>
+      <div className="footer-line-container">
+        <hr className='line-black' />
+      </div>
+      <div className="footer-links-container">
+        <a className="blacklink" href="https://www.linkedin.com/in/tiger-shi/" rel="noreferrer" target="_blank">LinkedIn</a>
+        <a className="blacklink" href="https://github.com/Oeponn/" rel="noreferrer" target="_blank">Github</a>
+        <a className="blacklink" href="https://www.instagram.com/oponn_/" rel="noreferrer" target="_blank">Instagram</a>
       </div>
     </div>
   )
@@ -79,6 +94,7 @@ export default class App extends Component {
             </Switch>
           </div>
         </BrowserRouter>
+
         <div className="App">
           <header className="App-header">
             <div className="App-logo-container">
@@ -87,9 +103,10 @@ export default class App extends Component {
             <p className="home-inspo">
               This website was built in reactjs by Tiger Shi ©2021
             </p>
-            {/* <CounterComponent /> */}
           </header>
         </div>
+
+        <Footer loggedIn={this.state.loggedIn} />
       </div>
     );
   }
