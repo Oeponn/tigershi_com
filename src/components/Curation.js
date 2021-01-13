@@ -45,7 +45,7 @@ export default class Curation extends Component {
 
       // Load the page number from the url
       const path = window.location.pathname.toString().split('/')
-      if (path.length === 3 && !isNaN(path[2])) {
+      if (path.length === 3 && !isNaN(path[2]) && +path[2] != this.state.pageNum) {
       	this.setState({
       		pageNum: +path[2]
       	})
@@ -55,7 +55,7 @@ export default class Curation extends Component {
   componentDidUpdate() {
     // Load the page number from the url
     const path = window.location.pathname.toString().split('/')
-    if (path.length === 3 && !isNaN(path[2])) {
+    if (path.length === 3 && !isNaN(path[2]) && +path[2] != this.state.pageNum) {
       this.setState({
         pageNum: +path[2]
       })
