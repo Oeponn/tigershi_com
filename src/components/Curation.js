@@ -52,6 +52,16 @@ export default class Curation extends Component {
       }
   }
 
+  componentDidUpdate() {
+    // Load the page number from the url
+    const path = window.location.pathname.toString().split('/')
+    if (path.length === 3 && !isNaN(path[2])) {
+      this.setState({
+        pageNum: +path[2]
+      })
+    }
+  }
+
   // using settimeout because of https://stackoverflow.com/questions/1174863/javascript-scrollto-method-does-nothing
   // scrollToTop = () => {
   //   setTimeout(function () {
