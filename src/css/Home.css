@@ -75,7 +75,7 @@
 
 .lain-noise-div:hover {
   /* background: url('../images/matrix.gif'); */
-  background-color: cyan;
+  background-color: purple;
   background-size: contain;
   background-size: 50%;
   /* filter: grayscale(100%); */
@@ -97,7 +97,7 @@
 .lain-container:hover>.lain-hidden {
   visibility: visible;
   opacity: 50%;
-  animation: glitch-shake .3s infinite;
+  /* animation: glitch-shake .3s infinite; */
 }
 
 .lain-container:before {
@@ -115,7 +115,7 @@
   opacity: 50%;
   /* mix-blend-mode: difference; */
   /* mix-blend-mode: multiply; */
-  animation: glitch-background-shake 1s infinite;
+  /* animation: glitch-background-shake 1s infinite; */
 }
 
 .lain-container:hover {
@@ -174,7 +174,7 @@
   }
 }
 
-/* @keyframes glitch-shake {
+@keyframes glitch-shake {
   100% {
     transform: scale(1) translateX(10px) translateY(10px);
   }
@@ -213,7 +213,7 @@
   0% {
     transform: scale(0.9) translateX(-5px) translateY(10px);
   }
-} */
+}
   
 
 
