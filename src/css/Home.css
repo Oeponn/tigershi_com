@@ -92,18 +92,20 @@
 }
 
 .lain-container:hover {
-  background-color: green;
+  background-color: purple;
 }
 
-/* .lain-hidden {
+.lain-hidden {
   visibility: hidden;
-} */
+}
 
-/* .lain-container:hover>.lain-hidden {
+.lain-container:hover>.lain-hidden {
   visibility: visible;
-  opacity: 50%;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  -webkit-opacity: 0.5;
   animation: glitch-shake .3s infinite;
-} */
+}
 
 .lain-container:before {
   content: "";
@@ -113,9 +115,9 @@
   background: url('../images/lain_x6.png');
   background-size: cover;
   /* filter: sepia(100%); */
-  opacity: 1;
-  -moz-opacity: 1;
-  -webkit-opacity: 1;
+  opacity: 0;
+  -moz-opacity: 0;
+  -webkit-opacity: 0;
   
 }
 
