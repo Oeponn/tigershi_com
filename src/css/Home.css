@@ -91,9 +91,13 @@
   overflow: hidden;
 }
 
-.lain-hidden {
-  visibility: hidden;
+.lain-container:hover {
+  background-color: red;
 }
+
+/* .lain-hidden {
+  visibility: hidden;
+} */
 
 /* .lain-container:hover>.lain-hidden {
   visibility: visible;
@@ -101,7 +105,7 @@
   animation: glitch-shake .3s infinite;
 } */
 
-/* .lain-container:before {
+.lain-container:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -109,18 +113,15 @@
   background: url('../images/lain_x6.png');
   background-size: cover;
   filter: sepia(100%);
-  opacity: 0;
-} */
-
-/* .lain-container:hover:before {
-  opacity: 50%;
-  mix-blend-mode: multiply;
-  animation: glitch-background-shake 1s infinite;
-} */
-
-.lain-container:hover {
-  background-color: red;
+  opacity: 0%;
 }
+
+.lain-container:hover:before {
+  opacity: 50%;
+  /* mix-blend-mode: multiply; */
+  animation: glitch-background-shake 1s infinite;
+}
+
 
 
 
