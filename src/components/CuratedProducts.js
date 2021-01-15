@@ -31,7 +31,7 @@ export default function CuratedProducts(props) {
     const parsedProducts = JSON.parse(props.products)
     var productDivs = parsedProducts.map((product, index) => {
       return (
-        <div className="product-box">
+        <div className="product-box" key={index}>
           <div className="product-name">{product.name}</div>
           <div className="product-image-container">
             <a href={product.url} rel="noreferrer" target="_blank" >
