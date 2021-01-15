@@ -85,7 +85,7 @@
 
 .lain-container {
   background: url('../images/lain_x6.png') no-repeat;
-  background-color: blue;
+  /* background-color: blue; */
   background-size: contain;
   position: relative;
   overflow: hidden;
