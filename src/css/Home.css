@@ -73,6 +73,7 @@
   }
 }
 
+
 /* .lain-noise-div:hover {
   background: url('../images/matrix.gif');
   background-size: contain;
@@ -84,6 +85,7 @@
 
 .lain-container {
   background: url('../images/lain_x6.png') no-repeat;
+  background-color: blue;
   background-size: contain;
   position: relative;
   overflow: hidden;
@@ -99,7 +101,7 @@
   animation: glitch-shake .3s infinite;
 } */
 
-.lain-container:before {
+/* .lain-container:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -108,7 +110,7 @@
   background-size: cover;
   filter: sepia(100%);
   opacity: 0;
-}
+} */
 
 /* .lain-container:hover:before {
   opacity: 50%;
@@ -117,7 +119,6 @@
 } */
 
 .lain-container:hover {
-  opacity: 100%;
   background-color: red;
 }
 
