@@ -94,18 +94,6 @@ export default class Home extends Component {
             </div>
           } />
 
-        <InnerWrapper
-          addClass="lain-noise-div"
-          innerContent=
-          {
-            <div>
-              <div className='lain-container'>
-                <img src={lain_x6} className="full-width lain-hidden" alt="lain sketches" />
-              </div>
-              <p className="home-title">NOISE</p>
-              <p className="home-inspo">Bitmapped sketch of Lain Iwakura from Serial Experiments Lain, original sketch by Yoshitoshi Abe</p>
-            </div>
-          } />
 
         <InnerWrapper
           addClass=""
@@ -116,7 +104,20 @@ export default class Home extends Component {
                 <img src={akira_red} className="full-width akira-red unselectable" alt="akira tetsuo" />
               </div>
               <p className="home-title">TETSUO AWAKENS</p>
-              <p className="home-inspo">Front design</p>
+              <p className="home-inspo">Akira Shirt - Front Design</p>
+            </div>
+          } />
+
+        <InnerWrapper
+          addClass="lain-noise-div"
+          innerContent=
+          {
+            <div>
+              <div className='lain-container'>
+                <img src={lain_x6} className="full-width lain-hidden" alt="lain sketches" />
+              </div>
+              <p className="home-title">NOISE</p>
+              <p className="home-inspo">Bitmapped sketch of Lain Iwakura from Serial Experiments Lain, original sketch by Yoshitoshi Abe</p>
             </div>
           } />
 

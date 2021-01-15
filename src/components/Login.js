@@ -1,4 +1,5 @@
-import React, { useEffect, Route, BrowserRouter, NavLink as NavLink} from "react";
+import React, { useEffect } from "react";
+import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
 
 export default function Login() {
   useEffect(() => {
@@ -34,8 +35,8 @@ export default function Login() {
   return (
     <div className="container-main">
       <div className="inner">
-        <div className="upper left corners">⌈</div>
-        <div className="upper right corners">⌉</div>
+        <div className="left corner">⌈</div>
+        <div className="right corner">⌉</div>
 
         <div className="pulse-container">
           ║<span className="fade-3 pulse">I</span>
@@ -45,7 +46,8 @@ export default function Login() {
           <span className="fade-1 pulse">L</span>
           <span className="fade-2 pulse">O</span>
           <span className="fade-3 pulse">I</span>║
-              </div>
+        </div>
+
         <form onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="username">username:</label><br />
           <input type="text" id="username" name="username" /><br />
@@ -54,24 +56,17 @@ export default function Login() {
           <br />
           <br />
           <div>
-            <button>Enter</button>
+            <button className="login-button">enter</button>
           </div>
         </form>
-
-
         <div>
-          come here
+          <NavLink to="/createaccount"><button className="login-button">create an account</button></NavLink>
         </div>
 
 
-        {/* <div>
-          <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
-        </div> */}
 
-
-
-        <div className="bottom left corners">⌊</div>
-        <div className="bottom right corners">⌋</div>
+        <div className="left corner">⌊</div>
+        <div className="right corner">⌋</div>
       </div>
     </div>
   )

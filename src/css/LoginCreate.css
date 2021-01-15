@@ -1,0 +1,33 @@
+.login-button {
+    color: white;
+    background-color: black;
+    min-width: 40%;
+    margin-bottom: 10px;
+    border-color: white;
+}
+
+.login-button:hover {
+    box-shadow: 0px 0px 3px white,0px 0px 3px white,0px 0px 3px white;
+    -webkit-text-stroke-width: 1px;
+}
+
+.create-form-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .names {
+    max-width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+} */
+
+.create-form-item {
+    color:darkblue;
+    /* min-width: 200px; */
+    width: 80%;
+    max-width: 300px;
+}

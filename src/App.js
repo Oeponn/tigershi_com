@@ -6,9 +6,10 @@ import './css/Cursor.css';
 import './css/Home.css';
 import './css/Feed.css';
 import './css/Curation.css';
+import './css/LoginCreate.css'
 
 import Home from './components/Home';
-import Feed from './components/oponn_feed';
+// import Feed from './components/oponn_feed';
 import Curation from './components/Curation';
 import Store from './components/Store';
 import Login from './components/Login';
