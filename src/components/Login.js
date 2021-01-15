@@ -64,9 +64,9 @@ export default function Login() {
         </div>
 
 
-        <div>
+        {/* <div>
           <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
-        </div>
+        </div> */}
 
 
 

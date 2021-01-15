@@ -44,6 +44,31 @@
     transform: translateY(80%);
   }
 }
+@keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+  }
+}
+@-webkit-keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+  }
+}
+@-ms-keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+  }
+}
+@-moz-keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+  }
+}
+@-o-keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+  }
+}
 
 .hand-shadow {
   display: inline-block;
