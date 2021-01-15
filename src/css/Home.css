@@ -36,16 +36,18 @@
 #manifest_hand {
   position: relative;
   z-index: 1;
-  animation: hand-hover 2s ease-in-out 0.01s infinite alternate;
-  background-color: red;
+  animation: hand-hover 2s ease-in-out forwards infinite alternate;
+  animation-delay: 0.1s;
+  background-color: green;
 }
 
 @keyframes hand-hover {
   100% {
+    -webkit-transform: translateY(80%);
     transform: translateY(80%);
   }
 }
-@-webkit-keyframes hand-hover {
+/* @-webkit-keyframes hand-hover {
   100% {
     transform: translateY(80%);
   }
@@ -64,7 +66,7 @@
   100% {
     transform: translateY(80%);
   }
-}
+} */
 
 .hand-shadow {
   display: inline-block;
