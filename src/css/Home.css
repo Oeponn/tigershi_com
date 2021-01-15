@@ -36,7 +36,7 @@
 #manifest_hand {
   position: relative;
   z-index: 1;
-  animation: hand-hover 2s ease-in-out 0.01s forwards infinite alternate;
+  animation: hand-hover 2s ease-in-out forwards 0.01s infinite alternate;
   background-color: yellow;
 }
 
