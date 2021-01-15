@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Route, BrowserRouter, NavLink as NavLink} from "react";
 
 export default function Login() {
   useEffect(() => {
@@ -61,6 +61,11 @@ export default function Login() {
 
         <div>
           come here
+        </div>
+
+
+        <div>
+          <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
         </div>
 
 

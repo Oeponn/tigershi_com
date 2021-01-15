@@ -13,6 +13,7 @@ import Curation from './components/Curation';
 import Store from './components/Store';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import CreateAccount from './components/CreateAccount';
 import PageNotFound from './components/404';
 
 import Cursor from './components/cursor';
@@ -24,7 +25,7 @@ const Header = (props) => {
       <h1>Oponn</h1>
       <div className="header-links-container">
         <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
-        <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink>
+        {/* <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink> */}
         <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
         <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
         {
@@ -85,11 +86,12 @@ export default class App extends Component {
           <div>
             <Switch>
               <Route path="/" component={Home} exact={true} />
-              <Route path="/feed" component={Feed} />
+              {/* <Route path="/feed" component={Feed} /> */}
               <Route path="/curation" component={Curation} />
               <Route path="/store" component={Store} />
               <Route path="/login" component={Login} />
               <Route path="/logout" component={Logout} />
+              <Route path="/createaccount" component={CreateAccount} />
               <Route component={PageNotFound} />
             </Switch>
           </div>
