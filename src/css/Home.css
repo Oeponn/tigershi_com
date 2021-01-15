@@ -92,7 +92,7 @@
 }
 
 .lain-container:hover {
-  background-color: blue;
+  background-color: green;
 }
 
 /* .lain-hidden {
@@ -119,13 +119,13 @@
   
 }
 
-/* .lain-container:hover:before {
+.lain-container:hover:before {
   opacity: 0.5;
   -moz-opacity: 0.5;
   -webkit-opacity: 0.5;
-  mix-blend-mode: multiply;
+  /* mix-blend-mode: multiply; */
   animation: glitch-background-shake 1s infinite;
-} */
+}
 
 
 
