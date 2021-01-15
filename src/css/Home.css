@@ -43,30 +43,9 @@
 
 @keyframes hand-hover {
   100% {
-    /* -webkit-transform: translateY(80%); */
     transform: translateY(80%);
   }
 }
-/* @-webkit-keyframes hand-hover {
-  100% {
-    transform: translateY(80%);
-  }
-}
-@-ms-keyframes hand-hover {
-  100% {
-    transform: translateY(80%);
-  }
-}
-@-moz-keyframes hand-hover {
-  100% {
-    transform: translateY(80%);
-  }
-}
-@-o-keyframes hand-hover {
-  100% {
-    transform: translateY(80%);
-  }
-} */
 
 .hand-shadow {
   display: inline-block;
@@ -90,10 +69,11 @@
 }
 
 .lain-noise-div:hover {
-  background: url('../images/matrix.gif');
+  /* background: url('../images/matrix.gif'); */
+  background-color: cyan;
   background-size: contain;
   background-size: 50%;
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
   mix-blend-mode: difference;
   box-shadow: 5px 10px 20px white;
 }
