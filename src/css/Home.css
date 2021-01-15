@@ -75,11 +75,11 @@
 
 .lain-noise-div:hover {
   /* background: url('../images/matrix.gif'); */
-  background-color: purple;
+  /* background-color: purple; */
   background-size: contain;
   background-size: 50%;
   /* filter: grayscale(100%); */
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
   box-shadow: 5px 10px 20px white;
 }
 
