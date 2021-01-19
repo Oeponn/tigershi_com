@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
   useEffect(() => {
     console.log("Login Mounted")
 
@@ -12,21 +12,21 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
     const data = {
-      "username": "admin",
-      "password": "password"
+        "username": e.target[0].value,
+        "password": e.target[1].value
     }
     fetch("/api/login/", {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then((resp) => {
-        console.log("Response:", resp.text())
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    .then((resp) => {
+        console.log("Response:", resp.ok)
+        props.isLoggedIn(resp.ok)
 
         return resp
       });

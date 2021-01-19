@@ -75,6 +75,13 @@ export default class App extends Component {
     document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log("CLICKED") })
   }
 
+  isLoggedIn = (loggedIn) => {
+    console.log('User logged in: ' + loggedIn)
+    this.setState({
+      loggedIn
+    })
+  }
+
 
   render() {
     return (
@@ -90,9 +97,9 @@ export default class App extends Component {
               {/* <Route path="/feed" component={Feed} /> */}
               <Route path="/curation" component={Curation} />
               <Route path="/store" component={Store} />
-              <Route path="/login" component={Login} />
-              <Route path="/logout" component={Logout} />
               <Route path="/createaccount" component={CreateAccount} />
+              <Route path="/login" render={() => <Login isLoggedIn={this.isLoggedIn} />} />
+              <Route path="/logout" render={() => <Logout isLoggedIn={this.isLoggedIn} />} />
               <Route component={PageNotFound} />
             </Switch>
           </div>
