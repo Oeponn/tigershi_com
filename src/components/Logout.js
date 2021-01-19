@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-export default function Logout() {
+export default function Logout(props) {
   useEffect(() => {
     console.log("Login Mounted")
 
@@ -8,6 +8,23 @@ export default function Logout() {
       console.log("Login Unmounted")
     })
   });
+
+  const handleClick = () => {
+    
+    fetch("/api/logout/", {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+    .then((resp) => {
+        console.log("Response:", resp.ok)
+        props.isLoggedIn(false)
+
+        return resp
+      });
+  }
 
   return (
     <div className="container-main">
@@ -18,7 +35,7 @@ export default function Logout() {
         <p>____</p>
         <br />
         <div>
-            <button>Exit</button>
+            <button onClick={handleClick}>Exit</button>
         </div>
 
         <div>

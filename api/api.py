@@ -8,8 +8,8 @@ import uuid
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = b'\xa3P\x13\xaeg\x86%\x93\xde]R\xc38K\xc4\xef' \
-						  b'\x88c\xe4\xb5h\xb4\xc5\xea'
+# Use the environment secret if it's set
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', b'\xa3P\x13\xaeg\x86%\x93\xde]R\xc38K\xc4\xef\x88c\xe4\xb5h\xb4\xc5\xea')
 
 USE_MERCARI_DATABASE = False
 
@@ -17,7 +17,6 @@ def get_connection():
 	conn = sqlite3.connect('../db/tiger_shi.sqlite3', isolation_level=None)
 	cursor = conn.cursor()
 	return conn, cursor
-
 
 def login_password_check(given_password, db_password):
 	# processing given password to see if its salted sha512 hash is the same as db
@@ -51,6 +50,10 @@ def test():
 @app.route('/api/login/', methods=['POST'])
 def login():
 	req = flask.request.get_json()
+	if 'username' in flask.session and req['username'] == flask.session['username']:
+		print(flask.session['username'])
+		print(req['username'])
+		return req['username'] + ' already logged in.', 200
 
 	conn, cursor = get_connection()
 	cur = cursor.execute('SELECT password, role FROM users WHERE username=?',

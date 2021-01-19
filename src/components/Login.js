@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-export default function Login() {
+export default function Login(props) {
   useEffect(() => {
     console.log("Login Mounted")
 
@@ -11,10 +11,9 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
     const data = {
-        "username": "admin",
-        "password": "password"
+        "username": e.target[0].value,
+        "password": e.target[1].value
     }
     fetch("/api/login/", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -25,7 +24,8 @@ export default function Login() {
         body: JSON.stringify(data)
       })
     .then((resp) => {
-        console.log("Response:", resp.text())
+        console.log("Response:", resp.ok)
+        props.isLoggedIn(resp.ok)
 
         return resp
       });
