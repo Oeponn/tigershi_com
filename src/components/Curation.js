@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import InnerWrapper from './InnerWrapper';
 import CuratedProducts from './CuratedProducts';
-// import { withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Pagination from './Pagination'
 
 const RESULTS_PER_PAGE = 12
 
-export default class Curation extends Component {
+class Curation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -137,3 +137,5 @@ export default class Curation extends Component {
     )
   }
 }
+
+export default withRouter(Curation);
