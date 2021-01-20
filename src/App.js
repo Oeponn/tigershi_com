@@ -63,6 +63,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       loggedIn: false,
+      admin: false,
       cart: {},
       products: [],
     };
@@ -95,7 +96,7 @@ export default class App extends Component {
             <Switch>
               <Route path="/" component={Home} exact={true} />
               {/* <Route path="/feed" component={Feed} /> */}
-              <Route path="/curation" component={Curation} />
+              <Route path="/curation" render={() => <Curation loggedIn={this.state.loggedIn} />} />
               <Route path="/store" component={Store} />
               <Route path="/createaccount" component={CreateAccount} />
               <Route path="/login" render={() => <Login isLoggedIn={this.isLoggedIn} />} />
