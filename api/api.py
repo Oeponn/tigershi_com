@@ -30,7 +30,7 @@ def login_password_check(given_password, db_password):
 	return db_password == "$".join([algorithm, salt, password_hash])
 
 def create_password(given_password):
-	password = flask.request.form['password']
+	password = given_password
 	algorithm = 'sha512'
 	salt = uuid.uuid4().hex
 	hash_obj = hashlib.new(algorithm)
@@ -134,6 +134,8 @@ def search_mercari():
 		cur = cursor.execute('SELECT term FROM search_terms WHERE site="mercari" OR site="all"')
 
 		search_terms = cur.fetchall()
+		if len(search_terms) == 0:
+			print('There are no search terms')
 
 		results = {}
 		try:
@@ -151,6 +153,12 @@ def search_mercari():
 			return 'Internal Server Error', 500
 	conn.close()
 	return results, 200
+
+@app.route('/api/mercari_refresh/', methods=['GET'])
+def refresh_mercari():
+	if 'username' not in flask.session or 'role' not in flask.session or flask.session['role'] != 'owner' or flask.session['role'] != 'admin':
+		flask.abort(403)
+	return "Refreshed database.", 200
 
 
 @app.route('/api/get_search_terms/', methods=['GET'])
