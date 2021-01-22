@@ -181,8 +181,20 @@ body {
   width: 100%;
 }
 
+.container-main .inner .third-width {
+  width: 33%;
+}
+
 .container-main .inner .half-width {
-  width: 40%;
+  width: 50%;
+}
+
+.container-main .inner .quarter-width {
+  width: 25%;
+}
+
+.container-main .inner .tenth-width {
+  width: 10%;
 }
 
 .unselectable {

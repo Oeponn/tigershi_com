@@ -6,10 +6,13 @@ import lain_x6 from '../images/lain_x6.png';
 import grid_plane from '../images/grid_plane.png';
 import manifest_hand from '../images/manifest_hand.png';
 import manifest_hand_close from '../images/manifest_hand_close.png';
-import orb from '../images/orb-animation.gif';
+import wired_white from '../images/wired_logo-white.gif';
+import wired_blue from '../images/wired_logo-blue.gif';
 import akira_red from '../images/Front_Red.png';
+import flying_castle from '../images/Flying_Castle_Bitmapped.gif';
 
 import layer_00 from '../images/lain_layer_00.png';
+import layer_00_cover from  '../images/lain_layer_00_cover.png';
 import layer_01 from '../images/lain_layer_01.png';
 import layer_02 from '../images/lain_layer_02.png';
 
@@ -18,50 +21,53 @@ export default class Home extends Component {
     super(props);
     this.state = {
       handClosed: false,
-      hiddenPieces: [1, 1, 1, 1],
+      hiddenPieces: [1, 0, 0, 0],
       lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif",
       lain_screens_gif_url_end: "/images/lain_screens_2_bitmapped.gif",
     };
   }
+  
 
 
   componentDidMount() {
+    const NUMREALITYBUTTONS = 4
+
     console.log("Home Mounted")
 
-    setTimeout(() => {
-      const screens = document.getElementById('lain-screen-start')
-      screens.classList.add("hidden-image")
-    }, 4200)
+    // setTimeout(() => {
+    //   const screens = document.getElementById('lain-screen-start')
+    //   screens.classList.add("hidden-image")
+    // }, 4200)
 
-    const createRealityButtonHandler = (i) => {
-      const pic = document.getElementsByClassName("p" + i)[0]
-      const button = document.getElementsByClassName("b" + i)[0]
-    
-      button.addEventListener("mouseenter", () => {
-        pic.classList.add("found-glow")
-      });
-      button.addEventListener("mouseleave", () => {
-        pic.classList.remove("found-glow")
-      });
-    
-      button.addEventListener("click", () => {
-        const arr = this.state.hiddenPieces.slice()
-        // Toggles array value
-        arr[i] = arr[i] ? 0 : 1
+    // const createRealityButtonHandler = (i) => {
+    //   const pic = document.getElementsByClassName("p" + i)[0]
+    //   const button = document.getElementsByClassName("b" + i)[0]
 
-        console.log(i, arr)
+    //   button.addEventListener("mouseenter", () => {
+    //     pic.classList.add("found-glow")
+    //   });
+    //   button.addEventListener("mouseleave", () => {
+    //     pic.classList.remove("found-glow")
+    //   });
 
-        if (arr[i]) {
-          pic.classList.remove("hidden-image")
-        }
-        else {
-          pic.classList.add("hidden-image")
-        }
-        this.setState({
-          hiddenPieces: arr,
-        });
-      });
-    }
+    //   button.addEventListener("click", () => {
+    //     const arr = this.state.hiddenPieces.slice()
+    //     // Toggles array value
+    //     arr[i] = arr[i] ? 0 : 1
+
+    //     console.log(i, arr)
+
+    //     if (arr[i]) {
+    //       pic.classList.remove("hidden-image")
+    //     }
+    //     else {
+    //       pic.classList.add("hidden-image")
+    //     }
+    //     this.setState({
+    //       hiddenPieces: arr,
+    //     });
+    //   });
+    // }
 
     const manifest_container = document.getElementsByClassName("manifest-div")[0]
     manifest_container.addEventListener("mousedown", () => {
@@ -75,12 +81,11 @@ export default class Home extends Component {
       })
     });
 
-    var i;
-    const NUMREALITYBUTTONS = 4
+    // var i;
 
-    for (i = 0; i < NUMREALITYBUTTONS; i++) {
-      createRealityButtonHandler(i);
-    }
+    // for (i = 0; i < NUMREALITYBUTTONS; i++) {
+    //   createRealityButtonHandler(i);
+    // }
   }
 
   componentWillUnmount() {
@@ -95,7 +100,7 @@ export default class Home extends Component {
     })
 
     setTimeout(() => {
-      this.setState({lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif"})
+      this.setState({ lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif" })
       screens.classList.remove("hidden-image")
     }, 0)
 
@@ -120,14 +125,11 @@ export default class Home extends Component {
           {
             <div>
               <HelloStripe />
-              <HelloStripe />
-              <HelloStripe />
+              <div className="">
+                <img src={wired_white} alt="wired" className="quarter-width unselectable" />
+              </div>
               <HelloStripe />
               <br />
-
-              {/* <div className="home-orb-container">
-                <img src={orb} alt="orb" className="half-width unselectable home-orb" />
-              </div> */}
               <p className="home-title">My name is Tiger</p>
               <p>This is my website</p>
               <p>Every component box on this page is interactive in some way</p>
@@ -142,44 +144,55 @@ export default class Home extends Component {
             </div>
           } />
 
-        <InnerWrapper
+        {/* <InnerWrapper
           addClass=""
           innerContent=
           {
             <div>
               <div className="stacked-images-container">
                 <img
-                  src={process.env.PUBLIC_URL + this.state.lain_screens_gif_url_end} className="full-width stack_image" alt="LAIN'S SCREENS BACKGROUND"
+                  src={process.env.PUBLIC_URL + this.state.lain_screens_gif_url_end} className="full-width stack_image unselectable" alt="LAIN'S SCREENS BACKGROUND"
                 />
                 <img
-                  src={process.env.PUBLIC_URL + this.state.lain_screens_gif_url_start} id="lain-screen-start" className="full-width stack_image p0" alt="LAIN'S SCREENS"
+                  src={process.env.PUBLIC_URL + this.state.lain_screens_gif_url_start} id="lain-screen-start" className="full-width stack_image unselectable" alt="LAIN'S SCREENS"
+                />
+                <img 
+                  src={layer_00} className="full-width stack_image unselectable" alt="void wall"
+                />
+                <img 
+                  src={layer_00_cover} className="full-width stack_image unselectable p0" alt="void wall cover"
                 />
                 <img
-                  src={layer_00} className="full-width stack_image unselectable p1" alt="testimg_2"
+                  src={layer_01} className="full-width stack_image unselectable p1 hidden-image" alt="testimg_3"
                 />
                 <img
-                  src={layer_01} className="full-width stack_image unselectable p2" alt="testimg_3"
+                  src={wired_blue} className="third-width stack_image unselectable p3 unselectable hidden-image wired-skew " alt="testimg_4"
                 />
                 <img
-                  src={layer_02} className="full-width stack_image unselectable p3" alt="testimg_4"
+                  src={layer_02} className="full-width stack_image unselectable p2  hidden-image" alt="testimg_4"
                 />
                 <img
                   src={layer_02} className="full-width stack_bottom hidden-image" alt="testimg_4"
                 />
               </div>
+              
 
               <div className="reality-controller">
+                <div>
+                  <input type="checkbox"/>
+                </div>
                 <button className="reality-button b0">0</button>
                 <button className="reality-button b1">1</button>
                 <button className="reality-button b2">2</button>
                 <button className="reality-button b3">3</button>
+                <button onClick={this.refreshReality}>REFRESH REALITY</button>
+
               </div>
-              <button onClick={this.refreshReality}>REFRESH REALITY</button>
 
               <p className="home-title">SWITCHES</p>
               <p className="home-inspo">Compartmentalized image</p>
             </div>
-          } />
+          } /> */}
 
         <InnerWrapper
           addClass="manifest-div"
@@ -214,6 +227,19 @@ export default class Home extends Component {
               <p className="home-inspo">Akira Shirt - Front Design</p>
             </div>
           } />
+
+        {/* <InnerWrapper
+          addClass=""
+          innerContent=
+          {
+            <div>
+              <div className="">
+                <img src={flying_castle} className="full-width unselectable" alt="Howl's Castle Flying" />
+              </div>
+              <p className="home-title">CASTLE</p>
+              <p className="home-inspo">Howl's moving castle V3</p>
+            </div>
+          } /> */}
 
         <InnerWrapper
           addClass="lain-noise-div"

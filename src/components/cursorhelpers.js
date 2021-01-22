@@ -3,11 +3,11 @@ export const addCursorFeatureClick = () => {
     const cursor = document.getElementsByClassName('cursor')[0]
 
     document.addEventListener("mousedown", () => {
-      cursor.classList.add("clicking")
+      cursor.classList.add("mouse-clicking")
     });
 
     document.addEventListener("mouseup", () => {
-      cursor.classList.remove("clicking")
+      cursor.classList.remove("mouse-clicking")
     });
 }
 

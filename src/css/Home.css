@@ -10,20 +10,6 @@
   padding: 0px 3em 0px;
 }
 
-/* .home-orb-container {
-  background-image: url('../images/oponn_headshot_bm.png');
-  background-size: contain;
-  background-size: 21%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 250px;
-}
-
-.home-orb {
-  mix-blend-mode: lighten;
-} */
-
-
 .social-media-links-container {
   font-size: 0.8em;
   max-width: 500px;
@@ -65,14 +51,12 @@
   animation: shrink 2s ease-in-out forwards infinite alternate;
 }
 
-
 @keyframes shrink {
   100% {
     width: 30%;
     opacity: 1.0;
   }
 }
-
 
 .lain-noise-div:hover {
   background: url('../images/matrix.gif');
@@ -125,10 +109,6 @@
   /* mix-blend-mode: multiply; */
   animation: glitch-background-shake 1s infinite;
 }
-
-
-
-
 
 @keyframes glitch-background-shake {
   0% {
@@ -219,18 +199,15 @@
     transform: scale(0.9) translateX(-5px) translateY(10px);
   }
 }
-  
 
-
-
-.akira-container{
+.akira-container {
   background: url('../images/Front_White.png') no-repeat;
   background-size: contain;
   position: relative;
   overflow: hidden;
 }
 
-.akira-container:before{
+.akira-container:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -241,38 +218,33 @@
   opacity: 0;
 }
 
-.akira-container:hover:before{
+.akira-container:hover:before {
   opacity: 0.5;
   animation: glitch-wave 0.8s infinite linear;
 }
 
 @keyframes glitch-wave {
-  0%{
+  0% {
     top: 0%;
     background-position: 12px 0%;
   }
-
-  20%{
+  20% {
     top: 20%;
     background-position: -10px 20%;
   }
-
-  40%{
+  40% {
     top: 40%;
     background-position: 6px 40%;
   }
-
-  60%{
+  60% {
     top: 60%;
     background-position: -6px 60%;
   }
-
-  80%{
+  80% {
     top: 80%;
     background-position: 10px 80%;
   }
-
-  100%{
+  100% {
     top: 100%;
     background-position: -12px 100%;
   }
@@ -286,11 +258,11 @@
 .akira-red:hover {
   filter: grayscale(0%);
   -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1));
-    filter: drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1));
+  filter: drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1));
   animation: red-glow 1s infinite alternate linear;
 }
 
-@keyframes red-glow{
+@keyframes red-glow {
   100% {
     -webkit-filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
     filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
@@ -304,7 +276,6 @@
 .pulse-container {
   font-family: monospace, monospace;
 }
-
 
 .fade-0 {
   animation-duration: 1s;
@@ -336,7 +307,6 @@
   background-size: contain;
   background-position-y: 30px;
   background-repeat: no-repeat; */
-
   position: relative;
   top: 0;
   left: 0;
@@ -347,18 +317,27 @@
   position: absolute;
   top: 30px;
   left: 0;
+  pointer-events: none;
+  /* filter: grayscale(100%); */
+  /* mix-blend-mode: difference; */
 }
-
 
 .stack_bottom {
   position: relative;
-  /* top: calc(2em); */
   top: 1em;
   left: 0;
   border: 1px green solid;
-  /* margin-top: 2em; */
   margin-bottom: 1em;
   z-index: -3;
+}
+
+.wired-skew {
+  transform: skew(-.3rad) translateX(10%) translateY(-20%);
+  -ms-transform: skew(-.3rad) translateX(10%) translateY(-20%);
+  -webkit-transform: skew(-.3rad) translateX(10%) translateY(-20%);
+  -moz-transform: skew(-.3rad) translateX(10%) translateY(-20%);
+  -o-transform: skew(-.3rad) translateX(10%) translateY(-20%);
+  transform: skew(-.3rad) translateX(10%) translateY(-20%);
 }
 
 .reality-controller {
@@ -366,17 +345,41 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-evenly;
-  margin: 10px 0px;
+  margin: 30px 0px;
 }
 
-.reality-button:hover {
+.reality-controller input[type="checkbox"] {
+  margin: 0;
+  padding: 0;
+  width: 80px;
+  height: 40px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #c6c6c6;
+  outline: none;
+  border-radius: 20px;
+}
+
+.reality-controller input:checked[type="checkbox"] {
+  background-color: yellow;
+}
+
+.reality-controller input[type="checkbox"]:before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  left: 0;
+  top: 0;
+  background: red;
+}
+
+/* .reality-button:hover {
   -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
-    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
-}
-
-/* .stacked-images-container:hover {
-  filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
 } */
+
 
 .found-glow {
   filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
