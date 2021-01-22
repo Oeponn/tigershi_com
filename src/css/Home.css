@@ -94,11 +94,11 @@
   background-color: purple;
 } */
 
-.lain-hidden {
+.hidden-image {
   visibility: hidden;
 }
 
-.lain-container:hover>.lain-hidden {
+.lain-container:hover>.hidden-image {
   visibility: visible;
   opacity: 0.5;
   -moz-opacity: 0.5;
@@ -328,4 +328,56 @@
   animation-duration: 1s;
   animation-delay: 0.9s;
   background-color: white;
+}
+
+.stacked-images-container {
+  /* border: 1px yellow solid;
+  background-image: url('../images/lain_screens_1_bitmapped.gif');
+  background-size: contain;
+  background-position-y: 30px;
+  background-repeat: no-repeat; */
+
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.stack_image {
+  /* filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)); */
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+
+
+.stack_bottom {
+  position: relative;
+  /* top: calc(2em); */
+  top: 1em;
+  left: 0;
+  border: 1px green solid;
+  /* margin-top: 2em; */
+  margin-bottom: 1em;
+  z-index: -3;
+}
+
+.reality-controller {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 10px 0px;
+}
+
+.reality-button:hover {
+  -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+}
+
+/* .stacked-images-container:hover {
+  filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
+} */
+
+.found-glow {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
 }

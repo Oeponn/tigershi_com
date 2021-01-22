@@ -17,7 +17,11 @@ class Cursor extends Component {
     }
     render() {
         return (
-            <div style={{left: this.state.left, top: this.state.top}} className='cursor'></div>
+            <div style={{left: this.state.left, top: this.state.top}} className='cursor'>
+                {/* <div id="vertical"><hr id="line-v"/></div> */}
+                {/* <div id="horizontal"><hr id="line-h"/></div> */}
+                <div id="cross">+</div>
+            </div>
         )
     }
 }

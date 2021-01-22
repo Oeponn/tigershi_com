@@ -20,7 +20,7 @@ export default function Store() {
   return (
     <div className="container-main">
       <div>
-        <div>This is my webstore</div>
+      <p>Store will open at next drop</p>
         <div> <CounterComponent /> </div>
       </div>
     </div>
