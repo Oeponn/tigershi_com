@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Use the environment secret if it's set
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', b'\xa3P\x13\xaeg\x86%\x93\xde]R\xc38K\xc4\xef\x88c\xe4\xb5h\xb4\xc5\xea')
 
-USE_MERCARI_DATABASE = False
+USE_MERCARI_DATABASE = True
 
 def get_connection():
 	conn = sqlite3.connect('../db/tiger_shi.sqlite3', isolation_level=None)
@@ -30,7 +30,7 @@ def login_password_check(given_password, db_password):
 	return db_password == "$".join([algorithm, salt, password_hash])
 
 def create_password(given_password):
-	password = flask.request.form['password']
+	password = given_password
 	algorithm = 'sha512'
 	salt = uuid.uuid4().hex
 	hash_obj = hashlib.new(algorithm)
@@ -38,6 +38,26 @@ def create_password(given_password):
 	hash_obj.update(password_salted.encode('utf-8'))
 	password_hash = hash_obj.hexdigest()
 	return "$".join([algorithm, salt, password_hash])
+
+def mercari_pull():
+	conn, cursor = get_connection()
+	cur = cursor.execute('SELECT term FROM search_terms WHERE site="mercari" OR site="all"')
+
+	search_terms = cur.fetchall()
+	try:
+		for term in search_terms:
+			term = term[0]
+			for item in mercari.search(term, use_google_proxy=False):
+				# If it's not already in the database, add it
+				if cursor.execute('SELECT url FROM mercari_results WHERE url=?', (item.productURL,)).fetchone() is None:
+					cursor.execute('INSERT INTO mercari_results(term, url, imageURL, name, price) VALUES(?, ?, ?, ?, ?)', (term, item.productURL, item.imageURL, item.productName, item.price))
+	except Exception as e:
+		print(e)
+		conn.close()
+		return 500
+
+	conn.close()
+	return 200
 
 @app.route('/')
 def home():
@@ -134,6 +154,8 @@ def search_mercari():
 		cur = cursor.execute('SELECT term FROM search_terms WHERE site="mercari" OR site="all"')
 
 		search_terms = cur.fetchall()
+		if len(search_terms) == 0:
+			print('There are no search terms')
 
 		results = {}
 		try:
@@ -151,6 +173,12 @@ def search_mercari():
 			return 'Internal Server Error', 500
 	conn.close()
 	return results, 200
+
+@app.route('/api/mercari_refresh/', methods=['GET'])
+def refresh_mercari():
+	if 'username' not in flask.session or 'role' not in flask.session or flask.session['role'] != 'owner' and flask.session['role'] != 'admin':
+		flask.abort(403)
+	return "Refreshed database.", mercari_pull()
 
 
 @app.route('/api/get_search_terms/', methods=['GET'])

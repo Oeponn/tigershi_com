@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import InnerWrapper from './InnerWrapper';
 import CuratedProducts from './CuratedProducts';
-// import { withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Pagination from './Pagination'
 
 const RESULTS_PER_PAGE = 12
 
-export default class Curation extends Component {
+class Curation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,27 @@ export default class Curation extends Component {
 
   componentDidMount() {
     console.log("Curation Mounted")
+    this.fetchResults()
+    // Load the page number from the url
+    const path = window.location.pathname.toString().split('/')
+    if (path.length === 3 && !isNaN(path[2]) && +path[2] !== this.state.pageNum) {
+    	this.setState({
+    		pageNum: +path[2]
+    	})
+    }
+  }
 
+  componentDidUpdate() {
+    // Load the page number from the url
+    const path = window.location.pathname.toString().split('/')
+    if (path.length === 3 && !isNaN(path[2]) && +path[2] !== this.state.pageNum) {
+      this.setState({
+        pageNum: +path[2]
+      })
+    }
+  }
+
+  fetchResults = () => {
     fetch("/api/mercari/")
       .then((resp) => {
         console.log("Response:", resp)
@@ -42,24 +62,14 @@ export default class Curation extends Component {
           // console.log("STATE PRODUCTS:", this.state.products)
         }
       })
-
-      // Load the page number from the url
-      const path = window.location.pathname.toString().split('/')
-      if (path.length === 3 && !isNaN(path[2]) && +path[2] !== this.state.pageNum) {
-      	this.setState({
-      		pageNum: +path[2]
-      	})
-      }
   }
 
-  componentDidUpdate() {
-    // Load the page number from the url
-    const path = window.location.pathname.toString().split('/')
-    if (path.length === 3 && !isNaN(path[2]) && +path[2] !== this.state.pageNum) {
-      this.setState({
-        pageNum: +path[2]
+  refreshResults = (e) => {
+    e.preventDefault()
+    fetch("/api/mercari_refresh/")
+      .then(() => {
+        this.fetchResults()
       })
-    }
   }
 
   // using settimeout because of https://stackoverflow.com/questions/1174863/javascript-scrollto-method-does-nothing
@@ -119,6 +129,7 @@ export default class Curation extends Component {
               <div className="home-inspo">this is a page of items i could be interested in</div>
               <div className="home-inspo">it is mostly japanese fashion and anime franchise related items</div>
               <div className="home-inspo">evangelion, serial experiments lain, akira, cav empt, 20471120</div>
+              {this.props.loggedIn && <button onClick={(e) => this.refreshResults(e)}>refresh</button>}
             </div>
           } />
 
@@ -126,3 +137,5 @@ export default class Curation extends Component {
     )
   }
 }
+
+export default withRouter(Curation);
