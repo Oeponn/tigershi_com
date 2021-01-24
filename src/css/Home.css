@@ -331,13 +331,43 @@
   z-index: -3;
 }
 
+.layer_00 {
+  mix-blend-mode: lighten;
+}
+
+.layer_01 {
+  width: 20%;
+  mix-blend-mode: lighten;
+  transform: translateX(380%) translateY(-30%) rotate(-60deg);
+}
+
+.layer_02 {
+  mix-blend-mode: lighten;
+  filter: opacity(100%) grayscale(100%);
+  transform: translate(100%, 190%);
+}
+
+.layer_03 {
+  mix-blend-mode: lighten;
+  animation: screen-glow linear 1s infinite alternate;
+}
+
+@keyframes screen-glow {
+  0% {
+    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 0px rgb(255, 255, 255));
+  }
+  100% {
+    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+  }
+}
+
 .wired-skew {
-  transform: skew(-.3rad) translateX(10%) translateY(-20%);
-  -ms-transform: skew(-.3rad) translateX(10%) translateY(-20%);
-  -webkit-transform: skew(-.3rad) translateX(10%) translateY(-20%);
-  -moz-transform: skew(-.3rad) translateX(10%) translateY(-20%);
-  -o-transform: skew(-.3rad) translateX(10%) translateY(-20%);
-  transform: skew(-.3rad) translateX(10%) translateY(-20%);
+  transform: skew(-.3rad) translateX(0px) translateY(-50px) rotate(20deg);
+  /* -ms-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
+  -webkit-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
+  -moz-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
+  -o-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
+  transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg); */
 }
 
 .reality-controller {
@@ -351,36 +381,31 @@
 .reality-controller input[type="checkbox"] {
   margin: 0;
   padding: 0;
-  width: 80px;
-  height: 40px;
+  width: 2px;
+  height: 80px;
   appearance: none;
   -webkit-appearance: none;
-  background-color: #c6c6c6;
+  background-color: white;
   outline: none;
-  border-radius: 20px;
 }
 
-.reality-controller input:checked[type="checkbox"] {
-  background-color: yellow;
-}
+/* .reality-controller input:checked[type="checkbox"] {
+  background-color: #03a9f4;
+} */
 
 .reality-controller input[type="checkbox"]:before {
   content: "";
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  left: 0;
-  top: 0;
-  background: red;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background: black;
+  transform: translateX(-7px) translateY(70px);
+  transition: 0.05s;
+  border: 1px white solid;
 }
 
-/* .reality-button:hover {
-  -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
-  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
-} */
-
-
-.found-glow {
-  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+.reality-controller input:checked[type="checkbox"]:before {
+  transform: translateX(-7px);
+  background: white;
 }
