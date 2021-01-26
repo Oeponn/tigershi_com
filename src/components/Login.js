@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Login(props) {
   useEffect(() => {

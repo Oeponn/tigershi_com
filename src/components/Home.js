@@ -8,13 +8,16 @@ import manifest_hand from '../images/manifest_hand.png';
 import manifest_hand_close from '../images/manifest_hand_close.png';
 import wired_white from '../images/wired_logo-white.gif';
 import akira_red from '../images/Front_Red.png';
-import flying_castle from '../images/Flying_Castle_Bitmapped.gif';
+import castle_flying from '../images/Castle_Flying.gif';
+import castle_small from '../images/Castle_Small.gif';
 
-import layer_00 from '../images/lain_layer_00.gif';
+// import layer_00 from '../images/lain_layer_00.gif';
+import layer_00 from '../images/circle_hologram.gif';
 import layer_01 from '../images/lain_layer_01.gif';
 import layer_02 from '../images/lain_layer_02.gif';
 import layer_03 from '../images/lain_layer_03.png';
 import layer_04 from '../images/lain_layer_04.png';
+import power_button from '../images/power_button.png';
 
 export default class Home extends Component {
   constructor(props) {
@@ -36,12 +39,24 @@ export default class Home extends Component {
     if (screens) {
       const screens_complete = setTimeout(() => {
         screens.classList.add("hidden-image")
-        console.log("ENDED")
+        // console.log("ENDED")
       }, 4200)
       this.setState({
         timeoutID: screens_complete,
       })
     }
+  }
+
+  closeHand = () => {
+    this.setState({
+      handClosed: true,
+    })
+  }
+
+  openHand = () => {
+    this.setState({
+      handClosed: false,
+    })
   }
 
 
@@ -50,17 +65,8 @@ export default class Home extends Component {
     console.log("Home Mounted")
     this.reloadScreenTimeout()
 
-    const manifest_container = document.getElementsByClassName("manifest-div")[0]
-    manifest_container.addEventListener("mousedown", () => {
-      this.setState({
-        handClosed: true,
-      })
-    });
-    manifest_container.addEventListener("mouseup", () => {
-      this.setState({
-        handClosed: false,
-      })
-    });
+    // NECESSARY TO CLEAR CACHE ON SAFARI SO THAT THE GIF ALWAYS RESTARTS >:(
+    this.setState({ lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif?a=" + Math.random() })
   }
 
   componentWillUnmount() {
@@ -68,7 +74,7 @@ export default class Home extends Component {
   }
 
   refreshReality = () => {
-    if (this.state.hiddenPieces[4]) {
+    if (this.state.hiddenPieces[5]) {
       this.setState({
         hiddenPieces: [false, false, false, false, false, false],
       })
@@ -83,6 +89,10 @@ export default class Home extends Component {
       })
 
       setTimeout(() => {
+        // MATH.RANDOM() WILL ADD BACK IN IF IT STOPS WORKING FOR SAFARI, BUT I THNK I CAN GET AWAY WITH ONLY HAVING IT
+        // HAPPEN IN COMPONENTDIDMOUNT()
+        // this.setState({ lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif?a=" + Math.random() })
+
         this.setState({ lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif" })
         screens.classList.remove("hidden-image")
       }, 0)
@@ -96,14 +106,14 @@ export default class Home extends Component {
   toggleReality = (i) => (event) => {
     const arr = this.state.hiddenPieces
     // console.log("i:", i, event.target.checked)
-    if (i === 4) {
+    if (i === 5) {
       if (event.target.checked) {
         // Store current state to restore if this is toggled off
         this.setState({
           hiddenPiecesPrev: arr,
         })
         // Switch off all switches except 4
-        const brokenScreens = [false, false, false, false, true, false]
+        const brokenScreens = [false, false, false, false, false, true]
         this.setState({
           hiddenPieces: brokenScreens,
         })
@@ -116,7 +126,7 @@ export default class Home extends Component {
     }
     else {
       arr[i] = event.target.checked
-      arr[4] = false
+      arr[5] = false
       this.setState({
         hiddenPieces: arr,
       })
@@ -153,6 +163,32 @@ export default class Home extends Component {
             </div>
           } />
 
+
+        {/* Not using wrapper here because I want the entire div to be clickable */}
+        <div className="inner manifest-div" onMouseDown={this.closeHand} onMouseUp={this.openHand}>
+          <div className="corner left">⌈</div>
+          <div className="corner right">⌉</div>
+
+          <div>
+            <div>
+              <img
+                src={this.state.handClosed ? manifest_hand_close : manifest_hand} id="manifest_hand" className="half-width unselectable" alt="floating hand"
+              />
+            </div>
+
+            <div>
+              <img src={grid_plane} className="full-width unselectable" alt="perspective grid" />
+            </div>
+            <div className="hand-shadow"></div>
+            <p className="home-title">MANIFEST</p>
+            <p className="home-inspo">Inspired by Cav Empt's Manifest Horizon Hoodie</p>
+          </div>
+
+
+          <div className="corner left">⌊</div>
+          <div className="corner right">⌋</div>
+        </div>
+
         <InnerWrapper
           addClass=""
           innerContent=
@@ -172,39 +208,35 @@ export default class Home extends Component {
                       src={wired_white} className="quarter-width stack_image unselectable wired-skew " alt="wired logo"
                     /> : <div></div>
                 }
-
                 {
                   this.state.hiddenPieces[1] ?
+                    <img
+                      src={layer_00} className="third-width stack_image unselectable layer_00" alt="circle hologram"
+                    /> : <div></div>
+                }
+                {
+                  this.state.hiddenPieces[2] ?
                     <img
                       src={layer_01} className="stack_image unselectable layer_01" alt="animated hologram 1"
                     /> : <div></div>
                 }
-
                 {
-                  this.state.hiddenPieces[2] ?
+                  this.state.hiddenPieces[3] ?
                     <img
                       src={layer_02} className="third-width stack_image unselectable layer_02" alt="LAIN'S FACE"
                     /> : <div></div>
 
                 }
                 {
-                  this.state.hiddenPieces[3] ?
+                  this.state.hiddenPieces[4] ?
                     <img
                       src={layer_03} className="full-width stack_image unselectable layer_03" alt="glowing screens"
                     /> : <div></div>
                 }
-
-                {
-                  this.state.hiddenPieces[4] ?
-                    <img
-                      src={layer_04} className="full-width stack_image unselectable" alt="broken computer screens"
-                    /> : <div></div>
-                }
-
                 {
                   this.state.hiddenPieces[5] ?
                     <img
-                      src={layer_00} className="full-width stack_image unselectable layer_00" alt="void wall"
+                      src={layer_04} className="full-width stack_image unselectable" alt="broken computer screens"
                     /> : <div></div>
                 }
 
@@ -221,31 +253,19 @@ export default class Home extends Component {
                 <input type="checkbox" onChange={this.toggleReality(3)} checked={this.state.hiddenPieces[3]} />
                 <input type="checkbox" onChange={this.toggleReality(4)} checked={this.state.hiddenPieces[4]} />
                 <input type="checkbox" onChange={this.toggleReality(5)} checked={this.state.hiddenPieces[5]} />
-                <button onClick={this.refreshReality}>REFRESH <br /> REALITY</button>
+                <div onClick={this.refreshReality} className="refresh-reality-button">
+                  <div className="power-button">
+                    <img src={power_button} alt="power button" />
+                  </div>
+                  <div className="refresh-reality">
+                    REFRESH <br /> REALITY
+                  </div>
+                </div>
               </div>
 
-              <p className="home-title">SWITCHES</p>
-              <p className="home-inspo">Compartmentalized image</p>
-            </div>
-          } />
-
-        <InnerWrapper
-          addClass="manifest-div"
-          innerContent=
-          {
-            <div>
-              <div>
-                <img
-                  src={this.state.handClosed ? manifest_hand_close : manifest_hand} id="manifest_hand" className="half-width unselectable" alt="floating hand"
-                />
-              </div>
-
-              <div>
-                <img src={grid_plane} className="full-width unselectable" alt="perspective grid" />
-              </div>
-              <div className="hand-shadow"></div>
-              <p className="home-title">MANIFEST</p>
-              <p className="home-inspo">Inspired by Cav Empt's Manifest Horizon Hoodie</p>
+              <p className="home-title">SCREENS</p>
+              <p className="home-inspo">What do these switches and buttons do?</p>
+              <p className="home-inspo">This is a scene from Serial Experiments Lain I bitmapped frame by frame</p>
             </div>
           } />
 
@@ -259,7 +279,8 @@ export default class Home extends Component {
                 <img src={akira_red} className="full-width akira-red unselectable" alt="akira tetsuo" />
               </div>
               <p className="home-title">TETSUO AWAKENS</p>
-              <p className="home-inspo">Akira Shirt - Front Design</p>
+              <p className="home-inspo">Akira - Front Design</p>
+              <p className="home-inspo">This is the front design of the Akira shirts I had made in Japan</p>
             </div>
           } />
 
@@ -269,7 +290,8 @@ export default class Home extends Component {
           {
             <div>
               <div className="">
-                <img src={flying_castle} className="full-width unselectable" alt="Howl's Castle Flying" />
+                <img src={castle_flying} className="full-width unselectable" alt="Howl's Castle Flying" />
+                <img src={castle_small} className="full-width unselectable" alt="Howl's Castle Small" />
               </div>
               <p className="home-title">CASTLE</p>
               <p className="home-inspo">Howl's moving castle V3</p>

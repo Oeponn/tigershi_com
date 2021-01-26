@@ -9,7 +9,6 @@ import './css/Curation.css';
 import './css/LoginCreate.css'
 
 import Home from './components/Home';
-// import Feed from './components/oponn_feed';
 import Curation from './components/Curation';
 import Store from './components/Store';
 import Login from './components/Login';
@@ -85,7 +84,7 @@ export default class App extends Component {
 
 
   render() {
-    console.log(this.props.history)
+    // console.log(this.props.history)
     return (
       <div className="god-container">
         <BrowserRouter>

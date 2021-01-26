@@ -41,7 +41,7 @@
 .hand-shadow {
   display: inline-block;
   position: relative;
-  top: calc(-50px - 6vw);
+  transform: translateY(-500%);
   height: 16px;
   width: 60%;
   background: black;
@@ -333,6 +333,8 @@
 
 .layer_00 {
   mix-blend-mode: lighten;
+  filter: opacity(90%);
+  transform: translate(100%, -10%) scale(1.2);
 }
 
 .layer_01 {
@@ -353,21 +355,23 @@
 }
 
 @keyframes screen-glow {
-  0% {
-    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 0px rgb(255, 255, 255));
-  }
   100% {
+    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 0px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 0px rgb(255, 255, 255));
+  }
+  0% {
     filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
   }
 }
 
 .wired-skew {
   transform: skew(-.3rad) translateX(0px) translateY(-50px) rotate(20deg);
-  /* -ms-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
-  -webkit-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
-  -moz-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
-  -o-transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg);
-  transform: skew(-.3rad) translateX(10%) translateY(-20%) rotate(20deg); */
+  -ms-transform: skew(-.3rad) translateX(0px) translateY(-50px) rotate(20deg);
+  -webkit-transform: skew(-.3rad) translateX(0px) translateY(-50px) rotate(20deg);
+  -moz-transform: skew(-.3rad) translateX(0px) translateY(-50px) rotate(20deg);
+  -o-transform: skew(-.3rad) translateX(0px) translateY(-50px) rotate(20deg);
+  transform: skew(-.3rad) translateX(0px) translateY(-50px) rotate(20deg);
 }
 
 .reality-controller {
@@ -389,9 +393,14 @@
   outline: none;
 }
 
-/* .reality-controller input:checked[type="checkbox"] {
-  background-color: #03a9f4;
+/* .reality-controller input[type="checkbox"]:hover {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
 } */
+
+.reality-controller input:checked[type="checkbox"] {
+  background-color: rgb(196, 243, 126);
+}
 
 .reality-controller input[type="checkbox"]:before {
   content: "";
@@ -408,4 +417,28 @@
 .reality-controller input:checked[type="checkbox"]:before {
   transform: translateX(-7px);
   background: white;
+}
+
+.refresh-reality-button {
+  color: white;
+  font-size: 12px;
+  border-radius: 0;
+  border: 2px white solid;
+  background-color: black;
+  width: 87px;
+  height: 87px;
+}
+
+.refresh-reality-button:hover {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+}
+
+.refresh-reality-button:hover > .power-button {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+}
+
+.refresh-reality-button:hover > .refresh-reality {
+  text-shadow: 0px 0px 6px white, 0px 0px 6px white, 0px 0px 6px white;
 }
