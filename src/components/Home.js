@@ -223,7 +223,7 @@ export default class Home extends Component {
                 <img src={castle_bottom} className="full-width unselectable stack_bottom" alt="Howl's Castle Medium" />
 
                 <div className="castle-arrow_container">
-                  <img src={left_arrow} onClick={() => this.CastleOrderChange(-1)} className="castle-arrow horizontal-flip-image" alt="left castle arrow" />
+                  <img src={left_arrow} onClick={() => this.CastleOrderChange(-1)} className="castle-arrow" alt="left castle arrow" />
                   <img src={right_arrow} onClick={() => this.CastleOrderChange(1)} className="castle-arrow" alt="right castle arrow" />
                 </div>
               </div>
