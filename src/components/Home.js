@@ -15,7 +15,6 @@ import castle_bottom from '../images/Castle_Bottom.png';
 import right_arrow from '../images/castle_arrow_right.png';
 import left_arrow from '../images/castle_arrow_left.png';
 
-// import layer_00 from '../images/lain_layer_00.gif';
 import layer_00 from '../images/circle_hologram.gif';
 import layer_01 from '../images/lain_layer_01.gif';
 import layer_02 from '../images/lain_layer_02.gif';
@@ -33,7 +32,12 @@ export default class Home extends Component {
       lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif",
       lain_screens_gif_url_end: "/images/lain_screens_2_bitmapped.gif",
       timeoutID: 0,
-      castle_order: [0,1,2],
+      castle_order: [0, 1, 2],
+      castle_description: [
+        "Howl's Stumbling Castle",
+        "Howl's Crawling Castle",
+        "Howl's Flying Castle",
+      ],
     };
   }
 
@@ -68,7 +72,7 @@ export default class Home extends Component {
     const arr = this.state.castle_order.slice()
     const arr_len = arr.length
     for (var i = 0; i < arr_len; i++) {
-      arr[i] = ((( arr[i] + direction ) % 3) + arr_len) % arr_len
+      arr[i] = (((arr[i] + direction) % 3) + arr_len) % arr_len
     }
     this.setState({
       castle_order: arr,
@@ -107,7 +111,7 @@ export default class Home extends Component {
       setTimeout(() => {
         // MATH.RANDOM() WILL ADD BACK IN IF IT STOPS WORKING FOR SAFARI, BUT I THNK I CAN GET AWAY WITH ONLY HAVING IT
         // HAPPEN IN COMPONENTDIDMOUNT()
-        // this.setState({ lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif?a=" + Math.random() })
+        this.setState({ lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif?a=" + Math.random() })
 
         this.setState({ lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif" })
         screens.classList.remove("hidden-image")
@@ -163,13 +167,14 @@ export default class Home extends Component {
               <div className="">
                 <img src={wired_white} alt="wired" className="quarter-width unselectable" />
               </div>
-              <HelloStripe />
+              {/* <HelloStripe /> */}
               <br />
               <p className="home-title">My name is Tiger</p>
               <p>This is my website</p>
               <p>Every component box below on this page is interactive in some way</p>
               <p className="home-inspo">Please note that this page works best on desktop, since its interactivity is reliant on both mouse movement and clicking</p>
-              <p>Please enjoy yourself</p>
+              <p className="home-inspo">All GIFS are bitmapped by me</p>
+              <p>Have fun</p>
               <hr />
               <div className="social-media-links-container">
                 <a className="whitelink" href="https://www.linkedin.com/in/tiger-shi/" rel="noreferrer" target="_blank">LinkedIn</a>
@@ -198,12 +203,49 @@ export default class Home extends Component {
             <div className="hand-shadow"></div>
             <p className="home-title">MANIFEST</p>
             <p className="home-inspo">Inspired by Cav Empt's Manifest Horizon Hoodie</p>
+            <p className="home-inspo">Try to close the hand</p>
           </div>
 
 
           <div className="corner left">⌊</div>
           <div className="corner right">⌋</div>
         </div>
+
+        <InnerWrapper
+          addClass="howl-container"
+          innerContent=
+          {
+            <div>
+              <div className="howl-centered">
+                <img src={castle_small} className={"unselectable carousel-image carousel-" + this.state.castle_order[0]} alt="Howl's Castle Flying" />
+                <img src={castle_flying} className={"unselectable carousel-image carousel-" + this.state.castle_order[1]} alt="Howl's Castle Small" />
+                <img src={castle_medium} className={"unselectable carousel-image carousel-" + this.state.castle_order[2]} alt="Howl's Castle Medium" />
+                <img src={castle_bottom} className="full-width unselectable stack_bottom" alt="Howl's Castle Medium" />
+
+                <div className="castle-arrow_container">
+                  <img src={left_arrow} onClick={() => this.CastleOrderChange(-1)} className="castle-arrow horizontal-flip-image" alt="left castle arrow" />
+                  <img src={right_arrow} onClick={() => this.CastleOrderChange(1)} className="castle-arrow" alt="right castle arrow" />
+                </div>
+              </div>
+              <p className="home-title">CASTLES</p>
+              <p className="home-inspo">Versions of Howl Pendragon's moving castle</p>
+              <p className="home-inspo">{this.state.castle_description[this.state.castle_order[0]]}</p>
+            </div>
+          } />
+
+        <InnerWrapper
+          addClass=""
+          innerContent=
+          {
+            <div>
+              <div className="akira-container">
+                <img src={akira_red} className="full-width akira-red unselectable" alt="akira tetsuo" />
+              </div>
+              <p className="home-title">TETSUO AWAKENS</p>
+              <p className="home-inspo">Akira - Front Design</p>
+              <p className="home-inspo">This is the front design of the Akira shirts I had made in Japan</p>
+            </div>
+          } />
 
         <InnerWrapper
           addClass=""
@@ -281,43 +323,7 @@ export default class Home extends Component {
 
               <p className="home-title">SCREENS</p>
               <p className="home-inspo">What do these switches and buttons do?</p>
-              <p className="home-inspo">This is a scene from Serial Experiments Lain I bitmapped frame by frame</p>
-            </div>
-          } />
-
-
-        <InnerWrapper
-          addClass=""
-          innerContent=
-          {
-            <div>
-              <div className="akira-container">
-                <img src={akira_red} className="full-width akira-red unselectable" alt="akira tetsuo" />
-              </div>
-              <p className="home-title">TETSUO AWAKENS</p>
-              <p className="home-inspo">Akira - Front Design</p>
-              <p className="home-inspo">This is the front design of the Akira shirts I had made in Japan</p>
-            </div>
-          } />
-
-        <InnerWrapper
-          addClass="howl-container"
-          innerContent=
-          {
-            <div>
-              <div className="howl-centered">
-                <img src={castle_flying} className={"unselectable carousel-image carousel-" + this.state.castle_order[0]} alt="Howl's Castle Flying" />
-                <img src={castle_small} className={"unselectable carousel-image carousel-" + this.state.castle_order[1]} alt="Howl's Castle Small" />
-                <img src={castle_medium} className={"unselectable carousel-image carousel-" + this.state.castle_order[2]} alt="Howl's Castle Medium" />
-                <img src={castle_bottom} className="full-width unselectable stack_bottom" alt="Howl's Castle Medium" />
-
-                <div className="castle-arrow_container">
-                  <img src={left_arrow} onClick={() => this.CastleOrderChange(-1)} className="castle-arrow horizontal-flip-image" alt="left castle arrow"/>
-                  <img src={right_arrow} onClick={() => this.CastleOrderChange(1)} className="castle-arrow" alt="right castle arrow"/>
-                </div>
-              </div>
-              <p className="home-title">CASTLES</p>
-              <p className="home-inspo">Versions of Howl Pendragon's moving castle</p>
+              <p className="home-inspo">This is a scene from Serial Experiments Lain. The animations you see on this page had to be bitmapped frame by frame</p>
             </div>
           } />
 
@@ -330,7 +336,8 @@ export default class Home extends Component {
                 <img src={lain_x6} className="full-width hidden-image" alt="lain sketches" />
               </div>
               <p className="home-title">NOISE</p>
-              <p className="home-inspo">Bitmapped sketch of Lain Iwakura from Serial Experiments Lain, original sketch by Yoshitoshi Abe</p>
+              <p className="home-inspo">Potential epilepsy warning</p>
+              <p className="home-inspo">Lain Iwakura from Serial Experiments Lain, original sketch by Yoshitoshi Abe</p>
             </div>
           } />
       </div>
