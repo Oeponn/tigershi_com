@@ -10,6 +10,10 @@ import wired_white from '../images/wired_logo-white.gif';
 import akira_red from '../images/Front_Red.png';
 import castle_flying from '../images/Castle_Flying.gif';
 import castle_small from '../images/Castle_Small.gif';
+import castle_medium from '../images/Castle_Medium.gif';
+import castle_bottom from '../images/Castle_Bottom.png';
+import right_arrow from '../images/castle_arrow_right.png';
+import left_arrow from '../images/castle_arrow_left.png';
 
 // import layer_00 from '../images/lain_layer_00.gif';
 import layer_00 from '../images/circle_hologram.gif';
@@ -29,6 +33,7 @@ export default class Home extends Component {
       lain_screens_gif_url_start: "/images/lain_screens_1_bitmapped.gif",
       lain_screens_gif_url_end: "/images/lain_screens_2_bitmapped.gif",
       timeoutID: 0,
+      castle_order: [0,1,2],
     };
   }
 
@@ -56,6 +61,17 @@ export default class Home extends Component {
   openHand = () => {
     this.setState({
       handClosed: false,
+    })
+  }
+
+  CastleOrderChange = (direction) => {
+    const arr = this.state.castle_order.slice()
+    const arr_len = arr.length
+    for (var i = 0; i < arr_len; i++) {
+      arr[i] = ((( arr[i] + direction ) % 3) + arr_len) % arr_len
+    }
+    this.setState({
+      castle_order: arr,
     })
   }
 
@@ -285,16 +301,23 @@ export default class Home extends Component {
           } />
 
         <InnerWrapper
-          addClass=""
+          addClass="howl-container"
           innerContent=
           {
             <div>
-              <div className="">
-                <img src={castle_flying} className="full-width unselectable" alt="Howl's Castle Flying" />
-                <img src={castle_small} className="full-width unselectable" alt="Howl's Castle Small" />
+              <div className="howl-centered">
+                <img src={castle_flying} className={"unselectable carousel-image carousel-" + this.state.castle_order[0]} alt="Howl's Castle Flying" />
+                <img src={castle_small} className={"unselectable carousel-image carousel-" + this.state.castle_order[1]} alt="Howl's Castle Small" />
+                <img src={castle_medium} className={"unselectable carousel-image carousel-" + this.state.castle_order[2]} alt="Howl's Castle Medium" />
+                <img src={castle_bottom} className="full-width unselectable stack_bottom" alt="Howl's Castle Medium" />
+
+                <div className="castle-arrow_container">
+                  <img src={left_arrow} onClick={() => this.CastleOrderChange(-1)} className="castle-arrow horizontal-flip-image" alt="left castle arrow"/>
+                  <img src={right_arrow} onClick={() => this.CastleOrderChange(1)} className="castle-arrow" alt="right castle arrow"/>
+                </div>
               </div>
-              <p className="home-title">CASTLE</p>
-              <p className="home-inspo">Howl's moving castle V3</p>
+              <p className="home-title">CASTLES</p>
+              <p className="home-inspo">Versions of Howl Pendragon's moving castle</p>
             </div>
           } />
 

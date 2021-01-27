@@ -326,7 +326,6 @@
   position: relative;
   top: 1em;
   left: 0;
-  border: 1px green solid;
   margin-bottom: 1em;
   z-index: -3;
 }
@@ -441,4 +440,69 @@
 
 .refresh-reality-button:hover > .refresh-reality {
   text-shadow: 0px 0px 6px white, 0px 0px 6px white, 0px 0px 6px white;
+}
+
+.howl-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.howl-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  top: 30px;
+  left: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.carousel-0 {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  padding-bottom: 30px;
+}
+
+.carousel-1 {
+  mix-blend-mode: lighten;
+  filter: opacity(50%);
+  position: absolute;
+  width: 25%;
+  transform: translate(0%, 100%);
+  z-index: 3;
+}
+
+.carousel-2 {
+  mix-blend-mode: lighten;
+  filter: opacity(50%);
+  position: absolute;
+  width: 25%;
+  transform: translate(300%, 100%);
+  z-index: 3;
+}
+
+.castle-arrow_container {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  /* background-color: red; */
+}
+
+.castle-arrow {
+  width: 80px;
+}
+
+.castle-arrow:hover {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
 }
