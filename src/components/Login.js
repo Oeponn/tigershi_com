@@ -59,9 +59,9 @@ export default function Login(props) {
             <button className="login-button">enter</button>
           </div>
         </form>
-        <div>
+        {/* <div>
           <NavLink to="/createaccount"><button className="login-button">create an account</button></NavLink>
-        </div>
+        </div> */}
 
 
 
