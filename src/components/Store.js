@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 
+
 const CounterComponent = () => {
   const [count, setCount] = useState(0);
 
@@ -12,6 +13,8 @@ const CounterComponent = () => {
         // console.log("Hullo", count)
         return (count + 1)
       })}>I have too much time on my hands</button>
+      <br />
+      <p>If you log in it will store the counts :^) unfortunately the create account page isn't read yet</p>
     </div>
   );
 }
