@@ -132,9 +132,6 @@ class Curation extends Component {
               <div>
                 {this.props.loggedIn && <button onClick={(e) => this.refreshResults(e)}>refresh</button>}
               </div>
-              <div>
-                <button onClick={() => { console.log(this.props.history) }}> Yas </button>
-              </div>
             </div>
           } />
 
