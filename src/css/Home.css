@@ -19,6 +19,15 @@
   color: white;
 }
 
+@media only screen and (max-width: 400px) {
+  .social-media-links-container {
+    flex-direction: column;   
+  }
+  .soc-med-link {
+    padding-bottom: 10px;
+  }
+}
+
 #manifest_hand {
   position: relative;
   z-index: 1;

@@ -177,9 +177,10 @@ export default class Home extends Component {
               <p>Have fun</p>
               <hr />
               <div className="social-media-links-container">
-                <a className="whitelink" href="https://www.linkedin.com/in/tiger-shi/" rel="noreferrer" target="_blank">LinkedIn</a>
-                <a className="whitelink" href="https://github.com/Oeponn/" rel="noreferrer" target="_blank">Github</a>
-                <a className="whitelink" href="https://www.instagram.com/oponn_/" rel="noreferrer" target="_blank">Instagram</a>
+                <a className="whitelink soc-med-link" href="https://www.linkedin.com/in/tiger-shi/" rel="noreferrer" target="_blank">LinkedIn</a>
+                <a className="whitelink soc-med-link" href="https://github.com/Oeponn/" rel="noreferrer" target="_blank">Github</a>
+                <a className="whitelink soc-med-link" href="https://www.youtube.com/channel/UCQzNsKg_BoVDyCZnhpwntPA" rel="noreferrer" target="_blank">Youtube</a>
+                <a className="whitelink soc-med-link" href="https://www.instagram.com/oponn_/" rel="noreferrer" target="_blank">Instagram</a>
               </div>
             </div>
           } />

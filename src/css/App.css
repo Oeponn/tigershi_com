@@ -41,7 +41,8 @@ body {
   width: 100vw;
   /* width: 500px; */
   /* background-color: rgba(255, 255, 255, 1.0); */
-  font-size: 3vw;
+  /* font-size: 3vw; */
+  font-size: 16px;
   background-color: white;
 }
 

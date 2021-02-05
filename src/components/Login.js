@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 export default function Login(props) {
   useEffect(() => {
@@ -10,13 +10,20 @@ export default function Login(props) {
     })
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
+
+
+  
+
+  const LoginButton = () => {
+    let history = useHistory();
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const data = {
         "username": e.target[0].value,
         "password": e.target[1].value
-    }
-    fetch("/api/login/", {
+      }
+      fetch("/api/login/", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         credentials: 'same-origin',
         headers: {
@@ -24,12 +31,32 @@ export default function Login(props) {
         },
         body: JSON.stringify(data)
       })
-    .then((resp) => {
-        console.log("Response:", resp.ok)
-        props.isLoggedIn(resp.ok)
+        .then((resp) => {
+          console.log("Response:", resp.ok)
+          props.changeLoginStatus(resp.ok)
+          if (resp.ok) {
+            history.push('/')
+          }
+          else {
+            alert("who are you?")
+          }
+        });
+    }
 
-        return resp
-      });
+
+    return (
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <label htmlFor="username">username:</label><br />
+        <input type="text" id="username" name="username" /><br />
+        <label htmlFor="password">password:</label><br />
+        <input type="password" id="password" name="password" />
+        <br />
+        <br />
+        <div>
+          <button className="login-button">enter</button>
+        </div>
+      </form>
+    );
   }
 
   return (
@@ -48,17 +75,7 @@ export default function Login(props) {
           <span className="fade-3 pulse">I</span>║
         </div>
 
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <label htmlFor="username">username:</label><br />
-          <input type="text" id="username" name="username" /><br />
-          <label htmlFor="password">password:</label><br />
-          <input type="password" id="password" name="password" />
-          <br />
-          <br />
-          <div>
-            <button className="login-button">enter</button>
-          </div>
-        </form>
+        <LoginButton />
         {/* <div>
           <NavLink to="/createaccount"><button className="login-button">create an account</button></NavLink>
         </div> */}

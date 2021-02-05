@@ -75,7 +75,7 @@ export default class App extends Component {
     document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log("CLICKED") })
   }
 
-  isLoggedIn = (loggedIn) => {
+  changeLoginStatus = (loggedIn) => {
     console.log('User logged in: ' + loggedIn)
     this.setState({
       loggedIn
@@ -99,12 +99,16 @@ export default class App extends Component {
               <Route path="/curation" render={() => <Curation loggedIn={this.state.loggedIn} history={this.props.history} />} />
               <Route path="/store" component={Store} />
               <Route path="/createaccount" component={CreateAccount} />
-              <Route path="/login" render={() => <Login isLoggedIn={this.isLoggedIn} />} />
-              <Route path="/logout" render={() => <Logout isLoggedIn={this.isLoggedIn} />} />
+              <Route path="/login" render={() => <Login changeLoginStatus={this.changeLoginStatus} />} />
+              <Route path="/logout" render={() => <Logout changeLoginStatus={this.changeLoginStatus} history={this.props.history} meme="gigfty" />} />
               <Route component={PageNotFound} />
             </Switch>
           </div>
         </BrowserRouter>
+
+        {/* <div>
+          <button onClick={() => { console.log(this.props.history) }}> Yas </button>
+        </div> */}
 
         <div className="App">
           <header className="App-header">

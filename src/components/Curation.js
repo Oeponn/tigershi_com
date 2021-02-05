@@ -22,9 +22,9 @@ class Curation extends Component {
     // Load the page number from the url
     const path = window.location.pathname.toString().split('/')
     if (path.length === 3 && !isNaN(path[2]) && +path[2] !== this.state.pageNum) {
-    	this.setState({
-    		pageNum: +path[2]
-    	})
+      this.setState({
+        pageNum: +path[2]
+      })
     }
   }
 
@@ -92,7 +92,7 @@ class Curation extends Component {
       num -= 1
     }
     else {
-    	this.props.history.push(`/curation/${num}`)
+      this.props.history.push(`/curation/${num}`)
     }
 
     this.setState({
@@ -129,7 +129,12 @@ class Curation extends Component {
               <div className="home-inspo">this is a page of items i could be interested in</div>
               <div className="home-inspo">it is mostly japanese fashion and anime franchise related items</div>
               <div className="home-inspo">evangelion, serial experiments lain, akira, cav empt, 20471120</div>
-              {this.props.loggedIn && <button onClick={(e) => this.refreshResults(e)}>refresh</button>}
+              <div>
+                {this.props.loggedIn && <button onClick={(e) => this.refreshResults(e)}>refresh</button>}
+              </div>
+              <div>
+                <button onClick={() => { console.log(this.props.history) }}> Yas </button>
+              </div>
             </div>
           } />
 
