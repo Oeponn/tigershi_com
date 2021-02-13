@@ -39,13 +39,14 @@ class Curation extends Component {
   }
 
   fetchResults = () => {
+    // console.log("FETCHING RESULTS AGAIN")
     fetch("/api/mercari/")
       .then((resp) => {
         console.log("Response:", resp)
 
         return resp.json()
       }).then(mercari => {
-        // console.log(mercari)
+        console.log(mercari)
         for (var key in mercari) {
           var concatData = JSON.parse(this.state.products).concat(mercari[key])
 

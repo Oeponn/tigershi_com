@@ -5,6 +5,7 @@ import os
 import sqlite3
 import hashlib
 import uuid
+import sys
 
 app = Flask(__name__)
 
@@ -41,16 +42,37 @@ def create_password(given_password):
 
 def mercari_pull():
 	conn, cursor = get_connection()
+
 	cur = cursor.execute('SELECT term FROM search_terms WHERE site="mercari" OR site="all"')
 
 	search_terms = cur.fetchall()
+	temporary = cursor.execute('SELECT * FROM mercari_results WHERE term=? OR term=?', ("serial experiments lain","シリアルエクスペリメンツレイン",)).fetchall()
+	print("TWO LAINS TOGETHER:", len(temporary))
 	try:
 		for term in search_terms:
 			term = term[0]
-			for item in mercari.search(term, use_google_proxy=False):
+			print(term)
+			searched = mercari.search(term, use_google_proxy=False)
+
+
+			temp = cursor.execute('SELECT DISTINCT * FROM mercari_results WHERE term=?', (term,)).fetchall()
+			print("In database:", len(temp))
+
+			num_searched = 0
+			for item in searched:
+				num_searched += 1
 				# If it's not already in the database, add it
-				if cursor.execute('SELECT url FROM mercari_results WHERE url=?', (item.productURL,)).fetchone() is None:
-					cursor.execute('INSERT INTO mercari_results(term, url, imageURL, name, price) VALUES(?, ?, ?, ?, ?)', (term, item.productURL, item.imageURL, item.productName, item.price))
+				oneitem = cursor.execute('SELECT url FROM mercari_results WHERE url=?', (item.productURL,)).fetchone()
+				# if term == "シリアルエクスペリメンツレイン" or term == "serial experiments lain":
+				# 	print(oneitem[0], item.productURL)
+				if oneitem is None:
+					print("FOUND ONE THAT'S NOT IN HERE")
+					# cursor.execute('INSERT INTO mercari_results(term, url, imageURL, name, price) VALUES(?, ?, ?, ?, ?)', (term, item.productURL, item.imageURL, item.productName, item.price))
+				else:
+					# print(item.productURL)						
+					pass
+			print("SEARCHED TERMS FOR",term, ":", num_searched)
+
 	except Exception as e:
 		print(e)
 		conn.close()
@@ -66,6 +88,12 @@ def home():
 @app.route('/test/')
 def test():
 	return "test", 200
+
+@app.route('/api/temp/', methods=['GET'])
+def temp():
+	people = {"BEAUTIFUL PEOPLE" :[{'name': 'Alice', 'birth-year': 1986},
+          {'name': 'Bob', 'birth-year': 1985}]}
+	return people, 200
 
 @app.route('/api/login/', methods=['POST'])
 def login():
@@ -176,6 +204,8 @@ def search_mercari():
 
 @app.route('/api/mercari_refresh/', methods=['GET'])
 def refresh_mercari():
+	print("Fetching /api/mercari_refresh/")
+	# print('Hello world!', file=sys.stderr)
 	if 'username' not in flask.session or 'role' not in flask.session or flask.session['role'] != 'owner' and flask.session['role'] != 'admin':
 		flask.abort(403)
 	return "Refreshed database.", mercari_pull()
@@ -214,9 +244,4 @@ def add_search_term():
 	cursor.execute('INSERT INTO search_terms(term, site) VALUES(?, ?)', (req['term'], req['site']))
 	conn.close()
 	return "Term successfully added", 200
-
-@app.route('/api/comedy/')
-def comedy():
-	return "Big hahas in the chat", 200
-
 

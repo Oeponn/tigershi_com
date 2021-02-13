@@ -9,5 +9,3 @@ VALUES ('serial experiments lain', 'mercari');
 INSERT INTO search_terms(term, site)
 VALUES('シリアルエクスペリメンツレイン', 'mercari');
 
--- INSERT INTO search_terms(term, site)
--- VALUES('ブラック★ロックシューター', 'mercari');
