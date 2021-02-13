@@ -35,7 +35,7 @@ export default function Login(props) {
           console.log("Response:", resp.ok)
           props.changeLoginStatus(resp.ok)
           if (resp.ok) {
-            history.push('/')
+            history.push('/account')
           }
           else {
             alert("who are you?")

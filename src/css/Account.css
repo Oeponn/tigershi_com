@@ -1,0 +1,8 @@
+.account-container {
+    background-color: yellow;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -215,6 +215,8 @@ def add_search_term():
 	conn.close()
 	return "Term successfully added", 200
 
-
+@app.route('/api/comedy/')
+def comedy():
+	return "Big hahas in the chat", 200
 
 

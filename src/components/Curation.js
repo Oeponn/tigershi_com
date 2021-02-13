@@ -66,6 +66,7 @@ class Curation extends Component {
 
   refreshResults = (e) => {
     e.preventDefault()
+    console.log("Fetching New Results")
     fetch("/api/mercari_refresh/")
       .then(() => {
         this.fetchResults()

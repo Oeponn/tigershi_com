@@ -516,6 +516,14 @@
   height: 67px
 }
 
+@media screen and (max-width: 320px) {
+  .castle-arrow {
+    width: 50%;
+    max-width: 80px;
+    height: 67px
+  }
+}
+
 .castle-arrow:hover {
   filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
     -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));

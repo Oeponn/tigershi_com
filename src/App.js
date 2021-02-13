@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
 import logo from './images/react_atom.svg';
 import './css/App.css';
-import './css/Cursor.css';
-import './css/Home.css';
-import './css/Feed.css';
+import './css/Account.css'
 import './css/Curation.css';
+import './css/Cursor.css';
+import './css/Feed.css';
+import './css/Home.css';
 import './css/LoginCreate.css'
 
-import Home from './components/Home';
+import Account from './components/Account';
+import CreateAccount from './components/CreateAccount';
 import Curation from './components/Curation';
-import Store from './components/Store';
+import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import CreateAccount from './components/CreateAccount';
 import PageNotFound from './components/404';
+import Store from './components/Store';
 
 import Cursor from './components/cursor';
 import { addCursorFeatureClick } from './components/cursorhelpers';
@@ -22,12 +24,18 @@ import { addCursorFeatureClick } from './components/cursorhelpers';
 const Header = (props) => {
   return (
     <div className='header-container'>
-      <h1>Oponn</h1>
+      <h1 className="header-oponn">Oponn</h1>
       <div className="header-links-container">
         <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
         {/* <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink> */}
         <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
         <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
+        {
+          props.loggedIn ?
+            <NavLink to="/account" activeClassName='selected-link' className='header-links'>Account</NavLink>
+            :
+            null
+        }
         {
           props.loggedIn ?
             <NavLink to="/logout" activeClassName='selected-link' className='header-links'>Exit</NavLink>
@@ -49,9 +57,9 @@ const Footer = (props) => {
         <hr className='line-black' />
       </div>
       <div className="footer-links-container">
-        <a className="blacklink" href="https://www.linkedin.com/in/tiger-shi/" rel="noreferrer" target="_blank">LinkedIn</a>
-        <a className="blacklink" href="https://github.com/Oeponn/" rel="noreferrer" target="_blank">Github</a>
-        <a className="blacklink" href="https://www.instagram.com/oponn_/" rel="noreferrer" target="_blank">Instagram</a>
+        <a className="blacklink footer-links" href="https://www.linkedin.com/in/tiger-shi/" rel="noreferrer" target="_blank">LinkedIn</a>
+        <a className="blacklink footer-links" href="https://github.com/Oeponn/" rel="noreferrer" target="_blank">Github</a>
+        <a className="blacklink footer-links" href="https://www.instagram.com/oponn_/" rel="noreferrer" target="_blank">Instagram</a>
       </div>
     </div>
   )
@@ -100,6 +108,7 @@ export default class App extends Component {
               <Route path="/store" component={Store} />
               <Route path="/createaccount" component={CreateAccount} />
               <Route path="/login" render={() => <Login changeLoginStatus={this.changeLoginStatus} />} />
+              <Route path="/account" component={Account} />
               <Route path="/logout" render={() => <Logout changeLoginStatus={this.changeLoginStatus} history={this.props.history} meme="gigfty" />} />
               <Route component={PageNotFound} />
             </Switch>

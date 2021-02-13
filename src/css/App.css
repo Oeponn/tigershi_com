@@ -156,12 +156,29 @@ body {
 @media screen and (max-width: 500px) {
   .container-main .inner {
     width: 100vw;
+    /* min-width: 250px; */
     /* background-color: yellow; */
   }
-  /* .header-links-container {
+  .header-links-container {
     flex-direction: column;
     align-items: center;
-  } */
+  }
+  .header-links {
+    font-size: 15px;
+    padding-top: 10px;
+    /* padding-bottom: 10px; */
+ }
+  .header-oponn {
+    font-size: 30px
+  }
+  .footer-links-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-links {
+    font-size: 15px;
+    padding-bottom: 10px;
+  }
 }
 
 .container-main .inner .right {
@@ -228,7 +245,9 @@ body {
   font-size: calc(1px + 2vmin);
   color: black;
   background-color: white;
+  padding-top: 20px;
   padding-bottom: 50px;
+  overflow: hidden;
 }
 
 
