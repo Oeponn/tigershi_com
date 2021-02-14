@@ -160,22 +160,21 @@ def change_role():
 def search_mercari():
 	conn, cursor = get_connection()
 	results = {}
+	results['results'] = []
 
 	# If there are results already in the database, use those 
 	if USE_MERCARI_DATABASE and cursor.execute('SELECT url FROM mercari_results LIMIT 1').fetchone() is not None:
-		cur = cursor.execute('SELECT * FROM mercari_results ORDER BY term')
+		# Order results so that the newest results are returned first
+		cur = cursor.execute('SELECT * FROM mercari_results ORDER BY timestamp DESC')
 		mercari_results = cur.fetchall()
-		term = mercari_results[0][0]
-		results[term] = []
 		for result in mercari_results:
-			if result[0] != term:
-				term = result[0]
-				results[term] = []
-			results[term].append({
+			results['results'].append({
+					"term": result[0],
 					"url": result[1],
 					"imageURL": result[2],
 					"name": result[3],
-					"price": result[4]
+					"price": result[4],
+					"timestamp": result[5]
 				})
 
 	else:

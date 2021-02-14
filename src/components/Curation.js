@@ -47,21 +47,15 @@ class Curation extends Component {
         return resp.json()
       }).then(mercari => {
         console.log(mercari)
-        for (var key in mercari) {
-          var concatData = JSON.parse(this.state.products).concat(mercari[key])
-
-
-
-          this.setState({
-            loading: true,
-            products: JSON.stringify(concatData),
-          });
-          this.setState({
-            loading: false,
-            products: this.state.products,
-          });
-          // console.log("STATE PRODUCTS:", this.state.products)
-        }
+        var concatData = JSON.parse(this.state.products).concat(mercari['results'])
+        this.setState({
+          loading: true,
+          products: JSON.stringify(concatData),
+        });
+        this.setState({
+          loading: false,
+          products: this.state.products,
+        });
       })
   }
 
