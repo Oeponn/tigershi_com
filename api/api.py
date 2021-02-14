@@ -184,13 +184,12 @@ def search_mercari():
 		if len(search_terms) == 0:
 			print('There are no search terms')
 
-		results = {}
 		try:
 			for term in search_terms:
 				term = term[0]
-				results[term] = []
 				for item in mercari.search(term, use_google_proxy=False):
-					results[term].append({
+					results['results'].append({
+							"term": term,
 							"url": item.productURL,
 							"imageURL": item.imageURL,
 							"name": item.productName,
