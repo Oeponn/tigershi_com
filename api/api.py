@@ -47,7 +47,7 @@ def mercari_pull():
 
 	search_terms = cur.fetchall()
 	temporary = cursor.execute('SELECT * FROM mercari_results WHERE term=? OR term=?', ("serial experiments lain","シリアルエクスペリメンツレイン",)).fetchall()
-	print("TWO LAINS TOGETHER:", len(temporary))
+	# print("TWO LAINS TOGETHER:", len(temporary))
 	try:
 		for term in search_terms:
 			term = term[0]
@@ -67,10 +67,13 @@ def mercari_pull():
 				# 	print(oneitem[0], item.productURL)
 				if oneitem is None:
 					print("FOUND ONE THAT'S NOT IN HERE")
-					# cursor.execute('INSERT INTO mercari_results(term, url, imageURL, name, price) VALUES(?, ?, ?, ?, ?)', (term, item.productURL, item.imageURL, item.productName, item.price))
+					cursor.execute('INSERT INTO mercari_results(term, url, imageURL, name, price) VALUES(?, ?, ?, ?, ?)', (term, item.productURL, item.imageURL, item.productName, item.price))
 				else:
-					# print(item.productURL)						
-					pass
+					original_price = int(cursor.execute('SELECT price FROM mercari_results WHERE url=?', (item.productURL,)).fetchone()[0])
+					if original_price > item.price:
+						cursor.execute('DELETE FROM mercari_results WHERE url=?', (item.productURL,))
+						cursor.execute('INSERT INTO mercari_results(term, url, imageURL, name, price) VALUES(?, ?, ?, ?, ?)', (term, item.productURL, item.imageURL, item.productName, item.price))
+					# pass
 			print("SEARCHED TERMS FOR",term, ":", num_searched)
 
 	except Exception as e:
@@ -89,19 +92,39 @@ def home():
 def test():
 	return "test", 200
 
-@app.route('/api/temp/', methods=['GET'])
-def temp():
-	people = {"BEAUTIFUL PEOPLE" :[{'name': 'Alice', 'birth-year': 1986},
-          {'name': 'Bob', 'birth-year': 1985}]}
-	return people, 200
+@app.route('/api/loggedin/', methods=['GET'])
+def loggedin():
+	response = {
+		"response" : {
+			"logged_in": False, 
+			"login_type": 0, 
+			"user": ""
+		}
+	}
+	if 'username' in flask.session:
+		response['response']['logged_in'] = True
+		response['response']['login_type'] = 2
+		response['response']['user'] = flask.session['username']
+		return response, 200
+	return response, 200
 
 @app.route('/api/login/', methods=['POST'])
 def login():
 	req = flask.request.get_json()
+	response = {
+		"response" : {
+			"logged_in": False, 
+			"login_type": 0, 
+			"user": ""
+		}
+	}
 	if 'username' in flask.session and req['username'] == flask.session['username']:
 		print(flask.session['username'])
 		print(req['username'])
-		return req['username'] + ' already logged in.', 200
+		response['response']['logged_in'] = True
+		response['response']['login_type'] = 2
+		response['response']['user'] = flask.session['username']
+		return response, 200
 
 	conn, cursor = get_connection()
 	cur = cursor.execute('SELECT password, role FROM users WHERE username=?',
@@ -110,11 +133,17 @@ def login():
 	conn.close()
 	# user doesn't exist
 	if password is None or not login_password_check(req['password'], password[0]):
-		flask.abort(403)
+		# flask.abort(403)
+		flask.session.clear()
+		pass
+	else:
+		flask.session['username'] = req['username']
+		flask.session['role'] = password[1]
+		response['response']['logged_in'] = True
+		response['response']['login_type'] = 1
+		response['response']['user'] = flask.session['username']
 
-	flask.session['username'] = req['username']
-	flask.session['role'] = password[1]
-	return 'Welcome, ' + flask.session['role'] + ' ' + req['username'], 200
+	return response, 200
 
 @app.route('/api/logout/', methods=['GET'])
 def logout():

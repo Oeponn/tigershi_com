@@ -2,17 +2,16 @@ import React, { useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
 export default function Login(props) {
-  useEffect(() => {
-    console.log("Login Mounted")
 
+  useEffect(() => {
+    
+    // console.log("Login Mounted")
     return (() => {
-      console.log("Login Unmounted")
+      // console.log("Login Unmounted")
     })
   });
 
 
-
-  
 
   const LoginButton = () => {
     let history = useHistory();
@@ -32,9 +31,12 @@ export default function Login(props) {
         body: JSON.stringify(data)
       })
         .then((resp) => {
-          console.log("Response:", resp.ok)
-          props.changeLoginStatus(resp.ok)
-          if (resp.ok) {
+          return resp.json()
+        }).then(response => {
+          response = response["response"]
+          if (response["logged_in"] == true) {
+            console.log("logged in type:", response["login_type"])
+            props.changeLoginStatus(response["logged_in"])
             history.push('/account')
           }
           else {

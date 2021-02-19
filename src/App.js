@@ -26,21 +26,20 @@ const Header = (props) => {
     <div className='header-container'>
       <h1 className="header-oponn">Oponn</h1>
       <div className="header-links-container">
-        <NavLink to="/" exact={true} activeClassName='selected-link' className='header-links home'>Home</NavLink>
-        {/* <NavLink to="/feed" activeClassName='selected-link' className='header-links'>Feed</NavLink> */}
-        <NavLink to="/curation" activeClassName='selected-link' className='header-links'>Curation</NavLink>
-        <NavLink to="/store" activeClassName='selected-link' className='header-links'>Store</NavLink>
+        <NavLink to="/" exact={true} activeClassName='selected-link' className={props.header_items}>Home</NavLink>
+        <NavLink to="/curation" activeClassName='selected-link' className={props.header_items}>Curation</NavLink>
         {
           props.loggedIn ?
-            <NavLink to="/account" activeClassName='selected-link' className='header-links'>Account</NavLink>
+            <NavLink to="/account" activeClassName='selected-link' className={props.header_items}>Account</NavLink>
             :
             null
         }
+        <NavLink to="/store" activeClassName='selected-link' className={props.header_items}>Store</NavLink>
         {
           props.loggedIn ?
-            <NavLink to="/logout" activeClassName='selected-link' className='header-links'>Exit</NavLink>
+            <NavLink to="/logout" activeClassName='selected-link' className={props.header_items}>Exit</NavLink>
             :
-            <NavLink to="/login" activeClassName='selected-link' className='header-links'>Enter</NavLink>
+            <NavLink to="/login" activeClassName='selected-link' className={props.header_items}>Enter</NavLink>
         }
       </div>
       <div className="line-container">
@@ -65,20 +64,44 @@ const Footer = (props) => {
   )
 }
 
+const ifLoggedIn = async () => {
+    const response = await fetch("/api/loggedin/")
+      .then((resp) => {
+        return resp.json()
+      })
+      .then(json => {
+        // console.log(json["response"])
+        return json["response"]
+      })
+      return response
+  }
+
+
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
+      check: "",
+      user: "",
       admin: false,
+      header_items: "header-links collapse",
       cart: {},
       products: [],
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    // console.log(await ifLoggedIn())
     console.log("App Mounted")
-    console.log("Logged in: ", this.state.loggedIn)
+    this.setState({
+      check: await ifLoggedIn(),
+    },
+    () => {
+      this.changeLoginStatus(this.state.check["logged_in"])
+    })
+    // console.log(this.state.check)
+    // console.log(this.state.loggedIn)
     addCursorFeatureClick()
     document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log("CLICKED") })
   }
@@ -87,6 +110,17 @@ export default class App extends Component {
     console.log('User logged in: ' + loggedIn)
     this.setState({
       loggedIn
+    }, () => {
+      if (this.state.loggedIn) {
+        this.setState({
+          header_items: "header-links"
+        })
+      }
+      else {
+        this.setState({
+          header_items: "header-links collapse"
+        })
+      }
     })
   }
 
@@ -97,7 +131,7 @@ export default class App extends Component {
       <div className="god-container">
         <BrowserRouter>
           <div className="headerc-container">
-            <Header loggedIn={this.state.loggedIn} />
+            <Header loggedIn={this.state.loggedIn} header_items={this.state.header_items} />
           </div>
           <Cursor />
           <div>
