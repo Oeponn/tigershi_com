@@ -49,12 +49,13 @@ class Curation extends Component {
         console.log(mercari)
         var concatData = JSON.parse(this.state.products).concat(mercari['results'])
         this.setState({
-          loading: true,
           products: JSON.stringify(concatData),
-        });
-        this.setState({
-          loading: false,
-          products: this.state.products,
+        }, () => {
+          this.setState({
+            loading: false,
+          });
+          console.log("Finished fetching, now push to history to refresh")
+          this.props.history.push(`/curation/0`)
         });
       })
   }
@@ -62,6 +63,9 @@ class Curation extends Component {
   refreshResults = (e) => {
     e.preventDefault()
     console.log("Fetching New Results")
+    this.setState({
+      loading: true,
+    })
     fetch("/api/mercari_refresh/")
       .then(() => {
         this.fetchResults()
@@ -100,20 +104,25 @@ class Curation extends Component {
   render() {
     return (
       <div className="container-main">
+        {
+        this.state.loading ?
+          <p>Loading</p>
+          :
+          <div>
+            <CuratedProducts
+              loading={this.state.loading}
+              products={this.state.products}
+              resultsPerPage={RESULTS_PER_PAGE}
+              pageNum={this.state.pageNum}
+            />
+            <Pagination
+              changePageNum={this.changePageNum}
+              pageNum={this.state.pageNum}
+            />
+          </div>
+        }
+        
 
-        <div>
-          <CuratedProducts
-            loading={this.state.loading}
-            products={this.state.products}
-            resultsPerPage={RESULTS_PER_PAGE}
-            pageNum={this.state.pageNum}
-          />
-        </div>
-
-        <Pagination
-          changePageNum={this.changePageNum}
-          pageNum={this.state.pageNum}
-        />
 
         <InnerWrapper
           addClass=""
