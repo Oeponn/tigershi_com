@@ -8,6 +8,7 @@ import './css/Cursor.css';
 import './css/Feed.css';
 import './css/Home.css';
 import './css/LoginCreate.css'
+import './css/Store.css';
 
 import Account from './components/Account';
 import CreateAccount from './components/CreateAccount';
@@ -16,10 +17,15 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import PageNotFound from './components/404';
-import Store from './components/Store';
+import Store from './components/Oponn_Store';
 
 import Cursor from './components/cursor';
 import { addCursorFeatureClick } from './components/cursorhelpers';
+
+// Shopify Section
+import Cart from './components/shopify/Cart';
+import { connect } from 'react-redux';
+import store from './store';
 
 const Header = (props) => {
   return (
@@ -42,6 +48,7 @@ const Header = (props) => {
             <NavLink to="/login" activeClassName='selected-link' className={props.header_items}>Enter</NavLink>
         }
       </div>
+      {/* <button onClick={() => {props.handleCartOpen()}} className={props.header_items}>Shopify Cart</button> */}
       <div className="line-container">
         <hr className='line-black' />
       </div>
@@ -65,19 +72,19 @@ const Footer = (props) => {
 }
 
 const ifLoggedIn = async () => {
-    const response = await fetch("/api/loggedin/")
-      .then((resp) => {
-        return resp.json()
-      })
-      .then(json => {
-        // console.log(json["response"])
-        return json["response"]
-      })
-      return response
-  }
+  const response = await fetch("/api/loggedin/")
+    .then((resp) => {
+      return resp.json()
+    })
+    .then(json => {
+      // console.log(json["response"])
+      return json["response"]
+    })
+  return response
+}
 
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,6 +96,11 @@ export default class App extends Component {
       cart: {},
       products: [],
     };
+
+    this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
+    this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
+    this.handleCartClose = this.handleCartClose.bind(this);
+    this.handleCartOpen = this.handleCartOpen.bind(this);
   }
 
   async componentDidMount() {
@@ -97,9 +109,9 @@ export default class App extends Component {
     this.setState({
       check: await ifLoggedIn(),
     },
-    () => {
-      this.changeLoginStatus(this.state.check["logged_in"])
-    })
+      () => {
+        this.changeLoginStatus(this.state.check["logged_in"])
+      })
     // console.log(this.state.check)
     // console.log(this.state.loggedIn)
     addCursorFeatureClick()
@@ -123,15 +135,41 @@ export default class App extends Component {
       }
     })
   }
-
+  updateQuantityInCart(lineItemId, quantity) {
+    const state = store.getState(); // state from redux store
+    const checkoutId = state.checkout.id
+    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
+    state.client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
+      store.dispatch({type: 'UPDATE_QUANTITY_IN_CART', payload: {checkout: res}});
+    });
+  }
+  removeLineItemInCart(lineItemId) {
+    const state = store.getState(); // state from redux store
+    const checkoutId = state.checkout.id
+    state.client.checkout.removeLineItems(checkoutId, [lineItemId]).then(res => {
+      store.dispatch({type: 'REMOVE_LINE_ITEM_IN_CART', payload: {checkout: res}});
+    });
+  }
+  handleCartClose() {
+    store.dispatch({type: 'CLOSE_CART'});
+  }
+  handleCartOpen() {
+    store.dispatch({type: 'OPEN_CART'});
+  }
 
   render() {
+    const state = store.getState(); // state from redux store
     // console.log(this.props.history)
     return (
       <div className="god-container">
+        <button onClick={() => { 
+          this.handleCartOpen() 
+          console.log("OPENED")
+        }}>Shopify Cart</button>
+
         <BrowserRouter>
           <div className="headerc-container">
-            <Header loggedIn={this.state.loggedIn} header_items={this.state.header_items} />
+            <Header loggedIn={this.state.loggedIn} header_items={this.state.header_items} handleCartOpen={this.handleCartOpen} />
           </div>
           <Cursor />
           <div>
@@ -165,6 +203,13 @@ export default class App extends Component {
         </div>
 
         <Footer loggedIn={this.state.loggedIn} />
+        <Cart
+          checkout={state.checkout}
+          isCartOpen={state.isCartOpen}
+          handleCartClose={this.handleCartClose}
+          updateQuantityInCart={this.updateQuantityInCart}
+          removeLineItemInCart={this.removeLineItemInCart}
+        />
       </div>
     );
   }
@@ -172,3 +217,4 @@ export default class App extends Component {
 
 
 // export default App;
+export default connect((state) => state)(App);
