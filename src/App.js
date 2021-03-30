@@ -162,10 +162,10 @@ class App extends Component {
     // console.log(this.props.history)
     return (
       <div className="god-container">
+
         <button onClick={() => { 
           this.handleCartOpen() 
-          console.log("OPENED")
-        }}>Shopify Cart</button>
+        }} className="cart-button">Cart</button>
 
         <BrowserRouter>
           <div className="headerc-container">

@@ -50,9 +50,18 @@ class Product extends Component {
 
   render() {
     let aOptionNames = [];
+    // Change image to be the selected pic
     let variantImage = this.state.selectedVariantImage || this.props.product.images[0]
     let variant = this.state.selectedVariant || this.props.product.variants[0]
     let variantQuantity = this.state.selectedVariantQuantity || 1
+    let price = variant.price
+    
+    let variants = this.props.product.variants
+    let availability = {}
+    for (variant in variants) {
+      availability[variants[variant].title] = variants[variant].available
+    }
+
     let variantSelectors = this.props.product.options.map((option) => {
       aOptionNames.push(option.name);
       return (
@@ -60,43 +69,51 @@ class Product extends Component {
           handleOptionChange={this.handleOptionChange}
           key={option.id.toString()}
           option={option}
+          availability={availability}
         />
       );
     });
     let bShowOneSizeFitsMost = (variantSelectors.length === 1 && aOptionNames[0] === "Title");
 
-    // let thisarray = ["hello"]
-    // const temp = this.props.product
-    // for (const key in temp) {
-    //   thisarray.push(<div>{key}</div>)
-    //   if (key == "images") {
-    //     thisarray.push(<div>{JSON.stringify(temp[key])}</div>)
-    //   }
-    //   if (key == "variants") {
-    //     // thisarray.push(<div>{temp[key]}</div>)
-    //     thisarray.push(<p>____</p>)
-    //     for (variant in temp[key]) {
-    //       thisarray.push(<div>Variant: {variant}</div>)
-    //       thisarray.push(<div>Variant item: {JSON.stringify(temp[key][variant])}</div>)
-
-          
-    //       thisarray.push(<p>End Variant</p>)
-    //     }
-    //     thisarray.push(<p>____</p>)
-    //   }
-    // }
+    let thisarray = [<div>Hello</div>]
+    const temp = this.props.product
+    for (const key in temp) {
+      thisarray.push(<div>{key}</div>)
+      if (key === "options") {
+        thisarray.push(<div>{JSON.stringify(temp[key])}</div>)
+      }
+      // if (key === "variants") {
+      //   // thisarray.push(<div>{temp[key]}</div>)
+      //   thisarray.push(<p>____</p>)
+      //   for (variant in temp[key]) {
+      //     thisarray.push(<div>Variant: {variant}</div>)
+      //     thisarray.push(<div>Variant item: {JSON.stringify(temp[key][variant])}</div>)
+      //     thisarray.push(<p>End Variant</p>)
+      //   }
+      //   thisarray.push(<p>____</p>)
+      // }
+    }
     return (
       <div className="Product">
+        {/* I will assume I always have an image */}
         {/* {this.props.product.images.length ? <img src={variantImage.src} alt={`${this.props.product.title} product shot`} /> : null} */}
-        <img src={variantImage.src} alt={`${this.props.product.title} product shot`} className="Product__image"/>
+        {
+          this.props.product.availableForSale ?
+          <img src={variantImage.src} alt={`${this.props.product.title} product shot`} className="Product__image"/> :
+          <img src={variantImage.src} alt={`${this.props.product.title} product shot`} className="Product__image Sold_out_image"/>
+        }
         <h5 className="Product__title">{this.props.product.title}</h5>
-        <p className="Product__price">${variant.price}</p>
+        <p className="Product__price">${price}</p>
+        <p className="Product__description">{this.props.product.description}</p>
         {bShowOneSizeFitsMost ? <h5 className="Product__title">{ONE_SIZE_FITS_MOST}</h5> : variantSelectors}
         <label className="Product__option">
-          Quantity: <input className="form-control" min="1" type="number" defaultValue={variantQuantity} onChange={this.handleQuantityChange}></input>
+          Quantity: <input className="form-control" min="1" max="2" type="number" defaultValue={variantQuantity} onChange={this.handleQuantityChange}></input>
         </label>
-        <button className="Product__buy button" onClick={() => this.props.addVariantToCart(variant.id, variantQuantity)}>Add to Cart</button>
-        {/* <div className="black">{JSON.stringify(this.props.product)}</div> */}
+        {
+          this.props.product.availableForSale ?
+          <button className="Product__buy" onClick={() => this.props.addVariantToCart(variant.id, variantQuantity)}>Add to Cart</button>
+          : null
+        }
         {/* {thisarray} */}
       </div>
     );

@@ -10,9 +10,16 @@ class VariantSelector extends Component {
         onChange={this.props.handleOptionChange}
       >
         {this.props.option.values.map((value) => {
-          return (
-            <option value={value} key={`${this.props.option.name}-${value}`}>{`${value}`}</option>
-          )
+          if (this.props.availability[value]) {
+            return (
+              <option value={value} key={`${this.props.option.name}-${value}`}>{`${value}`}</option>
+            )
+          }
+          else {
+            return (
+              <option disabled value={value} key={`${this.props.option.name}-${value}`}>{`${value}`} (Sold out)</option>
+            )
+          }
         })}
       </select>
     );

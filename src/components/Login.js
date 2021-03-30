@@ -34,7 +34,7 @@ export default function Login(props) {
           return resp.json()
         }).then(response => {
           response = response["response"]
-          if (response["logged_in"] == true) {
+          if (response["logged_in"] === true) {
             console.log("logged in type:", response["login_type"])
             props.changeLoginStatus(response["logged_in"])
             history.push('/account')

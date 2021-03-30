@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import Products from './shopify/Products';
 import { connect } from 'react-redux'
 import store from '../store';
 
 
-const CounterComponent = () => {
-  const [count, setCount] = useState(0);
+// const CounterComponent = () => {
+//   const [count, setCount] = useState(0);
 
-  return (
-    <div>
-      Click the button below to see the number go up: {count}
-      <br />
-      <br />
-      <button onClick={() => setCount(count => {
-        // console.log("Hullo", count)
-        return (count + 1)
-      })}>I have too much time on my hands</button>
-      <br />
-      <p>If you log in it will store the counts :^) unfortunately the create account page isn't read yet</p>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       Click the button below to see the number go up: {count}
+//       <br />
+//       <br />
+//       <button onClick={() => setCount(count => {
+//         // console.log("Hullo", count)
+//         return (count + 1)
+//       })}>I have too much time on my hands</button>
+//       <br />
+//       <p>If you log in it will store the counts :^) unfortunately the create account page isn't read yet</p>
+//     </div>
+//   );
+// }
 
 class Store extends React.Component {
   constructor() {
