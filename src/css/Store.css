@@ -113,7 +113,8 @@
 .Line-item__content {
   width: 100%;
   padding-left: 75px;
-  background-color: blue;
+  padding-top: 10px;
+  /* background-color: blue; */
 }
 
 .Line-item__content-row {
@@ -121,29 +122,32 @@
   width: 100%;
   margin-bottom: 5px;
   position: relative;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .Line-item__variant-title {
   float: right;
-  font-weight: bold;
-  font-size: 11px;
-  line-height: 17px;
-  color: #767676;
+  font-weight: 400;
+  font-size: 14px;
+  /* line-height: 17px; */
+  color: rgb(71, 71, 71);
+  margin-right: 80px;
+  margin-top: 2px;
 }
 
 .Line-item__title {
-  color: #4E5665;
+  color: black;
   font-size: 15px;
   font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .Line-item__price {
   line-height: 23px;
   float: right;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 15px;
-  margin-right: 40px;
+  margin-right: 110px;
 }
 
 .Line-item__quantity-container {
@@ -200,6 +204,7 @@
   font-size: 20px;
   top: -4px;
   opacity: 0.5;
+  margin-right: 75px;
 }
 
 .Line-item__remove:hover {
@@ -216,6 +221,7 @@
   padding: 2em 0em 3em;
   color: white;
   box-shadow: 5px 10px 20px black;
+  color: black;
 }
 
 @media screen and (max-width: 500px) {

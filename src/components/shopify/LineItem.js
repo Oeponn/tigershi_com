@@ -21,8 +21,8 @@ class LineItem extends Component {
   render() {
     return (
       <li className="Line-item">
-        <div className="Line-item__img">
-          {this.props.line_item.variant.image ? <img src={this.props.line_item.variant.image.src} alt={`${this.props.line_item.title} product shot`}/> : null}
+        <div>
+          {this.props.line_item.variant.image ? <img src={this.props.line_item.variant.image.src} alt={`${this.props.line_item.title} product shot`} className="Line-item__img"/> : null}
         </div>
         <div className="Line-item__content">
           <div className="Line-item__content-row">

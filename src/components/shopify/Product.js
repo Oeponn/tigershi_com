@@ -64,7 +64,27 @@ class Product extends Component {
       );
     });
     let bShowOneSizeFitsMost = (variantSelectors.length === 1 && aOptionNames[0] === "Title");
-    
+
+    // let thisarray = ["hello"]
+    // const temp = this.props.product
+    // for (const key in temp) {
+    //   thisarray.push(<div>{key}</div>)
+    //   if (key == "images") {
+    //     thisarray.push(<div>{JSON.stringify(temp[key])}</div>)
+    //   }
+    //   if (key == "variants") {
+    //     // thisarray.push(<div>{temp[key]}</div>)
+    //     thisarray.push(<p>____</p>)
+    //     for (variant in temp[key]) {
+    //       thisarray.push(<div>Variant: {variant}</div>)
+    //       thisarray.push(<div>Variant item: {JSON.stringify(temp[key][variant])}</div>)
+
+          
+    //       thisarray.push(<p>End Variant</p>)
+    //     }
+    //     thisarray.push(<p>____</p>)
+    //   }
+    // }
     return (
       <div className="Product">
         {/* {this.props.product.images.length ? <img src={variantImage.src} alt={`${this.props.product.title} product shot`} /> : null} */}
@@ -76,6 +96,8 @@ class Product extends Component {
           Quantity: <input className="form-control" min="1" type="number" defaultValue={variantQuantity} onChange={this.handleQuantityChange}></input>
         </label>
         <button className="Product__buy button" onClick={() => this.props.addVariantToCart(variant.id, variantQuantity)}>Add to Cart</button>
+        {/* <div className="black">{JSON.stringify(this.props.product)}</div> */}
+        {/* {thisarray} */}
       </div>
     );
   }
