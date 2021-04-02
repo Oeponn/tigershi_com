@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+
 
 class VariantSelector extends Component {
   render() {
     return (
+      <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+      </DropdownButton>
+      /*
       <select
         className="Product__option"
         name={this.props.option.name}
@@ -21,7 +28,7 @@ class VariantSelector extends Component {
             )
           }
         })}
-      </select>
+      </select>*/
     );
   }
 }
