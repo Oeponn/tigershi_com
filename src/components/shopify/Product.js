@@ -58,8 +58,10 @@ class Product extends Component {
     
     let variants = this.props.product.variants
     let availability = {}
-    for (variant in variants) {
-      availability[variants[variant].title] = variants[variant].available
+    var i = 0
+    for (i = 0; i < variants.length; i++) {
+      availability[variants[i].title] = variants[i].available
+    // }
     }
 
     let variantSelectors = this.props.product.options.map((option) => {
@@ -114,6 +116,7 @@ class Product extends Component {
           <button className="Product__buy" onClick={() => this.props.addVariantToCart(variant.id, variantQuantity)}>Add to Cart</button>
           : null
         }
+        {/* <div>Variants: {JSON.stringify(variants)}</div> */}
         {/* {thisarray} */}
       </div>
     );
