@@ -8,7 +8,6 @@ import './css/Cursor.css';
 import './css/Feed.css';
 import './css/Home.css';
 import './css/LoginCreate.css'
-import './css/Store.css';
 
 import Account from './components/Account';
 import CreateAccount from './components/CreateAccount';
@@ -17,7 +16,6 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import PageNotFound from './components/404';
-import Store from './components/Oponn_Store';
 
 import Cursor from './components/cursor';
 import { addCursorFeatureClick } from './components/cursorhelpers';
@@ -133,7 +131,6 @@ class App extends Component {
               <Route path="/" component={Home} exact={true} />
               {/* <Route path="/feed" component={Feed} /> */}
               <Route path="/curation" render={() => <Curation loggedIn={this.state.loggedIn} history={this.props.history} />} />
-              <Route path="/store" component={Store} />
               <Route path="/createaccount" component={CreateAccount} />
               <Route path="/login" render={() => <Login changeLoginStatus={this.changeLoginStatus} />} />
               <Route path="/account" component={Account} />
