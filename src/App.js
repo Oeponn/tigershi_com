@@ -22,18 +22,13 @@ import Store from './components/Oponn_Store';
 import Cursor from './components/cursor';
 import { addCursorFeatureClick } from './components/cursorhelpers';
 
-// Shopify Section
-import Cart from './components/shopify/Cart';
-import { connect } from 'react-redux';
-import store from './store';
-
 const Header = (props) => {
   return (
     <div className='header-container'>
       <h1 className="header-oponn">Oponn</h1>
       <div className="header-links-container">
         <NavLink to="/" exact={true} activeClassName='selected-link' className={props.header_items}>Home</NavLink>
-        <NavLink to="/curation" activeClassName='selected-link' className={props.header_items}>Curation</NavLink>
+        {/* <NavLink to="/curation" activeClassName='selected-link' className={props.header_items}>Curation</NavLink>
         {
           props.loggedIn ?
             <NavLink to="/account" activeClassName='selected-link' className={props.header_items}>Account</NavLink>
@@ -46,9 +41,8 @@ const Header = (props) => {
             <NavLink to="/logout" activeClassName='selected-link' className={props.header_items}>Exit</NavLink>
             :
             <NavLink to="/login" activeClassName='selected-link' className={props.header_items}>Enter</NavLink>
-        }
+        } */}
       </div>
-      {/* <button onClick={() => {props.handleCartOpen()}} className={props.header_items}>Shopify Cart</button> */}
       <div className="line-container">
         <hr className='line-black' />
       </div>
@@ -71,17 +65,17 @@ const Footer = (props) => {
   )
 }
 
-const ifLoggedIn = async () => {
-  const response = await fetch("/api/loggedin/")
-    .then((resp) => {
-      return resp.json()
-    })
-    .then(json => {
-      // console.log(json["response"])
-      return json["response"]
-    })
-  return response
-}
+// const ifLoggedIn = async () => {
+//   const response = await fetch("/api/loggedin/")
+//     .then((resp) => {
+//       return resp.json()
+//     })
+//     .then(json => {
+//       // console.log(json["response"])
+//       return json["response"]
+//     })
+//   return response
+// }
 
 
 class App extends Component {
@@ -93,27 +87,17 @@ class App extends Component {
       user: "",
       admin: false,
       header_items: "header-links collapse",
-      cart: {},
-      products: [],
     };
-
-    this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
-    this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
-    this.handleCartClose = this.handleCartClose.bind(this);
-    this.handleCartOpen = this.handleCartOpen.bind(this);
   }
 
-  async componentDidMount() {
-    // console.log(await ifLoggedIn())
-    console.log("App Mounted")
-    this.setState({
-      check: await ifLoggedIn(),
-    },
-      () => {
-        this.changeLoginStatus(this.state.check["logged_in"])
-      })
-    // console.log(this.state.check)
-    // console.log(this.state.loggedIn)
+  componentDidMount() {
+    // console.log("App Mounted")
+    // this.setState({
+    //   check: await ifLoggedIn(),
+    // },
+    //   () => {
+    //     this.changeLoginStatus(this.state.check["logged_in"])
+    //   })
     addCursorFeatureClick()
     document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log("CLICKED") })
   }
@@ -135,37 +119,9 @@ class App extends Component {
       }
     })
   }
-  updateQuantityInCart(lineItemId, quantity) {
-    const state = store.getState(); // state from redux store
-    const checkoutId = state.checkout.id
-    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
-    state.client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
-      store.dispatch({type: 'UPDATE_QUANTITY_IN_CART', payload: {checkout: res}});
-    });
-  }
-  removeLineItemInCart(lineItemId) {
-    const state = store.getState(); // state from redux store
-    const checkoutId = state.checkout.id
-    state.client.checkout.removeLineItems(checkoutId, [lineItemId]).then(res => {
-      store.dispatch({type: 'REMOVE_LINE_ITEM_IN_CART', payload: {checkout: res}});
-    });
-  }
-  handleCartClose() {
-    store.dispatch({type: 'CLOSE_CART'});
-  }
-  handleCartOpen() {
-    store.dispatch({type: 'OPEN_CART'});
-  }
-
   render() {
-    const state = store.getState(); // state from redux store
-    // console.log(this.props.history)
     return (
       <div className="god-container">
-
-        <button onClick={() => { 
-          this.handleCartOpen() 
-        }} className="cart-button">Cart</button>
 
         <BrowserRouter>
           <div className="headerc-container">
@@ -187,10 +143,6 @@ class App extends Component {
           </div>
         </BrowserRouter>
 
-        {/* <div>
-          <button onClick={() => { console.log(this.props.history) }}> Yas </button>
-        </div> */}
-
         <div className="App">
           <header className="App-header">
             <div className="App-logo-container">
@@ -203,18 +155,9 @@ class App extends Component {
         </div>
 
         <Footer loggedIn={this.state.loggedIn} />
-        <Cart
-          checkout={state.checkout}
-          isCartOpen={state.isCartOpen}
-          handleCartClose={this.handleCartClose}
-          updateQuantityInCart={this.updateQuantityInCart}
-          removeLineItemInCart={this.removeLineItemInCart}
-        />
       </div>
     );
   }
 }
 
-
-// export default App;
-export default connect((state) => state)(App);
+export default App;
