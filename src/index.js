@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // Shopify
 import * as serviceWorker from './serviceWorker';
-import Client from 'shopify-buy';
 import { Provider } from 'react-redux';
 import store from './store';
 
