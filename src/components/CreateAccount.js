@@ -1,36 +1,36 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from 'react';
 // import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
 
 export default function Login() {
   useEffect(() => {
-    console.log("Login Mounted")
+    console.log('Login Mounted');
 
     return (() => {
-      console.log("Login Unmounted")
-    })
+      console.log('Login Unmounted');
+    });
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
+    console.log(e);
     const data = {
-      "username": "admin",
-      "password": "password"
-    }
-    fetch("/api/login/", {
+      'username': 'admin',
+      'password': 'password',
+    };
+    fetch('/api/login/', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       credentials: 'same-origin',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
-      .then((resp) => {
-        console.log("Response:", resp.text())
+        .then((resp) => {
+          console.log('Response:', resp.text());
 
-        return resp
-      });
-  }
+          return resp;
+        });
+  };
 
   return (
     <div className="container-main">
@@ -79,11 +79,9 @@ export default function Login() {
           <NavLink to="/createaccount"><button className="login-button">create an account</button></NavLink>
         </div> */}
 
-
-
         <div className="left corner">⌊</div>
         <div className="right corner">⌋</div>
       </div>
     </div>
-  )
+  );
 }
