@@ -1,52 +1,54 @@
-import React, { Component } from 'react';
-import { Switch, Route, BrowserRouter, NavLink } from "react-router-dom";
+import React, {Component} from 'react';
+import {Switch, Route, BrowserRouter, NavLink} from 'react-router-dom';
 import logo from './images/react_atom.svg';
 import './css/App.css';
-import './css/Account.css'
+import './css/Account.css';
 import './css/Curation.css';
 import './css/Cursor.css';
 import './css/Feed.css';
 import './css/Home.css';
-import './css/LoginCreate.css'
+import './css/LoginCreate.css';
 
 import Account from './components/Account';
 import CreateAccount from './components/CreateAccount';
-import Curation from './components/Curation';
+// import Curation from './components/Curation';
 import Home from './components/Home';
-import Login from './components/Login';
-import Logout from './components/Logout';
+// import Login from './components/Login';
+// import Logout from './components/Logout';
 import PageNotFound from './components/404';
 
 import Cursor from './components/cursor';
-import { addCursorFeatureClick } from './components/cursorhelpers';
+import {addCursorFeatureClick} from './components/cursorhelpers';
 
 const Header = (props) => {
+  const {headerItems} = props;
+
   return (
     <div className='header-container'>
       <h1 className="header-oponn">Oponn</h1>
       <div className="header-links-container">
-        <NavLink to="/" exact={true} activeClassName='selected-link' className={props.header_items}>Home</NavLink>
-        {/* <NavLink to="/curation" activeClassName='selected-link' className={props.header_items}>Curation</NavLink>
+        <NavLink to="/" exact={true} activeClassName='selected-link' className={headerItems}>Home</NavLink>
+        {/* <NavLink to="/curation" activeClassName='selected-link' className={props.headerItems}>Curation</NavLink>
         {
           props.loggedIn ?
-            <NavLink to="/account" activeClassName='selected-link' className={props.header_items}>Account</NavLink>
+            <NavLink to="/account" activeClassName='selected-link' className={props.headerItems}>Account</NavLink>
             :
             null
         }
-        <NavLink to="/store" activeClassName='selected-link' className={props.header_items}>Store</NavLink>
+        <NavLink to="/store" activeClassName='selected-link' className={props.headerItems}>Store</NavLink>
         {
           props.loggedIn ?
-            <NavLink to="/logout" activeClassName='selected-link' className={props.header_items}>Exit</NavLink>
+            <NavLink to="/logout" activeClassName='selected-link' className={props.headerItems}>Exit</NavLink>
             :
-            <NavLink to="/login" activeClassName='selected-link' className={props.header_items}>Enter</NavLink>
+            <NavLink to="/login" activeClassName='selected-link' className={props.headerItems}>Enter</NavLink>
         } */}
       </div>
       <div className="line-container">
         <hr className='line-black' />
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Footer = (props) => {
   return (
@@ -60,8 +62,8 @@ const Footer = (props) => {
         <a className="blacklink footer-links" href="https://www.instagram.com/oponn_/" rel="noreferrer" target="_blank">Instagram</a>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // const ifLoggedIn = async () => {
 //   const response = await fetch("/api/loggedin/")
@@ -81,10 +83,10 @@ class App extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      check: "",
-      user: "",
+      check: '',
+      user: '',
       admin: false,
-      header_items: "header-links collapse",
+      headerItems: 'header-links collapse',
     };
   }
 
@@ -96,45 +98,46 @@ class App extends Component {
     //   () => {
     //     this.changeLoginStatus(this.state.check["logged_in"])
     //   })
-    addCursorFeatureClick()
-    document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log("CLICKED") })
+    addCursorFeatureClick();
+    // document.getElementsByClassName('App-logo')[0].addEventListener('click', () => { console.log('CLICKED') });
   }
 
-  changeLoginStatus = (loggedIn) => {
-    console.log('User logged in: ' + loggedIn)
-    this.setState({
-      loggedIn
-    }, () => {
-      if (this.state.loggedIn) {
-        this.setState({
-          header_items: "header-links"
-        })
-      }
-      else {
-        this.setState({
-          header_items: "header-links collapse"
-        })
-      }
-    })
-  }
+  // changeLoginStatus = (loggedIn) => {
+  //   console.log('User logged in: ' + loggedIn)
+  //   this.setState({
+  //     loggedIn
+  //   }, () => {
+  //     if (this.state.loggedIn) {
+  //       this.setState({
+  //         headerItems: "header-links"
+  //       })
+  //     }
+  //     else {
+  //       this.setState({
+  //         headerItems: "header-links collapse"
+  //       })
+  //     }
+  //   })
+  // }
+
   render() {
     return (
       <div className="god-container">
 
         <BrowserRouter>
           <div className="headerc-container">
-            <Header loggedIn={this.state.loggedIn} header_items={this.state.header_items} handleCartOpen={this.handleCartOpen} />
+            <Header loggedIn={this.state.loggedIn} headerItems={this.state.headerItems} handleCartOpen={this.handleCartOpen} />
           </div>
           <Cursor />
           <div>
             <Switch>
               <Route path="/" component={Home} exact={true} />
               {/* <Route path="/feed" component={Feed} /> */}
-              <Route path="/curation" render={() => <Curation loggedIn={this.state.loggedIn} history={this.props.history} />} />
+              {/* <Route path="/curation" render={() => <Curation loggedIn={this.state.loggedIn} history={this.props.history} />} /> */}
               <Route path="/createaccount" component={CreateAccount} />
-              <Route path="/login" render={() => <Login changeLoginStatus={this.changeLoginStatus} />} />
+              {/* <Route path="/login" render={() => <Login changeLoginStatus={this.changeLoginStatus} />} /> */}
               <Route path="/account" component={Account} />
-              <Route path="/logout" render={() => <Logout changeLoginStatus={this.changeLoginStatus} history={this.props.history} meme="gigfty" />} />
+              {/* <Route path="/logout" render={() => <Logout changeLoginStatus={this.changeLoginStatus} history={this.props.history} meme="gigfty" />} /> */}
               <Route component={PageNotFound} />
             </Switch>
           </div>
