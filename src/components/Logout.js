@@ -1,33 +1,33 @@
-import React, {useEffect} from "react";
-import { useHistory } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 
 export default function Logout(props) {
   useEffect(() => {
-    console.log("Login Mounted")
+    console.log('Login Mounted');
 
-    return(() => {
-      console.log("Login Unmounted")
-    })
+    return (() => {
+      console.log('Login Unmounted');
+    });
   });
 
   function Exit() {
-    let history = useHistory();
-  
+    const history = useHistory();
+
     function handleClick() {
-      fetch("/api/logout/", {
-          method: 'GET', // *GET, POST, PUT, DELETE, etc.
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        })
-      .then((resp) => {
-          console.log("Response:", resp.ok)
-          props.changeLoginStatus(false)
-          history.push('/')
-        });
+      fetch('/api/logout/', {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+          .then((resp) => {
+            console.log('Response:', resp.ok);
+            props.changeLoginStatus(false);
+            history.push('/');
+          });
     }
-  
+
     return (
       <button type="button" onClick={handleClick}>
         Exit
@@ -35,7 +35,6 @@ export default function Logout(props) {
     );
   }
 
-  
 
   return (
     <div className="container-main">
@@ -53,10 +52,10 @@ export default function Logout(props) {
         <div>
             you are leaving me?
         </div>
-        
+
         <div className="bottom left corners">⌊</div>
         <div className="bottom right corners">⌋</div>
       </div>
     </div>
-    )
+  );
 }

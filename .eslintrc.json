@@ -23,7 +23,7 @@
         "react"
     ],
     "rules": {
-        "max-len": "off",
+        "max-len": "warn",
         "require-jsdoc":"off",
         "react/prop-types": "off"
     }

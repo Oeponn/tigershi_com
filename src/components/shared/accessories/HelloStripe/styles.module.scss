@@ -1,0 +1,39 @@
+.pulseContainer {
+  font-family: monospace, monospace;
+}
+
+.fade0, .fade1, .fade2, .fade3 {
+  animation: fade-in-out 1s infinite alternate linear;
+  background-color: white;
+}
+
+.fade0 {
+  animation-duration: 1s;
+  animation-delay: 0s;
+  background-color: white;
+}
+
+.fade1 {
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+  background-color: white;
+}
+
+.fade2 {
+  animation-duration: 1s;
+  animation-delay: 0.6s;
+  background-color: white;
+}
+
+.fade3 {
+  animation-duration: 1s;
+  animation-delay: 0.9s;
+  background-color: white;
+}
+
+@keyframes fade-in-out {
+  100% {
+    opacity: 0%;
+  }
+}
+

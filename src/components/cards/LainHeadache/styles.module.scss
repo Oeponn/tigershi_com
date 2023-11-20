@@ -1,0 +1,149 @@
+.title {
+  composes: cardTitle from 'css/text.module.scss';
+}
+
+.description {
+  composes: cardDescription from 'css/text.module.scss';
+}
+
+.fine {
+  composes: cardFine from 'css/text.module.scss';
+}
+
+.lainNoise:hover {
+  background: url('~components/pages/Home/images/matrix.gif');
+  background-size: contain;
+  background-size: 50%;
+  filter: grayscale(100%);
+  mix-blend-mode: difference;
+  box-shadow: 5px 10px 20px white;
+}
+
+.lainContainer {
+  background: url('~components/pages/Home/images/lain_x6.png') no-repeat;
+  background-size: contain;
+  position: relative;
+  overflow: hidden;
+}
+
+.lainSketch {
+  visibility: hidden;
+  width: 100%;
+}
+
+.lainContainer:hover > .lainSketch {
+  visibility: visible;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  -webkit-opacity: 0.5;
+  animation: glitch-shake 0.3s infinite;
+}
+
+.lainContainer:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('~components/pages/Home/images/lain_x6.png');
+  background-size: cover;
+  opacity: 0;
+  -moz-opacity: 0;
+  -webkit-opacity: 0;
+}
+
+.lainContainer:hover:before {
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  -webkit-opacity: 0.5;
+  animation: glitch-background-shake 1s infinite;
+}
+
+@keyframes glitch-background-shake {
+  0% {
+    background-size: 100%;
+    background-position: 10px 10px;
+  }
+  10% {
+    background-size: 95%;
+    background-position: 4px 4px;
+  }
+  15% {
+    background-size: 100%;
+    background-position: -8px 0px;
+  }
+  20% {
+    background-size: 100%;
+    background-position: 10px 0px;
+  }
+  30% {
+    background-size: 95%;
+    background-position: 12px -4px;
+  }
+  40% {
+    background-position: -8px 5px;
+  }
+  50% {
+    background-size: 100%;
+    background-position: -12px 5px;
+  }
+  60% {
+    background-position: 8px 0px;
+  }
+  65% {
+    background-size: 105%;
+    background-position: -3px -3px;
+  }
+  70% {
+    background-size: 95%;
+    background-position: 5px 7px;
+  }
+  80% {
+    background-size: 105%;
+    background-position: -11px -8px;
+  }
+  100% {
+    background-size: 95%;
+    background-position: -5px 10px;
+  }
+}
+
+@keyframes glitch-shake {
+  100% {
+    transform: scale(1) translateX(10px) translateY(10px);
+  }
+  90% {
+    transform: scale(0.95) translateX(4px) translateY(4px);
+  }
+  80% {
+    transform: scale(1) translateX(-8px) translateY(0px);
+  }
+  70% {
+    transform: scale(1) translateX(10px) translateY(0px);
+  }
+  65% {
+    transform: scale(0.95) translateX(12px) translateY(-4px);
+  }
+  50% {
+    transform: translateX(-8px) translateY(5px);
+  }
+  40% {
+    transform: scale(1) translateX(-12px) translateY(5px);
+  }
+  30% {
+    transform: translateX(8px) translateY(0px);
+  }
+  20% {
+    transform: scale(1.05) translateX(-3px) translateY(-3px);
+  }
+  15% {
+    transform: scale(0.95) translateX(-5px) translateY(7px);
+    background-size: 95%;
+    background-position: 5px 7px;
+  }
+  10% {
+    transform: scale(1.05) translateX(-11px) translateY(-8px);
+  }
+  0% {
+    transform: scale(0.9) translateX(-5px) translateY(10px);
+  }
+}

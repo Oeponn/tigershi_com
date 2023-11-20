@@ -1,0 +1,30 @@
+html * {
+  font-family: 'Times New Roman', Times, serif !important;
+  letter-spacing: 3px;
+  // cursor: none;
+}
+
+.appContainer {
+  width: 100%;
+  background-color: white;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  outline: 0;
+  font-size: 32px;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+a:hover {
+  -webkit-text-stroke-width: 1px;
+}

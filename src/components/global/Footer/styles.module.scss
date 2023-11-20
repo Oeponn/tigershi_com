@@ -1,0 +1,149 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blackLine {
+  border-color: black black black;
+  border-width: 1px;
+  margin: 20px auto 0px;
+}
+
+.lineContainer {
+  padding: 0px 0px 0px;
+  width: 100%;
+}
+
+.linksContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 40px 0px;
+}
+
+.links {
+  composes: blacklink from 'css/text.module.scss';
+}
+
+@media screen and (max-width: 480px) {
+  .linksContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .links {
+    font-size: 15px;
+    padding-bottom: 10px;
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+.AppLogo {
+  composes: unselectable from 'css/properties/unselectable.module.scss';
+  height: 20vmin;
+  min-height: 150px;
+  max-height: 300px;
+  background: url('~images/orb-animation-invert.gif');
+  background-size: contain;
+  mix-blend-mode: multiply;
+  background-position-x: 0.4vw;
+  background-repeat: no-repeat;
+}
+
+.AppHeader {
+  min-height: 20vh;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(1px + 2vmin);
+  color: black;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  overflow: hidden;
+}
+
+.AppLogo {
+  -webkit-animation: spin 10s linear 0s infinite reverse;
+  -moz-animation: spin 10s linear 0s infinite reverse;
+  -ms-animation: spin 10s linear 0s infinite reverse;
+  -o-animation: spin 10s linear 0s infinite reverse;
+  animation: spin 10s linear 0s infinite reverse;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -ms-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+.AppLogoContainer {
+  mix-blend-mode: multiply;
+  -webkit-animation: spin 20s linear 0s infinite normal;
+  -moz-animation: spin 20s linear 0s infinite normal;
+  -ms-animation: spin 20s linear 0s infinite normal;
+  -o-animation: spin 20s linear 0s infinite normal;
+  animation: spin 20s linear 0s infinite normal;
+}
+
+.AppLogo:hover {
+  -webkit-animation-play-state: running;
+  -moz-animation-play-state: running;
+  -ms-animation-play-state: running;
+  -o-animation-play-state: running;
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@-ms-keyframes spin {
+  0% {
+    -ms-transform: rotate(360deg);
+  }
+  100% {
+    -ms-transform: rotate(0deg);
+  }
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(360deg);
+  }
+  100% {
+    -moz-transform: rotate(0deg);
+  }
+}
+
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(360deg);
+  }
+  100% {
+    -o-transform: rotate(0deg);
+  }
+}
+
+.description {
+  font-size: 17px;
+  margin-top: 0px;
+}

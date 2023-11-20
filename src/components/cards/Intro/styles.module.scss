@@ -1,0 +1,43 @@
+.wiredLogo {
+  composes: unselectable from 'css/properties/unselectable.module.scss';
+  width: 25%;
+}
+
+.title {
+  composes: cardTitle from 'css/text.module.scss';
+}
+
+.description {
+  composes: cardDescription from 'css/text.module.scss';
+}
+
+.fine {
+  composes: cardFine from 'css/text.module.scss';
+}
+
+.socialLinksContainer {
+  font-size: 0.8em;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+
+  & > .socialLink {
+    color: white;
+    text-decoration: none;
+  }
+
+  & > .socialLink:hover {
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .socialLinksContainer {
+    flex-direction: column;
+    & > .socialLink {
+      padding-bottom: 10px;
+    }
+  }
+}
+

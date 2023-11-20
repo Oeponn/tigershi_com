@@ -1,0 +1,49 @@
+.cardContainer {
+  text-align: center;
+  min-height: 80px;
+  background-color: black;
+  margin-bottom: 40px;
+  width: 100vw;
+  padding: 30px 0em 50px;
+  color: white;
+  box-shadow: 5px 10px 20px black;
+  position: relative;
+}
+
+.upperLeft, .upperRight, .bottomLeft, .bottomRight {
+  position: absolute;
+  pointer-events: none;
+  animation: fade-in-out 1.2s infinite alternate linear;
+}
+
+.upperLeft {
+  top: 30px;
+  left: 15px;
+}
+
+.upperRight {
+  top: 30px;
+  right: 15px;
+}
+
+.bottomLeft {
+  bottom: 30px;
+  left: 15px;
+}
+
+.bottomRight {
+  bottom: 30px;
+  right: 15px;
+}
+
+@keyframes fade-in-out {
+  100% {
+    opacity: 0%;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .cardContainer {
+    width: 480px;
+  }
+}

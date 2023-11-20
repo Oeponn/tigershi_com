@@ -1,2 +1,8 @@
 {
+    "eslint.format.enable": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "css.lint.validProperties": ["composes"],
+    "scss.lint.validProperties": ["composes"]
 }

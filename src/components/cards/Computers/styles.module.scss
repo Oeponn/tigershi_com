@@ -1,0 +1,170 @@
+.title {
+  composes: cardTitle from 'css/text.module.scss';
+}
+
+.description {
+  composes: cardDescription from 'css/text.module.scss';
+}
+
+.fine {
+  composes: cardFine from 'css/text.module.scss';
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.stackedImagesContainer {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.bottomStack {
+  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  width: 100%;
+  position: relative;
+  top: 1em;
+  left: 0;
+  margin-bottom: 1em;
+  z-index: -3;
+}
+
+.stackImage {
+  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  pointer-events: none;
+}
+
+.layer01, .layer02, .layer03, .layer04, .layer05 {
+  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  position: absolute;
+  width: 100%;
+  top: 30px;
+  left: 0;
+  pointer-events: none;
+}
+
+.layer00 {
+  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  left: 25px;
+  top: 0px;
+  width: 25%;
+  position: absolute;
+  transform: skew(-0.3rad) rotate(20deg);
+  -ms-transform: skew(-0.3rad) rotate(20deg);
+  -webkit-transform: skew(-0.3rad) rotate(20deg);
+  -moz-transform: skew(-0.3rad) rotate(20deg);
+  -o-transform: skew(-0.3rad) rotate(20deg);
+  transform: skew(-0.3rad) rotate(20deg);
+}
+
+.layer01 {
+  width: 33%;
+  mix-blend-mode: lighten;
+  filter: opacity(90%);
+  transform: translate(100%, -10%) scale(1.2);
+}
+
+.layer02 {
+  width: 20%;
+  mix-blend-mode: lighten;
+  transform: translateX(380%) translateY(-30%) rotate(-60deg);
+}
+
+.layer03 {
+  width: 33%;
+  mix-blend-mode: lighten;
+  filter: opacity(100%) grayscale(100%);
+  transform: translate(100%, 190%);
+}
+
+.layer04 {
+  width: 100%;
+  mix-blend-mode: lighten;
+  animation: screen-glow linear 1s infinite alternate;
+}
+
+@keyframes screen-glow {
+  100% {
+    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 0px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 0px rgb(255, 255, 255));
+  }
+  0% {
+    filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255))
+      drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255))
+      drop-shadow(0px 0px 6px rgb(255, 255, 255)) drop-shadow(0px 0px 6px rgb(255, 255, 255));
+  }
+}
+
+.realityController {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 30px 0px;
+}
+
+.realityController input[type='checkbox'] {
+  margin: 0;
+  padding: 0;
+  width: 2px;
+  height: 80px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  outline: none;
+}
+
+.realityController input:checked[type='checkbox'] {
+  background-color: rgb(196, 243, 126);
+}
+
+.realityController input[type='checkbox']:before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background: black;
+  transform: translateX(-7px) translateY(70px);
+  transition: 0.05s;
+  border: 1px white solid;
+}
+
+.realityController input:checked[type='checkbox']:before {
+  transform: translateX(-7px);
+  background: white;
+}
+
+.refreshRealityButton {
+  color: white;
+  font-size: 12px;
+  border-radius: 10px;
+  border: 2px white solid;
+  background-color: black;
+  width: 87px;
+  height: 87px;
+}
+
+.refreshRealityButton:hover {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+  -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+}
+
+.refreshRealityButton:hover > .powerButton {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+  -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+}
+
+.refreshRealityButton:hover > .refreshReality {
+  text-shadow:
+    0px 0px 6px white,
+    0px 0px 6px white,
+    0px 0px 6px white;
+}
+

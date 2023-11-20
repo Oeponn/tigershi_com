@@ -1,0 +1,55 @@
+.title {
+  composes: cardTitle from 'css/text.module.scss';
+}
+
+.description {
+  composes: cardDescription from 'css/text.module.scss';
+}
+
+.fine {
+  composes: cardFine from 'css/text.module.scss';
+}
+
+.gridPlane {
+  composes: unselectable from 'css/properties/unselectable.module.scss';
+  width: 100%;
+}
+
+.manifestHand {
+  position: relative;
+  width: 50%;
+  z-index: 1;
+  animation: hand-hover 2s ease-in-out forwards infinite alternate;
+  animation-delay: 0.1s;
+}
+
+@keyframes hand-hover {
+  100% {
+    transform: translateY(80%);
+    -ms-transform: translateY(80%);
+    -webkit-transform: translateY(80%);
+    -moz-transform: translateY(80%);
+    -o-transform: translateY(80%);
+    transform: translateY(80%);
+  }
+}
+
+.handShadow {
+  display: inline-block;
+  position: relative;
+  transform: translateY(-500%);
+  height: 16px;
+  width: 60%;
+  background: black;
+  opacity: 0.4;
+  border-radius: 100%;
+  z-index: 0;
+  animation: shrink 2s ease-in-out forwards infinite alternate;
+}
+
+@keyframes shrink {
+  100% {
+    width: 30%;
+    opacity: 1;
+  }
+}

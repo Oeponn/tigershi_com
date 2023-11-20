@@ -1,0 +1,92 @@
+.title {
+  composes: cardTitle from 'css/text.module.scss';
+}
+
+.description {
+  composes: cardDescription from 'css/text.module.scss';
+}
+
+.fine {
+  composes: cardFine from 'css/text.module.scss';
+}
+
+.akiraContainer {
+  background: url('~components/pages/Home/images/Front_White.png') no-repeat;
+  background-size: contain;
+  position: relative;
+  overflow: hidden;
+}
+
+.akiraContainer:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  background: url('~components/pages/Home/images/Front_White.png');
+  background-size: cover;
+  filter: sepia(100%);
+  opacity: 0;
+}
+
+.akiraContainer:hover:before {
+  opacity: 0.5;
+  animation: glitch-wave 0.8s infinite linear;
+}
+
+@keyframes glitch-wave {
+  0% {
+    top: 0%;
+    background-position: 12px 0%;
+  }
+  20% {
+    top: 20%;
+    background-position: -10px 20%;
+  }
+  40% {
+    top: 40%;
+    background-position: 6px 40%;
+  }
+  60% {
+    top: 60%;
+    background-position: -6px 60%;
+  }
+  80% {
+    top: 80%;
+    background-position: 10px 80%;
+  }
+  100% {
+    top: 100%;
+    background-position: -12px 100%;
+  }
+}
+
+.akiraRed {
+  composes: unselectable from 'css/properties/unselectable.module.scss';
+  width: 100%;
+  filter: grayscale(100%);
+  overflow: visible;
+}
+
+.akiraRed:hover {
+  filter: grayscale(0%);
+  -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1))
+    drop-shadow(0px 0px 7px rgba(255, 0, 0, 1));
+  filter: drop-shadow(0px 0px 7px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 7px rgba(255, 0, 0, 1))
+    drop-shadow(0px 0px 7px rgba(255, 0, 0, 1));
+  animation: red-glow 1s infinite alternate linear;
+}
+
+@keyframes red-glow {
+  100% {
+    -webkit-filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1))
+      drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
+    filter: drop-shadow(0px 0px 6px rgba(255, 0, 0, 1)) drop-shadow(0px 0px 6px rgba(255, 0, 0, 1))
+      drop-shadow(0px 0px 6px rgba(255, 0, 0, 1));
+  }
+  0% {
+    -webkit-filter: drop-shadow(0px 0px 0px rgba(255, 0, 0, 0)) drop-shadow(0px 0px 0px rgba(255, 0, 0, 0))
+      drop-shadow(0px 0px 0px rgba(255, 0, 0, 0));
+    filter: drop-shadow(0px 0px 0px rgba(255, 0, 0, 0)) drop-shadow(0px 0px 0px rgba(255, 0, 0, 0))
+      drop-shadow(0px 0px 0px rgba(255, 0, 0, 0));
+  }
+}

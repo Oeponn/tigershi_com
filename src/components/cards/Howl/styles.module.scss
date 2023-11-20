@@ -1,0 +1,92 @@
+.title {
+  composes: cardTitle from 'css/text.module.scss';
+}
+
+.description {
+  composes: cardDescription from 'css/text.module.scss';
+}
+
+.fine {
+  composes: cardFine from 'css/text.module.scss';
+}
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel0, .carousel1, .carousel2 {
+  composes: unselectable from 'css/properties/unselectable.module.scss';
+  position: absolute;
+  top: 30px;
+  left: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  /* -webkit-transition: all 0.3s */
+  -webkit-transition: 0.3s filter linear;
+  /* -webkit-transition: 0.3s width linear;  */
+}
+
+.carousel0 {
+  mix-blend-mode: lighten;
+  width: 100%;
+  z-index: 2;
+  padding-bottom: 30px;
+}
+
+.carousel1 {
+  mix-blend-mode: lighten;
+  filter: opacity(50%);
+  width: 25%;
+  transform: translate(0%, 100%);
+  z-index: 3;
+}
+
+.carousel2 {
+  mix-blend-mode: lighten;
+  filter: opacity(50%);
+  width: 25%;
+  transform: translate(300%, 100%);
+  z-index: 3;
+}
+
+.bottomStack {
+  composes: unselectable from 'css/properties/unselectable.module.scss';
+  width: 100%;
+  position: relative;
+  top: 1em;
+  left: 0;
+  margin-bottom: 1em;
+  z-index: -3;
+}
+
+.arrowContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.castleArrow {
+  width: 80px;
+  height: 67px;
+}
+
+.castleArrow:hover {
+  filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+  -webkit-filter: drop-shadow(0px 0px 6px rgb(255, 255, 255));
+}
+
+@media screen and (max-width: 480px) {
+  .arrowContainer {
+    margin-bottom: 20px;
+  }
+  .castleArrow {
+    width: 50%;
+    max-width: 80px;
+    height: 67px;
+  }
+}

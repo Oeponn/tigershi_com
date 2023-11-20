@@ -4,6 +4,7 @@
     border: 2px solid black;
     border-radius: 50%;
     position: fixed;
+    // transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     
@@ -21,7 +22,7 @@
     align-items: center;
   }
   
-  .mouse-clicking {
+  .mouseDown {
     width: 29px;
     height: 29px;
   }
@@ -44,7 +45,7 @@
     position: absolute;
   } */
 
-  #cross {
+  .cross {
     padding-left: 3px;
     padding-bottom: 1px;
     font-size: 20px;
