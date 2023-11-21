@@ -33,11 +33,13 @@ const Content = ({
     <div>
       <div className={styles.stackedImagesContainer}>
         <img
-          src={process.env.PUBLIC_URL + screenUrlIdle}
+          // src={process.env.PUBLIC_URL + screenUrlIdle}
+          src={screenUrlIdle}
           className={styles.stackImage}
         />
         <img
-          src={process.env.PUBLIC_URL + screenUrlStart}
+          // src={process.env.PUBLIC_URL + screenUrlStart}
+          src={screenUrlStart}
           className={styles.stackImage}
           style={startScreenStyle}
         />
