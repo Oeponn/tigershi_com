@@ -1,91 +1,176 @@
-/* eslint-disable max-len */
-
 import React, {useState} from 'react';
 import {useSprings, animated, to as interpolate} from '@react-spring/web';
 import {useDrag} from 'react-use-gesture';
+import {
+  crona,
+  kobenji,
+  puparia,
+  rei,
+  skiz,
+  wassily,
+  willowbelle,
+} from './images';
 
 import styles from './styles.module.scss';
 
-// These two are just helpers, they curate spring data, values that are later being interpolated into css
 const cards = [
-  'https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/RWS_Tarot_02_High_Priestess.jpg/690px-RWS_Tarot_02_High_Priestess.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg',
-]
+  {
+    description: 'Clothing test illustration of sl33zyskiz, ' +
+    'an NYC fashion influencer.',
+    fullUrl: 'https://twitter.com/hyavoc/status/1486504518774837251',
+    title: 'sl33zyskiz',
+    url: skiz,
+  },
+  {
+    description: 'A portrait of a friend who is a tattoo artist.',
+    fullUrl: 'https://www.pixiv.net/en/artworks/101676386',
+    title: 'Bchan',
+    url: wassily,
+  },
+  {
+    description: 'Crona from Soul Eater. Black blood pattern inspired by the ' +
+    'cyber sigilism tattoo trend.',
+    fullUrl: 'https://twitter.com/hyavoc/status/1503169847479386122',
+    title: 'Crona',
+    url: crona,
+  },
+  {
+    description: 'Lighting and expression practice on a classic character — ' +
+    'Rei from Evangelion.',
+    fullUrl: 'https://twitter.com/hyavoc/status/1598819000125120517',
+    title: 'Rei Ayanami',
+    url: rei,
+  },
+  {
+    description: 'A tribute to the short solo animated film "Puparia" by ' +
+    'Shingo Tamagawa on Youtube. ',
+    fullUrl: 'https://twitter.com/hyavoc/status/1544433020656132105',
+    title: 'Moths',
+    url: puparia,
+  },
+  {
+    description: 'Commissioned avatar for the twitch streamer Wiillowbelle.',
+    fullUrl: 'https://twitter.com/hyavoc/status/1713615867001668074',
+    title: 'Willowbelle',
+    url: willowbelle,
+  },
+  {
+    description: 'My most recent digital paint of Kobeni and Denji from the ' +
+    'anime Chainsaw Man.',
+    fullUrl: 'https://twitter.com/hyavoc/status/1719035484712861883',
+    title: 'Kobeni and Denji',
+    url: kobenji,
+  },
+];
 
-// These two are just helpers, they curate spring data, values that are later being interpolated into css
+// These two are just helpers, they curate spring data, values that are
+// later being interpolated into css
 const to = (i: number) => ({
   x: 0,
   y: i * -4,
   scale: 1,
   rot: -10 + Math.random() * 20,
   delay: i * 100,
-})
-const from = (_i: number) => ({ x: 0, rot: 0, scale: 1.5, y: -1000 })
-// This is being used down there in the view, it interpolates rotation and scale into a css transform
+});
+const from = (_i: number) => ({x: 0, rot: 0, scale: 1.5, y: -1000});
+// This is being used down there in the view, it interpolates rotation and
+// scale into a css transform
 const trans = (r: number, s: number) =>
-  `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`
+  `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) ` +
+  `rotateZ(${r}deg) scale(${s})`;
 
 function Deck() {
-  const [gone] = useState(() => new Set()) // The set flags all the cards that are flicked out
-  const [props, api] = useSprings(cards.length, i => ({
+  // The set flags all the cards that are flicked out
+  const [gone] = useState(() => new Set());
+  const [props, api] = useSprings(cards.length, (i) => ({
     ...to(i),
     from: from(i),
-  })) // Create a bunch of springs using the helpers above
-  // Create a gesture, we're interested in down-state, delta (current-pos - click-pos), direction and velocity
-  const bind = useDrag(({ args: [index], down, movement: [mx], direction: [xDir], velocity }) => {
-    const trigger = velocity > 0.2 // If you flick hard enough it should trigger the card to fly out
-    const dir = xDir < 0 ? -1 : 1 // Direction should either point left or right
-    if (!down && trigger) gone.add(index) // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
-    api.start(i => {
-      if (index !== i) return // We're only interested in changing spring-data for the current spring
-      const isGone = gone.has(index)
-      const x = isGone ? (200 + window.innerWidth) * dir : down ? mx : 0 // When a card is gone it flys out left or right, otherwise goes back to zero
-      const rot = mx / 100 + (isGone ? dir * 10 * velocity : 0) // How much the card tilts, flicking it harder makes it rotate faster
-      const scale = down ? 1.1 : 1 // Active cards lift up a bit
+  })); // Create a bunch of springs using the helpers above
+  // Create a gesture, we're interested in down-state,
+  // delta (current-pos - click-pos), direction and velocity
+  const bind = useDrag(({
+    args: [index], down, movement: [mx], direction: [xDir], velocity,
+  }) => {
+    const swipeThreshold = 10; // Set a threshold for swipe movement
+    // If you flick hard enough it should trigger the card to fly out
+    const trigger = velocity > 0.2 || Math.abs(mx) > swipeThreshold;
+    const isSwipe = Math.abs(mx) > swipeThreshold; // Check if it's a swipe
+
+    const dir = xDir < 0 ? -1 : 1; // Direction should either be left or right
+    if (!down) {
+      if (trigger && isSwipe) {
+        // If button/finger's up and it's a swipe
+        // console.log('send it away');
+        gone.add(index);
+      } else if (!isSwipe) {
+        // If it's not a swipe, it's a tap
+        // window.open('https://twitter.com/hyavoc/status/1719035484712861883');
+      }
+    }
+    api.start((i) => {
+      // We're only interested in changing spring-data for the current spring
+      if (index !== i) return;
+      const isGone = gone.has(index);
+      // When a card is gone it flys out left or right, otherwise goes back to 0
+      const x = isGone ? (200 + window.innerWidth) * dir : down ? mx : 0;
+      // How much the card tilts, flicking it harder makes it rotate faster
+      const rot = mx / 100 + (isGone ? dir * 10 * velocity : 0);
+      const scale = down ? 1.1 : 1; // Active cards lift up a bit
       return {
         x,
         rot,
         scale,
         delay: undefined,
-        config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
-      }
-    })
-    if (!down && gone.size === cards.length)
+        config: {friction: 50, tension: down ? 800 : isGone ? 200 : 500},
+      };
+    });
+    if (!down && gone.size === cards.length) {
       setTimeout(() => {
-        gone.clear()
-        api.start(i => to(i))
-      }, 600)
-  })
-  // Now we're just mapping the animated values to our view, that's it. Btw, this component only renders once. :-)
+        gone.clear();
+        api.start((i) => to(i));
+      }, 600);
+    }
+  });
+  // Now we're just mapping the animated values to our view,
+  // that's it. Btw, this component only renders once. :-)
   return (
     <>
-      {props.map(({ x, y, rot, scale }, i) => (
-        <animated.div className={styles.deck} key={i} style={{ x, y }}>
-          {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
-          <animated.div
-            {...bind(i)}
-            style={{
-              transform: interpolate([rot, scale], trans),
-              backgroundImage: `url(${cards[i]})`,
-            }}
-          />
-        </animated.div>
-      ))}
+      {props.map(({x, y, rot, scale}, i) => {
+        const {
+          title,
+          url,
+          description,
+          fullUrl,
+        } = cards[i];
+        return (
+          <animated.div className={styles.deck} key={url} style={{x, y}}>
+            {/* This is the card itself, we're binding our gesture to it
+            (and inject its index so we know which is which) */}
+            <animated.div
+              {...bind(i)}
+              style={{
+                transform: interpolate([rot, scale], trans),
+                backgroundImage: `url(${cards[i].url})`,
+              }}
+            >
+              <div className={styles.descriptionContainer}>
+                <p className={styles.title}>{title}</p>
+                <p className={styles.description}>{description}</p>
+                <a
+                  className={styles.link}
+                  href={fullUrl}
+                  rel="noreferrer"
+                  target="_blank">
+              See full size =&gt;
+                </a>
+              </div>
+            </animated.div>
+          </animated.div>
+        );
+      })}
     </>
-  )
+  );
 }
-
-// export default function Art() {
-//   return (
-//     <div className={styles.container}>
-//       <Deck />
-//     </div>
-//   );
-// }
 
 
 const Art = () => {

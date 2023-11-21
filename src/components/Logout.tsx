@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import Card from './wrappers/Card';
 import {useHistory} from 'react-router-dom';
 
 interface Account {
@@ -41,25 +42,17 @@ export default function Logout({changeLoginStatus}: Account) {
 
 
   return (
-    <div className="container-main">
-      <div className="inner">
-        <div className="upper left corners">⌈</div>
-        <div className="upper right corners">⌉</div>
+    <Card>
+      <p>____</p>
+      <br />
 
-        <p>____</p>
-        <br />
-
-        <div>
-          <Exit />
-        </div>
-
-        <div>
-            you are leaving me?
-        </div>
-
-        <div className="bottom left corners">⌊</div>
-        <div className="bottom right corners">⌋</div>
+      <div>
+        <Exit />
       </div>
-    </div>
+
+      <div>
+          you are leaving me?
+      </div>
+    </Card>
   );
 }

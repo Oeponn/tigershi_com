@@ -4,5 +4,6 @@
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "css.lint.validProperties": ["composes"],
-    "scss.lint.validProperties": ["composes"]
+    "scss.lint.validProperties": ["composes"],
+    "editor.rulers": [80, 100]
 }

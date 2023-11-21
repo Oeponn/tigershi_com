@@ -9,10 +9,11 @@ const Footer = () => {
       <div className={styles.App}>
         <header className={styles.AppHeader}>
           <div className={styles.AppLogoContainer}>
+            <p className={styles.fine}>Tap/Hover Me</p>
             <img src={logo} className={styles.AppLogo} alt="logo" />
           </div>
           <p className={styles.description}>
-              This website was first built in ReactJS by Tiger Shi ©2021
+              This website was built in ReactJS by Tiger Shi ©2021
           </p>
         </header>
       </div>
