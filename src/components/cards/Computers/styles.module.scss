@@ -21,7 +21,7 @@
 }
 
 .bottomStack {
-  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  composes: unselectable from 'css/properties/unselectable.module.scss';
   width: 100%;
   position: relative;
   top: 1em;
@@ -31,7 +31,7 @@
 }
 
 .stackImage {
-  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  composes: unselectable from 'css/properties/unselectable.module.scss';
   width: 100%;
   position: absolute;
   top: 30px;
@@ -40,7 +40,7 @@
 }
 
 .layer01, .layer02, .layer03, .layer04, .layer05 {
-  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  composes: unselectable from 'css/properties/unselectable.module.scss';
   position: absolute;
   width: 100%;
   top: 30px;
@@ -49,7 +49,7 @@
 }
 
 .layer00 {
-  // composes: unselectable from 'css/properties/unselectable.module.scss';
+  composes: unselectable from 'css/properties/unselectable.module.scss';
   left: 25px;
   top: 0px;
   width: 25%;

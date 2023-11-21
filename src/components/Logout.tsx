@@ -1,7 +1,11 @@
 import React, {useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 
-export default function Logout(props) {
+interface Account {
+  changeLoginStatus: (arg: boolean) => void;
+}
+
+export default function Logout({changeLoginStatus}: Account) {
   useEffect(() => {
     console.log('Login Mounted');
 
@@ -23,7 +27,7 @@ export default function Logout(props) {
       })
           .then((resp) => {
             console.log('Response:', resp.ok);
-            props.changeLoginStatus(false);
+            changeLoginStatus(false);
             history.push('/');
           });
     }

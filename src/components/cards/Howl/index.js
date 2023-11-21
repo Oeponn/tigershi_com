@@ -66,12 +66,10 @@ const Howl = () => {
 
   const handleLeftArrowClick = () => {
     castleOrderChange(-1);
-    console.log('left click');
   };
 
   const handleRightArrowClick = () => {
     castleOrderChange(1);
-    console.log('right click');
   };
 
   return (

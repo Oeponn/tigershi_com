@@ -3,7 +3,11 @@ import Card from 'components/wrappers/Card';
 import {HelloStripe} from 'components/shared/accessories';
 import {useHistory} from 'react-router-dom';
 
-export default function Login(props) {
+interface Account {
+  changeLoginStatus: (arg: boolean) => void;
+}
+
+export default function Login({changeLoginStatus}: Account) {
   useEffect(() => {
     // console.log("Login Mounted")
     return (() => {
@@ -15,12 +19,17 @@ export default function Login(props) {
   const LoginButton = () => {
     const history = useHistory();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const data = {
-        'username': e.target[0].value,
-        'password': e.target[1].value,
+      let data = {username: '', password: ''};
+      const form = e.target as HTMLFormElement;
+      const username = form.elements.namedItem('username') as HTMLInputElement;
+      const password = form.elements.namedItem('password') as HTMLInputElement;
+      data = {
+        username: username.value,
+        password: password.value,
       };
+
       fetch('/api/login/', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         credentials: 'same-origin',
@@ -36,7 +45,7 @@ export default function Login(props) {
             console.log('response:', response);
             if (response['logged_in'] === true) {
               console.log('logged in type:', response['login_type']);
-              props.changeLoginStatus(response['logged_in']);
+              changeLoginStatus(response['logged_in']);
               history.push('/account');
             } else {
               alert('who are you?');

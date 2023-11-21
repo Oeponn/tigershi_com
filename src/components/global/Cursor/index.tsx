@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss';
 
-const Cursor = () => {
+const Cursor = ({touchScreen}: {touchScreen: boolean}) => {
+  if (touchScreen) {
+    return;
+  }
   const [cursorPosition, setCursorPosition] = useState({left: -50, top: -50});
   const [mouseDown, setMouseDown] = useState(false);
 
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setCursorPosition({
         left: e.clientX,
         top: e.clientY,

@@ -100,7 +100,6 @@ const Computers = () => {
   }, []);
 
   useEffect(() => {
-    console.log('changing from:', screenUrlStart, 'to original');
     setScreenUrlStart(screenUrlLoad);
   }, [screenUrlStart]);
 

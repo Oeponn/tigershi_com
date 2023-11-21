@@ -11,7 +11,7 @@ export default function Login() {
     });
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e);
     const data = {
