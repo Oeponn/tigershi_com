@@ -14,6 +14,8 @@ export {default as lainLayer01} from './lain_layer_01.gif';
 export {default as lainLayer02} from './lain_layer_02.gif';
 export {default as lainLayer03} from './lain_layer_03.png';
 export {default as lainLayer04} from './lain_layer_04.png';
+export {default as startupScreen} from './lain_screens_1_bitmapped.gif';
+export {default as idleScreen} from './lain_screens_2_bitmapped.gif';
 export {default as lainX6} from './lain_x6.png';
 export {default as manifestHandClose} from './manifest_hand_close.png';
 export {default as manifestHand} from './manifest_hand.png';

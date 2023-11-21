@@ -8,8 +8,13 @@ import {
   lainLayer03 as layer04,
   lainLayer04 as layer05,
   powerButton,
+  startupScreen,
+  idleScreen,
 } from 'components/pages/Home/images';
 import styles from './styles.module.scss';
+
+console.log('startupScreen:', startupScreen);
+console.log('idleScreen:', idleScreen);
 
 const Content = ({
   hideStartScreen,
@@ -33,12 +38,10 @@ const Content = ({
     <div>
       <div className={styles.stackedImagesContainer}>
         <img
-          // src={process.env.PUBLIC_URL + screenUrlIdle}
           src={screenUrlIdle}
           className={styles.stackImage}
         />
         <img
-          // src={process.env.PUBLIC_URL + screenUrlStart}
           src={screenUrlStart}
           className={styles.stackImage}
           style={startScreenStyle}
@@ -89,10 +92,12 @@ const Computers = () => {
   );
   const [hideStartScreen, setHideStartScreen] = useState(false);
   const [screenUrlStart, setScreenUrlStart] = useState(
-      '/images/lain_screens_1_bitmapped.gif',
+      startupScreen,
   );
-  const screenUrlLoad = '/images/lain_screens_1_bitmapped.gif';
-  const screenUrlIdle = '/images/lain_screens_2_bitmapped.gif';
+  // const screenUrlLoad = '/images/lain_screens_1_bitmapped.gif';
+  // const screenUrlIdle = '/images/lain_screens_2_bitmapped.gif';
+  const screenUrlLoad = startupScreen;
+  const screenUrlIdle = idleScreen;
   const [timeoutID, setTimeoutID] = useState('');
 
   useEffect(() => {

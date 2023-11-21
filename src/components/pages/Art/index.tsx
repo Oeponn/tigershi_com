@@ -150,7 +150,7 @@ function Deck() {
               {...bind(i)}
               style={{
                 transform: interpolate([rot, scale], trans),
-                backgroundImage: `url(${cards[i].url})`,
+                backgroundImage: `url(${url})`,
               }}
             >
               <div className={styles.descriptionContainer}>
