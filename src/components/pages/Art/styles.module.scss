@@ -44,10 +44,10 @@
   background-position: top 20px center;
   width: 45vh;
   // max-width: 150px;
-  max-width: 200px;
+  max-width: 225px;
   height: 85vh;
   // max-height: 285px;
-  max-height: 360px;
+  max-height: 425px;
   will-change: transform;
   border-radius: 10px;
   box-shadow:
@@ -69,13 +69,13 @@
   justify-content: flex-start;
   opacity: 85%;
   padding: 0 15px;
-  height: 50px;
+  height: 65px;
   padding-bottom: 10px;
 }
 
 .title {
   composes: unselectable from "css/properties/unselectable.module.scss";
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
   margin: 0;
   letter-spacing: 1px;
@@ -85,7 +85,7 @@
   composes: unselectable from "css/properties/unselectable.module.scss";
   margin: 0;
   margin-top: 5px;
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 1px;
 }
 
