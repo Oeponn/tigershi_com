@@ -7,6 +7,10 @@
   padding-bottom: 30px;
 }
 
+.oponn {
+  font-size: 15px;
+}
+
 .linksContainer {
   font-size: 16px;
   display: flex;
@@ -17,6 +21,7 @@
 }
 
 .headerLink, .activeLink {
+  font-size: 10px;
   color: black;
   flex-shrink: 1;
   flex-grow: 1;
@@ -38,11 +43,11 @@
   margin: 20px auto 0px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 480px) {
   .headerLink {
-    font-size: 10px;
+    font-size: 16px;
   }
   .oponn {
-    font-size: 15px
+    font-size: 32px;
   }
 }

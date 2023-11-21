@@ -63,6 +63,8 @@ const cards = [
   },
 ];
 
+const TAP_THRESHOLD = 100;
+
 // These two are just helpers, they curate spring data, values that are
 // later being interpolated into css
 const to = (i: number) => ({
@@ -89,7 +91,7 @@ function Deck() {
   // Create a gesture, we're interested in down-state,
   // delta (current-pos - click-pos), direction and velocity
   const bind = useDrag(({
-    args: [index], down, movement: [mx], direction: [xDir], velocity,
+    args: [index], down, movement: [mx], direction: [xDir], velocity, event,
   }) => {
     const swipeThreshold = 10; // Set a threshold for swipe movement
     // If you flick hard enough it should trigger the card to fly out
@@ -97,14 +99,43 @@ function Deck() {
     const isSwipe = Math.abs(mx) > swipeThreshold; // Check if it's a swipe
 
     const dir = xDir < 0 ? -1 : 1; // Direction should either be left or right
-    if (!down) {
+    // if (!down) {
+    //   if (trigger && isSwipe) {
+    //     // If button/finger's up and it's a swipe
+    //     // console.log('send it away');
+    //     gone.add(index);
+    //   } else if (!isSwipe) {
+    //     // If it's not a swipe, it's a tap
+    //     // window.open('https://twitter.com/hyavoc/status/1719035484712861883');
+    //   }
+    // }
+    const target = event.currentTarget as HTMLElement;
+    if (down) {
+      // When the drag starts, record the start time
+      if (event) {
+        target.dataset.dragStartTime = Date.now().toString();
+      }
+    } else {
+      // When the drag ends, calculate the duration
+      const dragStartTime = target.dataset.dragStartTime ?
+        Number(target.dataset.dragStartTime) : Date.now();
+      const duration = Date.now() - dragStartTime;
+
+      console.log('duration:', duration);
+
       if (trigger && isSwipe) {
-        // If button/finger's up and it's a swipe
-        // console.log('send it away');
+        // If it's a swipe
+        console.log('send it away');
         gone.add(index);
-      } else if (!isSwipe) {
-        // If it's not a swipe, it's a tap
-        // window.open('https://twitter.com/hyavoc/status/1719035484712861883');
+      } else if (duration < TAP_THRESHOLD) {
+        const url = cards[index].fullUrl;
+        // If it's a tap (duration is less than the threshold)
+        if (confirm(`Opening link to ${url}`)) {
+          console.log('opening!');
+          window.open(url);
+        } else {
+          console.log('Cancelled');
+        }
       }
     }
     api.start((i) => {
@@ -161,7 +192,7 @@ function Deck() {
                   href={fullUrl}
                   rel="noreferrer"
                   target="_blank">
-              See full size =&gt;
+              Tap to see full size→
                 </a>
               </div>
             </animated.div>
