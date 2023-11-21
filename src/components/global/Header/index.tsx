@@ -9,7 +9,7 @@ const Header = ({loggedIn}: {loggedIn: boolean}) => {
       <h1 className={styles.oponn}>Oponn</h1>
       <div className={styles.linksContainer}>
         <NavLink to="/" exact={true} activeClassName={styles.activeLink} className={styles.headerLink}>Home</NavLink>
-        <NavLink to="/art" exact={true} activeClassName={styles.activeLink} className={styles.headerLink}>Anime Art</NavLink>
+        <NavLink to="/art" exact={true} activeClassName={styles.activeLink} className={styles.headerLink}> Art</NavLink>
         {/* <NavLink to="/curation" activeClassName={styles.activeLink} className={styles.headerLink}>Curation</NavLink> */}
         {
           loggedIn ?

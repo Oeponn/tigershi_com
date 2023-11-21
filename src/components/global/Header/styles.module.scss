@@ -8,7 +8,7 @@
 }
 
 .linksContainer {
-  font-size: 2vmin;
+  font-size: 16px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -39,15 +39,10 @@
 }
 
 @media screen and (max-width: 480px) {
-  .linksContainer {
-    flex-direction: column;
-    align-items: center;
-  }
-  .headerLinks {
-    font-size: 15px;
-    padding-top: 10px;
+  .headerLink {
+    font-size: 10px;
   }
   .oponn {
-    font-size: 30px
+    font-size: 15px
   }
 }
