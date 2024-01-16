@@ -20,6 +20,10 @@
   justify-content: space-evenly;
 }
 
+.headerLink {
+  text-decoration: none;
+}
+
 .headerLink, .activeLink {
   font-size: 10px;
   color: black;
@@ -27,10 +31,26 @@
   flex-grow: 1;
   transition: flex-grow 1000ms linear;
   text-align: center;
+
+  .outbound {
+    transform: scale(0.5) translate(-60%, -70%);
+    position: absolute;
+  }
+  
+
+  &:hover {
+    -webkit-text-stroke-width: 1px;
+
+    .outbound {
+      -webkit-filter: drop-shadow(1px 0 5px rgba(0, 0, 0, 1));
+      filter: drop-shadow(1px 0 5px rgba(0, 0, 0, 1));
+    }
+  }
 }
 
 .activeLink {
   -webkit-text-stroke-width: 1px;
+  text-decoration: underline;
 }
 
 .lineContainer {
