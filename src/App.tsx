@@ -1,4 +1,3 @@
-import React, {useEffect, useState} from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
 import Account from './components/Account';
@@ -21,35 +20,16 @@ import './css/App.scss';
 import './css/Account.css';
 
 
-import {isTouchDevice} from './components/shared/helpers';
+import {isTouchDevice} from './components/shared/helpers.tsx';
 const touchScreen = isTouchDevice();
 
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    fetch('/api/loggedin/')
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((json) => {
-          const {response: {logged_in: isLoggedIn}} = json;
-          setLoggedIn(isLoggedIn);
-        });
-  }, []);
-
-  useEffect(() => {
-    if (loggedIn) {
-      console.log('loggedIn useEffect:', loggedIn);
-    }
-  }, [loggedIn]);
-
   return (
     <div className="appContainer">
       <Cursor touchScreen={touchScreen} />
       <BrowserRouter>
-        <Header loggedIn={loggedIn} />
+        <Header loggedIn={false} />
         <div className="pageContainer">
           <Switch>
             <Route path="/" component={Home} exact={true} />
@@ -57,14 +37,14 @@ const App = () => {
             <Route path="/createaccount" component={CreateAccount} />
             <Route
               path="/login"
-              render={() => <Login changeLoginStatus={setLoggedIn} />}
+              render={() => <Login changeLoginStatus={() => {}} />}
             />
             <Route path="/account" component={Account} />
             <Route
               path="/logout"
-              render={() =><Logout changeLoginStatus={setLoggedIn} />}
+              render={() =><Logout changeLoginStatus={() => {}} />}
             />
-            <Route component={PageNotFound} />
+            <Route path="/:name" component={PageNotFound} />
           </Switch>
         </div>
       </BrowserRouter>

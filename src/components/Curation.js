@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import InnerWrapper from './InnerWrapper';
 import CuratedProducts from './CuratedProducts';
 import {withRouter} from 'react-router-dom';

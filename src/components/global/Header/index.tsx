@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {ReactComponent as OutboundIcon} from 'images/outbound.svg';
 import styles from './styles.module.scss';

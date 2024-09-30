@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import Card from 'components/wrappers/Card';
 import {
   wiredLogoWhite as layer00,
@@ -12,9 +12,6 @@ import {
   idleScreen,
 } from 'components/pages/Home/images';
 import styles from './styles.module.scss';
-
-console.log('startupScreen:', startupScreen);
-console.log('idleScreen:', idleScreen);
 
 const Content = ({
   hideStartScreen,

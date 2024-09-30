@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {useSprings, animated, to as interpolate} from '@react-spring/web';
 import {useDrag} from 'react-use-gesture';
 import {
@@ -63,7 +63,7 @@ const cards = [
   },
 ];
 
-const TAP_THRESHOLD = 100;
+const TAP_THRESHOLD = 150;
 
 // These two are just helpers, they curate spring data, values that are
 // later being interpolated into css

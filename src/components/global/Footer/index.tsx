@@ -1,5 +1,3 @@
-
-import React from 'react';
 import logo from 'images/react_atom.svg';
 import styles from './styles.module.scss';
 

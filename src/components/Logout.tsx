@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import Card from './wrappers/Card';
 import {useHistory} from 'react-router-dom';
 

@@ -1,4 +1,3 @@
-import React from "react";
 import InnerWrapper from './InnerWrapper';
 // import CurationWrapper from './CurationWrapper';
 
@@ -13,7 +12,7 @@ export default function CuratedProducts(props) {
             <div>Thank you for waiting</div>
           </div>}
       />
-    )
+    );
   }
   if (!props.products) {
     return (
@@ -25,11 +24,10 @@ export default function CuratedProducts(props) {
             <div>maybe add more keywords</div>
           </div>}
       />
-    )
-  }
-  else {
-    const parsedProducts = JSON.parse(props.products)
-    var productDivs = parsedProducts.map((product, index) => {
+    );
+  } else {
+    const parsedProducts = JSON.parse(props.products);
+    const productDivs = parsedProducts.map((product, index) => {
       return (
         <div className="product-box" key={index}>
           <div className="product-name">{product.name}</div>
@@ -38,7 +36,7 @@ export default function CuratedProducts(props) {
               <img className="product-image" src={product.imageURL} alt={product.name} ></img>
             </a>
           </div>
-          <div  className="product-price">{product.price} Yen</div>
+          <div className="product-price">{product.price} Yen</div>
         </div>
         // <CurationWrapper
         //   addClass=""
@@ -54,12 +52,12 @@ export default function CuratedProducts(props) {
         //       <div>{product.price} Yen</div>
         //     </div>
         //   } />
-      )
+      );
     });
 
-    const start = props.pageNum * props.resultsPerPage
-    const end = Math.min(props.pageNum * props.resultsPerPage + props.resultsPerPage, productDivs.length - 1)
-    var pageToDisplay = productDivs.slice(start, end)
+    const start = props.pageNum * props.resultsPerPage;
+    const end = Math.min(props.pageNum * props.resultsPerPage + props.resultsPerPage, productDivs.length - 1);
+    const pageToDisplay = productDivs.slice(start, end);
 
     // var arr = [1,2,3,4,5,6,7,8]
     // var renderedOutput = arr.map((item, index) => <div> {item},{index} </div>)
@@ -69,6 +67,5 @@ export default function CuratedProducts(props) {
         {pageToDisplay}
       </div>
     );
-
   }
 }
