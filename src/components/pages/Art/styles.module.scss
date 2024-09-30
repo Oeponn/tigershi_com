@@ -9,21 +9,8 @@
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 30px;
+  overflow-x: hidden;
 }
-
-// .container {
-//   background: lightblue;
-//   cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 39 39,
-//     auto;
-//   display: flex;
-//   align-items: center;
-//   height: 100%;
-//   justify-content: center;
-//   border: 5px solid red;
-//   position: relative;
-//   width: 100%;
-//   min-height: 500px;
-// }
 
 .deck {
   position: absolute;
