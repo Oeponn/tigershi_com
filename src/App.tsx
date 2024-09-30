@@ -1,4 +1,4 @@
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Routes, Route, BrowserRouter} from 'react-router-dom';
 
 import Account from './components/Account';
 import CreateAccount from './components/CreateAccount';
@@ -31,21 +31,21 @@ const App = () => {
       <BrowserRouter>
         <Header loggedIn={false} />
         <div className="pageContainer">
-          <Switch>
-            <Route path="/" component={Home} exact={true} />
-            <Route path="/art" component={Art} exact={true} />
-            <Route path="/createaccount" component={CreateAccount} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/art" element={<Art />} />
+            <Route path="/createaccount" element={<CreateAccount />} />
             <Route
               path="/login"
-              render={() => <Login changeLoginStatus={() => {}} />}
+              element={<Login changeLoginStatus={() => {}} />}
             />
-            <Route path="/account" component={Account} />
+            <Route path="/account" element={<Account />} />
             <Route
               path="/logout"
-              render={() =><Logout changeLoginStatus={() => {}} />}
+              element={<Logout changeLoginStatus={() => {}} />}
             />
-            <Route path="/:name" component={PageNotFound} />
-          </Switch>
+            <Route path="/:name" element={<PageNotFound />} />
+          </Routes>
         </div>
       </BrowserRouter>
 

@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 import {useParams} from 'react-router-dom';
 
 interface PageNotFoundParams {
-  name: string,
+  [key: string]: string | undefined;
 }
 
 export default function PageNotFound() {
@@ -24,7 +24,7 @@ export default function PageNotFound() {
 
   return (
     <Card>
-      <p>I wasn't able to find the '{name}' page, sorry</p>
+      <p>I wasn't able to find the '{name ?? 'unknown'}' page, sorry</p>
       <img className={styles.cat} src={stupidCat} alt="stupid confused cat" />
       <p><Link to='/' className={styles.link}> Go back home</Link></p>
     </Card>

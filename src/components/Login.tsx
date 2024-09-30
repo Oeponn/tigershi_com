@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import Card from 'components/wrappers/Card';
 import {HelloStripe} from 'components/shared/accessories';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 interface Account {
   changeLoginStatus: (arg: boolean) => void;
@@ -17,7 +17,7 @@ export default function Login({changeLoginStatus}: Account) {
 
 
   const LoginButton = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -46,7 +46,7 @@ export default function Login({changeLoginStatus}: Account) {
             if (response['logged_in'] === true) {
               console.log('logged in type:', response['login_type']);
               changeLoginStatus(response['logged_in']);
-              history.push('/account');
+              navigate('/account');
             } else {
               alert('who are you?');
             }

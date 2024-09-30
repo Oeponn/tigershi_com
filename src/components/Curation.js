@@ -56,7 +56,7 @@ class Curation extends Component {
               loading: false,
             });
             console.log('Finished fetching, now push to history to refresh');
-            this.props.history.push(`/curation/0`);
+            this.props.navigate(`/curation/0`);
           });
         });
   };
@@ -91,7 +91,7 @@ class Curation extends Component {
     } else if (numberOfResults > 0 && (num * RESULTS_PER_PAGE) > numberOfResults) {
       num -= 1;
     } else {
-      this.props.history.push(`/curation/${num}`);
+      this.props.navigate(`/curation/${num}`);
     }
 
     this.setState({

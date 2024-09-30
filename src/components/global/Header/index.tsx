@@ -8,7 +8,9 @@ const Header = ({loggedIn}: {loggedIn: boolean}) => {
     <div className={styles.container}>
       <h1 className={styles.oponn}>Oponn</h1>
       <div className={styles.linksContainer}>
-        <NavLink to="/" exact={true} activeClassName={styles.activeLink} className={styles.headerLink}>Home</NavLink>
+        <NavLink to="/" className={({isActive}) =>
+    isActive ? `${styles.headerLink} ${styles.activeLink}` : styles.headerLink
+        }>Home</NavLink>
         <a
           className={styles.headerLink}
           href="https://undrstand.me/"
@@ -17,18 +19,30 @@ const Header = ({loggedIn}: {loggedIn: boolean}) => {
             Undrstand.me
           <OutboundIcon className={styles.outbound} />
         </a>
-        <NavLink to="/art" exact={true} activeClassName={styles.activeLink} className={styles.headerLink}> Art</NavLink>
-        {/* <NavLink to="/curation" activeClassName={styles.activeLink} className={styles.headerLink}>Curation</NavLink> */}
+        <NavLink to="/art" className={({isActive}) =>
+    isActive ? `${styles.headerLink} ${styles.activeLink}` : styles.headerLink
+        }> Art</NavLink>
+        {/* <NavLink to="/curation" className={({isActive}) =>
+    isActive ? `${styles.headerLink} ${styles.activeLink}` : styles.headerLink
+        }>Curation</NavLink> */}
         {
           loggedIn ?
-            <NavLink to="/account" activeClassName={styles.activeLink} className={styles.headerLink}>Account</NavLink> :
+            <NavLink to="/account" className={({isActive}) =>
+              isActive ? `${styles.headerLink} ${styles.activeLink}` : styles.headerLink
+            }>Account</NavLink> :
             null
         }
-        {/* <NavLink to="/store" activeClassName={styles.activeLink} className={styles.headerLink}>Store</NavLink> */}
+        {/* <NavLink to="/store" className={({isActive}) =>
+    isActive ? `${styles.headerLink} ${styles.activeLink}` : styles.headerLink
+        }>Store</NavLink> */}
         {
           loggedIn ?
-            <NavLink to="/logout" activeClassName={styles.activeLink} className={styles.headerLink}>Exit</NavLink> :
-            <NavLink to="/login" activeClassName={styles.activeLink} className={styles.headerLink}>Login</NavLink>
+            <NavLink to="/logout" className={({isActive}) =>
+              isActive ? `${styles.headerLink} ${styles.activeLink}` : styles.headerLink
+            }>Exit</NavLink> :
+            <NavLink to="/login" className={({isActive}) =>
+              isActive ? `${styles.headerLink} ${styles.activeLink}` : styles.headerLink
+            }>Login</NavLink>
         }
       </div>
       <div className={styles.lineContainer}>

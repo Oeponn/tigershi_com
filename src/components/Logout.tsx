@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import Card from './wrappers/Card';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 interface Account {
   changeLoginStatus: (arg: boolean) => void;
@@ -16,7 +16,7 @@ export default function Logout({changeLoginStatus}: Account) {
   });
 
   function Exit() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     function handleClick() {
       fetch('/api/logout/', {
@@ -29,7 +29,7 @@ export default function Logout({changeLoginStatus}: Account) {
           .then((resp) => {
             console.log('Response:', resp.ok);
             changeLoginStatus(false);
-            history.push('/');
+            navigate('/');
           });
     }
 
